@@ -34,10 +34,8 @@
   </script>
   <style>
     html { scroll-behavior: smooth; }
-    /* Subtle reveal animations */
     .reveal { opacity: 0; transform: translateY(16px); transition: opacity .5s ease, transform .6s ease; }
     .reveal.show { opacity: 1; transform: translateY(0); }
-    /* Helper to inline set bg images from data attribute (safer with CSP + Tailwind JIT) */
     .bg-dyn { background-size: cover; background-position: center; }
   </style>
 </head>
@@ -66,13 +64,18 @@
         </div>
       </a>
       <nav class="hidden md:flex items-center gap-7">
-        <a href="#apropos" class="text-slate-700 hover:text-night font-medium">À propos</a>
-        <a href="#projets" class="text-slate-700 hover:text-night font-medium">Projets</a>
-        <a href="#offre" class="text-slate-700 hover:text-night font-medium">Mon offre</a>
-        <a href="#devis" class="text-slate-700 hover:text-night font-medium">Devis</a>
+        <a href="#apropos" class="text-slate-700 hover:text-night font-medium" data-i18n="nav.about">À propos</a>
+        <a href="#projets" class="text-slate-700 hover:text-night font-medium" data-i18n="nav.projects">Projets</a>
+        <a href="#offre" class="text-slate-700 hover:text-night font-medium" data-i18n="nav.offer">Mon offre</a>
+        <a href="#devis" class="text-slate-700 hover:text-night font-medium" data-i18n="nav.quote">Devis</a>
       </nav>
       <div class="flex items-center gap-2">
-        <a href="#devis" class="inline-flex items-center gap-2 bg-night text-white px-4 py-2.5 rounded-xl font-semibold shadow-soft hover:shadow-lg hover:-translate-y-0.5 transition">
+        <div class="hidden md:flex items-center gap-2 mr-2 bg-white/80 border border-slate-200 rounded-xl px-2 py-1">
+          <button class="px-2 py-1 rounded-lg text-slate-700 hover:bg-slate-100 font-medium" data-lang="fr">FR</button>
+          <button class="px-2 py-1 rounded-lg text-slate-700 hover:bg-slate-100 font-medium" data-lang="en">EN</button>
+          <button class="px-2 py-1 rounded-lg text-slate-700 hover:bg-slate-100 font-medium" data-lang="nl">NL</button>
+        </div>
+        <a href="#devis" class="inline-flex items-center gap-2 bg-night text-white px-4 py-2.5 rounded-xl font-semibold shadow-soft hover:shadow-lg hover:-translate-y-0.5 transition" data-i18n="cta.talk">
           🚀 Discutons de votre projet
         </a>
       </div>
@@ -82,7 +85,6 @@
   <!-- HERO -->
   <section id="hero" class="relative overflow-hidden">
     <div class="absolute inset-0">
-      <!-- Background image (hero) with gradient overlay -->
       <div class="absolute inset-0 bg-night/60"></div>
       <div class="absolute inset-0 opacity-90 bg-cover bg-center" data-bg-url="https://i.ibb.co/gLzr1wMz/Hero-Landing-page.png"></div>
       <div class="absolute inset-0 bg-gradient-to-b from-night/30 via-night/20 to-white/0"></div>
@@ -117,7 +119,6 @@
           <div class="absolute -inset-6 -z-10 bg-white/5 rounded-3xl blur-2xl"></div>
           <div class="bg-white rounded-3xl p-6 shadow-glass border border-slate-100">
             <div class="grid grid-cols-12 gap-4 items-end">
-              <!-- Desktop only -->
               <div class="col-span-12">
                 <div class="rounded-2xl overflow-hidden shadow-soft bg-white">
                   <div class="p-2 md:p-3">
@@ -199,7 +200,6 @@
       </div>
 
       <div class="mt-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-7">
-        <!-- Project Card Template functionally repeated with custom content -->
         <!-- 1. MedicalNetwork -->
         <article class="bg-white rounded-2xl border border-slate-200 shadow-soft overflow-hidden reveal">
           <div class="p-5 border-b border-slate-100">
@@ -207,9 +207,7 @@
             <p class="mt-1 text-sm text-slate-600">Mise en relation de technologues en imagerie médicale</p>
           </div>
           <div class="p-5">
-            <!-- Mockup -->
             <div class="grid grid-cols-1 items-end">
-              <!-- Desktop only -->
               <div>
                 <div class="rounded-xl overflow-hidden shadow-soft">
                   <div class="h-40 md:h-48 relative overflow-hidden">
@@ -219,16 +217,19 @@
                 </div>
               </div>
             </div>
-            <!-- Points -->
             <ul class="mt-4 space-y-2 text-sm text-slate-700">
               <li>• Profils vérifiés et recherche filtrée</li>
               <li>• Messagerie sécurisée et notifications</li>
               <li>• Onboarding rapide pour équipes</li>
             </ul>
+            <div class="mt-4 flex flex-wrap gap-3">
+              <a href="https://medicalnetwork.fr/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-night text-white px-4 py-2.5 rounded-xl font-semibold hover:-translate-y-0.5 transition">Voir le site ↗️</a>
+              <a href="#devis" class="inline-flex items-center gap-2 bg-white border border-slate-300 hover:border-slate-400 text-night px-4 py-2.5 rounded-xl font-semibold" data-i18n="cta.quote">Demander un devis</a>
+            </div>
           </div>
         </article>
 
-        <!-- 2. MedilinkX.bid -->
+        <!-- 2. Medilink.bid -->
         <article class="bg-white rounded-2xl border border-slate-200 shadow-soft overflow-hidden reveal">
           <div class="p-5 border-b border-slate-100">
             <h3 class="font-extrabold text-night">Medilink.bid</h3>
@@ -250,6 +251,10 @@
               <li>• Gestion des offres & enchères en temps réel</li>
               <li>• Notifications et tableau de bord vendeur</li>
             </ul>
+            <div class="mt-4 flex flex-wrap gap-3">
+              <a href="https://medilinkx.bid/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-night text-white px-4 py-2.5 rounded-xl font-semibold hover:-translate-y-0.5 transition">Voir le site ↗️</a>
+              <a href="#devis" class="inline-flex items-center gap-2 bg-white border border-slate-300 hover:border-slate-400 text-night px-4 py-2.5 rounded-xl font-semibold" data-i18n="cta.quote">Demander un devis</a>
+            </div>
           </div>
         </article>
 
@@ -275,10 +280,14 @@
               <li>• Cartographie et filtrage par zone</li>
               <li>• Système de messagerie simple</li>
             </ul>
+            <div class="mt-4 flex flex-wrap gap-3">
+              <a href="https://buses-solutions.com/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-night text-white px-4 py-2.5 rounded-xl font-semibold hover:-translate-y-0.5 transition">Voir le site ↗️</a>
+              <a href="#devis" class="inline-flex items-center gap-2 bg-white border border-slate-300 hover:border-slate-400 text-night px-4 py-2.5 rounded-xl font-semibold" data-i18n="cta.quote">Demander un devis</a>
+            </div>
           </div>
         </article>
 
-        <!-- 4. Amaru-Resortes.com -->
+        <!-- 4. Amaru-Resots;com -->
         <article class="bg-white rounded-2xl border border-slate-200 shadow-soft overflow-hidden reveal">
           <div class="p-5 border-b border-slate-100">
             <h3 class="font-extrabold text-night">Amaru-Resots;com</h3>
@@ -300,6 +309,10 @@
               <li>• Multilingue et génération de leads</li>
               <li>• Performances optimisées</li>
             </ul>
+            <div class="mt-4 flex flex-wrap gap-3">
+              <a href="https://amaru-resorts.com/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-night text-white px-4 py-2.5 rounded-xl font-semibold hover:-translate-y-0.5 transition">Voir le site ↗️</a>
+              <a href="#devis" class="inline-flex items-center gap-2 bg-white border border-slate-300 hover:border-slate-400 text-night px-4 py-2.5 rounded-xl font-semibold" data-i18n="cta.quote">Demander un devis</a>
+            </div>
           </div>
         </article>
 
@@ -325,6 +338,10 @@
               <li>• Système de prise de rendez-vous</li>
               <li>• Suivi client simplifié</li>
             </ul>
+            <div class="mt-4 flex flex-wrap gap-3">
+              <a href="https://constatbat.vercel.app/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-night text-white px-4 py-2.5 rounded-xl font-semibold hover:-translate-y-0.5 transition">Voir le site ↗️</a>
+              <a href="#devis" class="inline-flex items-center gap-2 bg-white border border-slate-300 hover:border-slate-400 text-night px-4 py-2.5 rounded-xl font-semibold" data-i18n="cta.quote">Demander un devis</a>
+            </div>
           </div>
         </article>
 
@@ -350,6 +367,10 @@
               <li>• Espace client simple et clair</li>
               <li>• Notifications email automatisées</li>
             </ul>
+            <div class="mt-4 flex flex-wrap gap-3">
+              <a href="https://viiveo.carrd.co/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-night text-white px-4 py-2.5 rounded-xl font-semibold hover:-translate-y-0.5 transition">Voir le site ↗️</a>
+              <a href="#devis" class="inline-flex items-center gap-2 bg-white border border-slate-300 hover:border-slate-400 text-night px-4 py-2.5 rounded-xl font-semibold" data-i18n="cta.quote">Demander un devis</a>
+            </div>
           </div>
         </article>
 
@@ -361,12 +382,12 @@
   <section id="offre" class="relative">
     <div class="absolute inset-0 -z-10">
       <div class="absolute inset-0 opacity-90 bg-cover bg-center" data-bg-url="https://i.ibb.co/Y4RxKd50/Section-Offre.png"></div>
-      <div class="absolute inset-0 bg-white/72"></div>
+      <div class="absolute inset-0 bg-black/60"></div>
     </div>
     <div class="max-w-7xl mx-auto px-4 py-16 md:py-24">
       <div class="reveal">
-        <h2 class="text-2xl md:text-3xl font-extrabold text-night">Mon offre</h2>
-        <p class="mt-3 text-slate-700">Des solutions adaptées aux startups, PME et indépendants, avec la puissance de l’IA.</p>
+        <h2 class="text-2xl md:text-3xl font-extrabold text-white" data-i18n="offer.title">Mon offre</h2>
+        <p class="mt-3 text-white/95" data-i18n="offer.subtitle">Des solutions adaptées aux startups, PME et indépendants, avec la puissance de l’IA.</p>
       </div>
 
       <div class="mt-10 grid lg:grid-cols-3 gap-7">
@@ -448,8 +469,8 @@
     <div class="absolute inset-0 pointer-events-none bg-[radial-gradient(ellipse_at_bottom_left,rgba(34,197,94,.08),transparent_40%)]"></div>
     <div class="max-w-7xl mx-auto px-4 py-16 md:py-24">
       <div class="reveal">
-        <h2 class="text-2xl md:text-3xl font-extrabold text-night">Demande de devis</h2>
-        <p class="mt-3 text-slate-700">Expliquez votre besoin en 1 minute. Je reviens vers vous rapidement avec un plan d’action.</p>
+        <h2 class="text-2xl md:text-3xl font-extrabold text-night" data-i18n="quote.title">Demande de devis</h2>
+        <p class="mt-3 text-slate-700" data-i18n="quote.subtitle">Expliquez votre besoin en 1 minute. Je reviens vers vous rapidement avec un plan d’action.</p>
       </div>
 
       <div class="mt-8 grid lg:grid-cols-3 gap-8">
@@ -457,29 +478,29 @@
         <form id="quoteForm" class="lg:col-span-2 bg-white rounded-2xl border border-slate-200 shadow-soft p-6 space-y-5">
           <div class="grid md:grid-cols-2 gap-5">
             <div>
-              <label for="prenom" class="block text-sm font-medium text-slate-700">Prénom</label>
+              <label for="prenom" class="block text-sm font-medium text-slate-700" data-i18n="form.firstName">Prénom</label>
               <input id="prenom" name="prenom" type="text" required class="mt-1 w-full rounded-xl border-slate-300 focus:border-emerald-500 focus:ring-emerald-500" placeholder="Votre prénom" />
             </div>
             <div>
-              <label for="nom" class="block text-sm font-medium text-slate-700">Nom</label>
+              <label for="nom" class="block text-sm font-medium text-slate-700" data-i18n="form.lastName">Nom</label>
               <input id="nom" name="nom" type="text" required class="mt-1 w-full rounded-xl border-slate-300 focus:border-emerald-500 focus:ring-emerald-500" placeholder="Votre nom" />
             </div>
           </div>
 
           <div class="grid md:grid-cols-2 gap-5">
             <div>
-              <label for="email" class="block text-sm font-medium text-slate-700">Email</label>
+              <label for="email" class="block text-sm font-medium text-slate-700" data-i18n="form.email">Email</label>
               <input id="email" name="email" type="email" required class="mt-1 w-full rounded-xl border-slate-300 focus:border-emerald-500 focus:ring-emerald-500" placeholder="vous@exemple.com" />
             </div>
             <div>
-              <label for="tel" class="block text-sm font-medium text-slate-700">Téléphone</label>
+              <label for="tel" class="block text-sm font-medium text-slate-700" data-i18n="form.phone">Téléphone</label>
               <input id="tel" name="tel" type="tel" required class="mt-1 w-full rounded-xl border-slate-300 focus:border-emerald-500 focus:ring-emerald-500" placeholder="+32 ..." />
             </div>
           </div>
 
           <div class="grid md:grid-cols-2 gap-5">
             <div>
-              <label for="type" class="block text-sm font-medium text-slate-700">Type de projet</label>
+              <label for="type" class="block text-sm font-medium text-slate-700" data-i18n="form.type">Type de projet</label>
               <select id="type" name="type" required class="mt-1 w-full rounded-xl border-slate-300 focus:border-emerald-500 focus:ring-emerald-500">
                 <option value="">Sélectionnez…</option>
                 <option>MVP</option>
@@ -489,7 +510,7 @@
               </select>
             </div>
             <div>
-              <label for="budget" class="block text-sm font-medium text-slate-700">Budget approximatif</label>
+              <label for="budget" class="block text-sm font-medium text-slate-700" data-i18n="form.budget">Budget approximatif</label>
               <select id="budget" name="budget" class="mt-1 w-full rounded-xl border-slate-300 focus:border-emerald-500 focus:ring-emerald-500">
                 <option value="">À définir</option>
                 <option>Moins de 1 000 €</option>
@@ -503,12 +524,12 @@
           </div>
 
           <div>
-            <label for="desc" class="block text-sm font-medium text-slate-700">Description du projet</label>
+            <label for="desc" class="block text-sm font-medium text-slate-700" data-i18n="form.description">Description du projet</label>
             <textarea id="desc" name="desc" required rows="5" class="mt-1 w-full rounded-xl border-slate-300 focus:border-emerald-500 focus:ring-emerald-500" placeholder="Objectifs, fonctionnalités clés, délais, etc."></textarea>
           </div>
 
           <div class="flex flex-wrap items-center gap-3 pt-2">
-            <button type="submit" class="inline-flex items-center gap-2 bg-emerald-500 hover:bg-emerald-600 text-white px-5 py-3 rounded-xl font-semibold shadow-soft">
+            <button type="submit" class="inline-flex items-center gap-2 bg-emerald-500 hover:bg-emerald-600 text-white px-5 py-3 rounded-xl font-semibold shadow-soft" data-i18n="form.submit">
               📩 Envoyer ma demande
             </button>
             <button type="button" id="resetBtn" class="inline-flex items-center gap-2 bg-white border border-slate-300 hover:border-slate-400 text-night px-4 py-3 rounded-xl font-semibold">
@@ -516,7 +537,7 @@
             </button>
           </div>
 
-          <p class="text-xs text-slate-500">
+          <p class="text-xs text-slate-500" data-i18n="form.privacy">
             Envoi 100% local et privé — aucune donnée n’est partagée automatiquement. Vous recevrez un récapitulatif à copier.
           </p>
         </form>
@@ -618,7 +639,7 @@
       window.open('mailto:hello@anza.dev?subject=Projet%20digital%20-%20Anza', '_blank');
     });
 
-    // Make data-bg-url images visible by inlining them as background images
+    // Make data-bg-url images visible
     document.querySelectorAll('[data-bg-url]').forEach(el => {
       const url = el.getAttribute('data-bg-url');
       if (url) {
@@ -629,9 +650,7 @@
 
     // Reveal on scroll
     const io = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        if (e.isIntersecting) e.target.classList.add('show');
-      });
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('show'); });
     }, { threshold: 0.12 });
     document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
@@ -666,7 +685,6 @@
         timestamp: new Date().toLocaleString()
       };
 
-      // Basic validation
       const errors = [];
       if (!data.prenom) errors.push('Prénom manquant');
       if (!data.nom) errors.push('Nom manquant');
@@ -680,10 +698,8 @@
         return;
       }
 
-      // Save locally
       localStorage.setItem('anza_devis', JSON.stringify(data));
 
-      // Build recap
       const recapText =
 `Demande de devis — Anza
 Date: ${data.timestamp}
@@ -752,6 +768,53 @@ Suite
       a.remove();
       URL.revokeObjectURL(url);
     });
+    // Simple i18n dictionary and switcher
+    const i18n = {
+      fr: {
+        'nav.about': 'À propos', 'nav.projects': 'Projets', 'nav.offer': 'Mon offre', 'nav.quote': 'Devis',
+        'cta.talk': '🚀 Discutons de votre projet', 'cta.quote': 'Demander un devis',
+        'offer.title': 'Mon offre', 'offer.subtitle': 'Des solutions adaptées aux startups, PME et indépendants, avec la puissance de l’IA.',
+        'quote.title': 'Demande de devis', 'quote.subtitle': 'Expliquez votre besoin en 1 minute. Je reviens vers vous rapidement avec un plan d’action.',
+        'form.firstName': 'Prénom', 'form.lastName': 'Nom', 'form.email': 'Email', 'form.phone': 'Téléphone', 'form.type': 'Type de projet', 'form.budget': 'Budget approximatif', 'form.description': 'Description du projet', 'form.submit': '📩 Envoyer ma demande', 'form.privacy': 'Envoi 100% local et privé — aucune donnée n’est partagée automatiquement. Vous recevrez un récapitulatif à copier.'
+      },
+      en: {
+        'nav.about': 'About', 'nav.projects': 'Projects', 'nav.offer': 'Offer', 'nav.quote': 'Quote',
+        'cta.talk': '🚀 Let’s discuss your project', 'cta.quote': 'Request a quote',
+        'offer.title': 'My offer', 'offer.subtitle': 'Solutions for startups, SMEs and freelancers, powered by AI.',
+        'quote.title': 'Request a quote', 'quote.subtitle': 'Explain your need in 1 minute. I’ll reply quickly with a plan.',
+        'form.firstName': 'First name', 'form.lastName': 'Last name', 'form.email': 'Email', 'form.phone': 'Phone', 'form.type': 'Project type', 'form.budget': 'Approximate budget', 'form.description': 'Project description', 'form.submit': '📩 Send my request', 'form.privacy': '100% local and private — no data is shared automatically. You will receive a summary to copy.'
+      },
+      nl: {
+        'nav.about': 'Over', 'nav.projects': 'Projecten', 'nav.offer': 'Aanbod', 'nav.quote': 'Offerte',
+        'cta.talk': '🚀 Laten we praten', 'cta.quote': 'Offerte aanvragen',
+        'offer.title': 'Mijn aanbod', 'offer.subtitle': 'Oplossingen voor startups, KMO’s en zelfstandigen, met de kracht van AI.',
+        'quote.title': 'Offerteaanvraag', 'quote.subtitle': 'Leg uw behoefte in 1 minuut uit. Ik antwoord snel met een plan.',
+        'form.firstName': 'Voornaam', 'form.lastName': 'Achternaam', 'form.email': 'E-mail', 'form.phone': 'Telefoon', 'form.type': 'Projecttype', 'form.budget': 'Geschat budget', 'form.description': 'Projectbeschrijving', 'form.submit': '📩 Mijn aanvraag verzenden', 'form.privacy': '100% lokaal en privé — er wordt geen data automatisch gedeeld. U krijgt een samenvatting om te kopiëren.'
+      }
+    };
+
+    function setLang(lang){
+      const dict = i18n[lang] || i18n.fr;
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (dict[key]) {
+          if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+            el.placeholder = dict[key];
+          } else {
+            el.textContent = dict[key];
+          }
+        }
+      });
+      localStorage.setItem('lang', lang);
+    }
+
+    // Language buttons
+    document.querySelectorAll('[data-lang]').forEach(btn => {
+      btn.addEventListener('click', () => setLang(btn.getAttribute('data-lang')));
+    });
+
+    // Init language
+    setLang(localStorage.getItem('lang') || 'fr');
   </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9838ff5d361eba60',t:'MTc1ODYxOTU1NS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'98392de59302b774',t:'MTc1ODYyMTQ2MS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
