@@ -15,7 +15,7 @@
         tailwind.config = {
             theme: {
                 extend: {
-                    fontFamily: { sans: ['Inter', 'ui-sans-serif', 'system-ui', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial'] },
+                    fontFamily: { sans: ['Inter', 'ui-sans-serif', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial'] },
                     colors: {
                         night: '#0b1220',
                         nightSoft: '#0f1a2f',
@@ -120,7 +120,10 @@
                                     <div class="rounded-2xl overflow-hidden shadow-soft bg-white">
                                         <div class="p-2 md:p-3">
                                             <div class="h-56 md:h-72 rounded-xl relative overflow-hidden">
-                                                <div class="absolute inset-0 bg-cover bg-center" style="background-image:url('https://i.ibb.co/Lzq9303v/Dashboard-section-hero.jpg');"></div>
+                                                <video autoplay loop muted playsinline class="absolute inset-0 w-full h-full object-cover">
+                                                    <source src="https://res.cloudinary.com/drn6w4nab/video/upload/v1758878831/video_hero_uo7lgz.mp4" type="video/mp4">
+                                                    <img src="https://i.ibb.co/Lzq9303v/Dashboard-section-hero.jpg" alt="Dashboard" class="w-full h-full object-cover">
+                                                </video>
                                                 <div class="absolute inset-0 bg-black/10"></div>
                                             </div>
                                         </div>
@@ -604,19 +607,16 @@
         // --- GESTION DES PAGES ET DE LA NAVIGATION ---
 
         function showPage(pageId) {
-            // Cache toutes les pages
             document.querySelectorAll('.page').forEach(page => {
                 page.classList.add('hidden');
             });
 
-            // Affiche la page demandée
             const activePage = document.getElementById(`page-${pageId}`);
             if (activePage) {
                 activePage.classList.remove('hidden');
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             }
 
-            // Gère l'état actif des boutons de navigation
             document.querySelectorAll('nav .nav-btn').forEach(btn => {
                 const btnPageId = btn.getAttribute('onclick').match(/showPage\('(.+)'\)/)[1];
                 if (btnPageId === pageId) {
@@ -654,4 +654,87 @@
                 'offer.title': 'My offer', 'offer.subtitle': 'Solutions for startups, SMEs and freelancers, powered by AI.',
                 'quote.title': 'Request a quote', 'quote.subtitle': 'Explain your need in 1 minute. I\'ll reply quickly with a plan.',
                 'form.firstName': 'First name', 'form.lastName': 'Last name', 'form.email': 'Email', 'form.phone': 'Phone', 'form.type': 'Project type', 'form.budget': 'Approximate budget', 'form.description': 'Project description', 'form.submit': '📩 Send my request', 'form.privacy': 'Your request will be processed by a secure form submission service.',
-                'footer.sections': 'Sections', 'footer.contact': 'Contact', '
+                'footer.sections': 'Sections', 'footer.contact': 'Contact', 'footer.email': 'Email:', 'footer.zone': 'Area: Mons, Brussels, remote', 'footer.rights': 'Anza. All rights reserved.',
+            },
+            nl: {
+                'top.tagline': 'Anza • Digitale ontwikkeling — Bergen, België', 'top.fast': 'Snelle levering', 'top.mvp': 'MVP in 7 dagen', 'brand.tag': 'Bouwen • AI • Groei',
+                'nav.about': 'Over', 'nav.projects': 'Projecten', 'nav.offer': 'Aanbod', 'nav.quote': 'Offerte',
+                'cta.talk': '🚀 Laten we praten', 'cta.viewProjects': 'Projecten bekijken', 'cta.quote': 'Offerte aanvragen', 'cta.quoteArrow': 'Offerte aanvragen →',
+                'hero.fast': 'Snelle levering', 'hero.results': 'Resultaatgericht', 'hero.ai': 'AI & automatisering',
+                'about.title': 'Over', 'about.examples': 'Bekijk concrete voorbeelden →',
+                'projects.title': 'Projecten', 'projects.subtitle': 'Ontdek een selectie van projecten gepresenteerd op desktop en mobiel.<br/>Elke creatie belicht haar sterke punten, het strakke ontwerp en de concrete waarde die het onze klanten biedt.',
+                'offer.title': 'Mijn aanbod', 'offer.subtitle': 'Oplossingen voor startups, KMO\'s en zelfstandigen, met de kracht van AI.',
+                'quote.title': 'Offerteaanvraag', 'quote.subtitle': 'Leg uw behoefte in 1 minuut uit. Ik antwoord snel met een plan.',
+                'form.firstName': 'Voornaam', 'form.lastName': 'Achternaam', 'form.email': 'E-mail', 'form.phone': 'Telefoon', 'form.type': 'Projecttype', 'form.budget': 'Geschat budget', 'form.description': 'Projectbeschrijving', 'form.submit': '📩 Mijn aanvraag verzenden', 'form.privacy': 'Uw aanvraag wordt verwerkt door een beveiligde formulierdienst.',
+                'footer.sections': 'Secties', 'footer.contact': 'Contact', 'footer.email': 'E-mail:', 'footer.zone': 'Regio: Bergen, Brussel, remote', 'footer.rights': 'Anza. Alle rechten voorbehouden.',
+            }
+        };
+
+        function setLang(lang) {
+            const dict = translations[lang] || translations.fr;
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (key && dict[key]) {
+                    if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+                        el.placeholder = dict[key];
+                    } else if (el.hasAttribute('data-i18n-html')) {
+                        el.innerHTML = dict[key];
+                    } else {
+                        el.textContent = dict[key];
+                    }
+                }
+            });
+
+            const heroTitle = document.querySelector('#page-home h1');
+            const heroSubtitle = document.querySelector('#page-home .text-xl');
+            const aboutDesc = document.querySelector('#page-about p.mt-5');
+
+            if (heroTitle) heroTitle.textContent = dict['hero.title'] || heroTitle.textContent;
+            if (heroSubtitle) heroSubtitle.textContent = dict['hero.subtitle'] || heroSubtitle.textContent;
+            if (aboutDesc) aboutDesc.textContent = dict['about.desc'] || aboutDesc.textContent;
+
+            localStorage.setItem('lang', lang);
+            document.querySelectorAll('[data-lang]').forEach(b => b.classList.remove('bg-slate-900', 'text-white'));
+            const activeBtn = document.querySelector(`[data-lang="${lang}"]`);
+            if (activeBtn) {
+                activeBtn.classList.add('bg-slate-900', 'text-white');
+            }
+        }
+
+        // --- LOGIQUE DU FORMULAIRE ET DES ÉLÉMENTS ANNEXES ---
+
+        // Year
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Email button opens mail in new tab
+        document.getElementById('emailBtn').addEventListener('click', () => {
+            window.open('mailto:hello@anza.dev?subject=Projet%20digital%20-%20Anza', '_blank');
+        });
+
+        // Make data-bg-url images visible
+        document.querySelectorAll('[data-bg-url]').forEach(el => {
+            const url = el.getAttribute('data-bg-url');
+            if (url) {
+                el.style.backgroundImage = `url('${url}')`;
+                el.classList.add('bg-dyn');
+            }
+        });
+
+        // Form handling (nettoyage pour Web3Forms)
+        const form = document.getElementById('quoteForm');
+        const resetBtn = document.getElementById('resetBtn');
+
+        resetBtn.addEventListener('click', () => {
+            form.reset();
+            localStorage.removeItem('anza_devis');
+        });
+        
+        // Initialiser tout au chargement de la page
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedLang = localStorage.getItem('lang') || 'fr';
+            setLang(savedLang);
+            showPage('home'); // Afficher la page d'accueil au chargement
+        });
+    </script>
+</body>
+</html>
