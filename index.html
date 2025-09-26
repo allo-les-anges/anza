@@ -185,18 +185,18 @@
     </div>
 
     <div id="page-projects" class="page hidden">
-    <section class="relative">
-        <div class="absolute inset-0 pointer-events-none z-10">
-            <div class="absolute inset-0 opacity-90 bg-cover bg-center" data-bg-url="https://i.ibb.co/chDsJkTC/Section-Projets.png"></div>
-            <div class="absolute inset-0 bg-black/40"></div>
-        </div>
-        <div class="relative z-20 max-w-7xl mx-auto px-4 py-16 md:py-24">
-            <div class="flex items-end justify-between gap-6">
-                <div>
-                    <h2 class="text-2xl md:text-3xl font-extrabold text-white" data-i18n="projects.title">Projets</h2>
-                    <p class="mt-3 text-white/95 max-w-2xl">Découvrez une sélection de projets présentés sur ordinateur et smartphone.<br/>Chaque création met en avant ses points forts, son design soigné et la valeur concrète qu’elle apporte à nos clients.</p>
-                </div>
+        <section class="relative">
+            <div class="absolute inset-0 pointer-events-none z-10">
+                <div class="absolute inset-0 opacity-90 bg-cover bg-center" data-bg-url="https://i.ibb.co/chDsJkTC/Section-Projets.png"></div>
+                <div class="absolute inset-0 bg-black/40"></div>
             </div>
+            <div class="relative z-20 max-w-7xl mx-auto px-4 py-16 md:py-24">
+                <div class="flex items-end justify-between gap-6">
+                    <div>
+                        <h2 class="text-2xl md:text-3xl font-extrabold text-white" data-i18n="projects.title">Projets</h2>
+                        <p class="mt-3 text-white/95 max-w-2xl">Découvrez une sélection de projets présentés sur ordinateur et smartphone.<br/>Chaque création met en avant ses points forts, son design soigné et la valeur concrète qu’elle apporte à nos clients.</p>
+                    </div>
+                </div>
                 <div class="mt-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-7">
                     <article class="bg-white rounded-2xl border border-slate-200 shadow-soft overflow-hidden">
                         <div class="p-5 border-b border-slate-100">
@@ -465,73 +465,74 @@
 
                 <div class="mt-8 grid lg:grid-cols-3 gap-8">
                     <form action="https://api.web3forms.com/submit" method="POST" class="lg:col-span-2 bg-white rounded-2xl border border-slate-200 shadow-soft p-6 space-y-5">
-    <input type="hidden" name="access_key" value="a0163328-1225-458e-a9f9-8b6749b40773">
-    
-    <div class="grid md:grid-cols-2 gap-5">
-        <div>
-            <label for="prenom" class="block text-sm font-medium text-slate-700" data-i18n="form.firstName">Prénom</label>
-            <input id="prenom" name="Prénom" type="text" required class="mt-1 w-full rounded-xl border-slate-300 focus:border-emerald-500 focus:ring-emerald-500" placeholder="Votre prénom" />
-        </div>
-        <div>
-            <label for="nom" class="block text-sm font-medium text-slate-700" data-i18n="form.lastName">Nom</label>
-            <input id="nom" name="Nom" type="text" required class="mt-1 w-full rounded-xl border-slate-300 focus:border-emerald-500 focus:ring-emerald-500" placeholder="Votre nom" />
-        </div>
-    </div>
+                        <input type="hidden" name="access_key" value="a0163328-1225-458e-a9f9-8b6749b40773">
+                        
+                        <div class="grid md:grid-cols-2 gap-5">
+                            <div>
+                                <label for="prenom" class="block text-sm font-medium text-slate-700" data-i18n="form.firstName">Prénom</label>
+                                <input id="prenom" name="Prénom" type="text" required class="mt-1 w-full rounded-xl border-slate-300 focus:border-emerald-500 focus:ring-emerald-500" placeholder="Votre prénom" />
+                            </div>
+                            <div>
+                                <label for="nom" class="block text-sm font-medium text-slate-700" data-i18n="form.lastName">Nom</label>
+                                <input id="nom" name="Nom" type="text" required class="mt-1 w-full rounded-xl border-slate-300 focus:border-emerald-500 focus:ring-emerald-500" placeholder="Votre nom" />
+                            </div>
+                        </div>
 
-    <div class="grid md:grid-cols-2 gap-5">
-        <div>
-            <label for="email" class="block text-sm font-medium text-slate-700" data-i18n="form.email">Email</label>
-            <input id="email" name="Email" type="email" required class="mt-1 w-full rounded-xl border-slate-300 focus:border-emerald-500 focus:ring-emerald-500" placeholder="vous@exemple.com" />
-        </div>
-        <div>
-            <label for="tel" class="block text-sm font-medium text-slate-700" data-i18n="form.phone">Téléphone</label>
-            <input id="tel" name="Téléphone" type="tel" required class="mt-1 w-full rounded-xl border-slate-300 focus:border-emerald-500 focus:ring-emerald-500" placeholder="+32 ..." />
-        </div>
-    </div>
+                        <div class="grid md:grid-cols-2 gap-5">
+                            <div>
+                                <label for="email" class="block text-sm font-medium text-slate-700" data-i18n="form.email">Email</label>
+                                <input id="email" name="Email" type="email" required class="mt-1 w-full rounded-xl border-slate-300 focus:border-emerald-500 focus:ring-emerald-500" placeholder="vous@exemple.com" />
+                            </div>
+                            <div>
+                                <label for="tel" class="block text-sm font-medium text-slate-700" data-i18n="form.phone">Téléphone</label>
+                                <input id="tel" name="Téléphone" type="tel" required class="mt-1 w-full rounded-xl border-slate-300 focus:border-emerald-500 focus:ring-emerald-500" placeholder="+32 ..." />
+                            </div>
+                        </div>
 
-    <div class="grid md:grid-cols-2 gap-5">
-        <div>
-            <label for="type" class="block text-sm font-medium text-slate-700" data-i18n="form.type">Type de projet</label>
-            <select id="type" name="Type de projet" required class="mt-1 w-full rounded-xl border-slate-300 focus:border-emerald-500 focus:ring-emerald-500">
-                <option value="">Sélectionnez…</option>
-                <option>MVP</option>
-                <option>Mini-site</option>
-                <option>Community Management</option>
-                <option>Agent IA</option>
-            </select>
-        </div>
-        <div>
-            <label for="budget" class="block text-sm font-medium text-slate-700" data-i18n="form.budget">Budget approximatif</label>
-            <select id="budget" name="Budget approximatif" class="mt-1 w-full rounded-xl border-slate-300 focus:border-emerald-500 focus:ring-emerald-500">
-                <option value="">À définir</option>
-                <option>Moins de 1 000 €</option>
-                <option>1 000 – 3 000 €</option>
-                <option>3 000 – 5 000 €</option>
-                <option>5 000 – 10 000 €</option>
-                <option>10 000 – 20 000 €</option>
-                <option>20 000 € et +</option>
-            </select>
-        </div>
-    </div>
+                        <div class="grid md:grid-cols-2 gap-5">
+                            <div>
+                                <label for="type" class="block text-sm font-medium text-slate-700" data-i18n="form.type">Type de projet</label>
+                                <select id="type" name="Type de projet" required class="mt-1 w-full rounded-xl border-slate-300 focus:border-emerald-500 focus:ring-emerald-500">
+                                    <option value="">Sélectionnez…</option>
+                                    <option>MVP</option>
+                                    <option>Mini-site</option>
+                                    <option>Community Management</option>
+                                    <option>Agent IA</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="budget" class="block text-sm font-medium text-slate-700" data-i18n="form.budget">Budget approximatif</label>
+                                <select id="budget" name="Budget approximatif" class="mt-1 w-full rounded-xl border-slate-300 focus:border-emerald-500 focus:ring-emerald-500">
+                                    <option value="">À définir</option>
+                                    <option>Moins de 1 000 €</option>
+                                    <option>1 000 – 3 000 €</option>
+                                    <option>3 000 – 5 000 €</option>
+                                    <option>5 000 – 10 000 €</option>
+                                    <option>10 000 – 20 000 €</option>
+                                    <option>20 000 € et +</option>
+                                </select>
+                            </div>
+                        </div>
 
-    <div>
-        <label for="desc" class="block text-sm font-medium text-slate-700" data-i18n="form.description">Description du projet</label>
-        <textarea id="desc" name="Description du projet" required rows="5" class="mt-1 w-full rounded-xl border-slate-300 focus:border-emerald-500 focus:ring-emerald-500" placeholder="Objectifs, fonctionnalités clés, délais, etc."></textarea>
-    </div>
+                        <div>
+                            <label for="desc" class="block text-sm font-medium text-slate-700" data-i18n="form.description">Description du projet</label>
+                            <textarea id="desc" name="Description du projet" required rows="5" class="mt-1 w-full rounded-xl border-slate-300 focus:border-emerald-500 focus:ring-emerald-500" placeholder="Objectifs, fonctionnalités clés, délais, etc."></textarea>
+                        </div>
 
-    <div class="flex flex-wrap items-center gap-3 pt-2">
-        <button type="submit" class="inline-flex items-center gap-2 bg-emerald-500 hover:bg-emerald-600 text-white px-5 py-3 rounded-xl font-semibold shadow-soft" data-i18n="form.submit">
-            📩 Envoyer ma demande
-        </button>
-        <button type="button" id="resetBtn" class="inline-flex items-center gap-2 bg-white border border-slate-300 hover:border-slate-400 text-night px-4 py-3 rounded-xl font-semibold">
-            Réinitialiser
-        </button>
-    </div>
+                        <div class="flex flex-wrap items-center gap-3 pt-2">
+                            <button type="submit" class="inline-flex items-center gap-2 bg-emerald-500 hover:bg-emerald-600 text-white px-5 py-3 rounded-xl font-semibold shadow-soft" data-i18n="form.submit">
+                                📩 Envoyer ma demande
+                            </button>
+                            <button type="button" id="resetBtn" class="inline-flex items-center gap-2 bg-white border border-slate-300 hover:border-slate-400 text-night px-4 py-3 rounded-xl font-semibold">
+                                Réinitialiser
+                            </button>
+                        </div>
 
-    <p class="text-xs text-slate-500">
-        Votre demande sera traitée par un service d'envoi de formulaire sécurisé.
-    </p>
-</form>
+                        <p class="text-xs text-slate-500">
+                            Votre demande sera traitée par un service d'envoi de formulaire sécurisé.
+                        </p>
+                    </form>
+
                     <aside class="space-y-5">
                         <div class="bg-night rounded-2xl text-white p-6 shadow-soft">
                             <div class="text-sm uppercase tracking-widest text-emerald-300/90 font-semibold">Pourquoi Anza</div>
@@ -599,25 +600,6 @@
         </div>
     </footer>
 
-    <div id="successModal" class="fixed inset-0 z-[60] hidden items-center justify-center p-4">
-        <div class="absolute inset-0 bg-black/40"></div>
-        <div class="relative bg-white w-full max-w-xl rounded-2xl shadow-2xl border border-slate-200 p-6">
-            <div class="flex items-start gap-3">
-                <div class="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-700 grid place-items-center">✅</div>
-                <div>
-                    <div class="text-xl font-extrabold text-night">Demande bien reçue !</div>
-                    <p class="mt-1 text-slate-600">Voici le récapitulatif. Vous pouvez le copier ou le télécharger.</p>
-                </div>
-            </div>
-            <pre id="recap" class="mt-4 bg-slate-50 border border-slate-200 rounded-xl p-4 text-xs whitespace-pre-wrap max-h-64 overflow-auto"></pre>
-            <div class="mt-5 flex flex-wrap items-center gap-3">
-                <button id="copyBtn" class="inline-flex items-center gap-2 bg-night text-white px-4 py-2.5 rounded-xl font-semibold hover:-translate-y-0.5 transition">Copier le récap</button>
-                <button id="downloadBtn" class="inline-flex items-center gap-2 bg-white border border-slate-300 hover:border-slate-400 text-night px-4 py-2.5 rounded-xl font-semibold">Télécharger (.txt)</button>
-                <button id="closeModal" class="ml-auto inline-flex items-center gap-2 text-slate-600 hover:text-night font-semibold">Fermer</button>
-            </div>
-        </div>
-    </div>
-
     <script>
         // --- GESTION DES PAGES ET DE LA NAVIGATION ---
 
@@ -656,13 +638,11 @@
                 'cta.talk': '🚀 Discutons de votre projet', 'cta.viewProjects': 'Voir nos projets', 'cta.quote': 'Demander un devis', 'cta.quoteArrow': 'Demander un devis →',
                 'hero.fast': 'Livraison rapide', 'hero.results': 'Orienté résultats', 'hero.ai': 'IA & automatisation',
                 'about.title': 'À propos', 'about.examples': 'Voir des exemples concrets →',
-                'projects.title': 'Projets', 'projects.subtitle': 'Quelques réalisations avec maquettes ordinateur et smartphone.<br/>Chaque projet inclut les points clés et la valeur apportée.',
+                'projects.title': 'Projets', 'projects.subtitle': 'Découvrez une sélection de projets présentés sur ordinateur et smartphone.<br/>Chaque création met en avant ses points forts, son design soigné et la valeur concrète qu’elle apporte à nos clients.',
                 'offer.title': 'Mon offre', 'offer.subtitle': 'Des solutions adaptées aux startups, PME et indépendants, avec la puissance de l\'IA.',
                 'quote.title': 'Demande de devis', 'quote.subtitle': 'Expliquez votre besoin en 1 minute. Je reviens vers vous rapidement avec un plan d\'action.',
-                'form.firstName': 'Prénom', 'form.lastName': 'Nom', 'form.email': 'Email', 'form.phone': 'Téléphone', 'form.type': 'Type de projet', 'form.budget': 'Budget approximatif', 'form.description': 'Description du projet', 'form.submit': '📩 Envoyer ma demande', 'form.privacy': 'Envoi 100% local et privé — aucune donnée n\'est partagée automatiquement. Vous recevrez un récapitulatif à copier.',
+                'form.firstName': 'Prénom', 'form.lastName': 'Nom', 'form.email': 'Email', 'form.phone': 'Téléphone', 'form.type': 'Type de projet', 'form.budget': 'Budget approximatif', 'form.description': 'Description du projet', 'form.submit': '📩 Envoyer ma demande', 'form.privacy': 'Votre demande sera traitée par un service d\'envoi de formulaire sécurisé.',
                 'footer.sections': 'Sections', 'footer.contact': 'Contact', 'footer.email': 'Email:', 'footer.zone': 'Zone: Mons, Bruxelles, remote', 'footer.rights': 'Anza. Tous droits réservés.',
-                'modal.title': 'Demande bien reçue !', 'modal.subtitle': 'Voici le récapitulatif. Vous pouvez le copier ou le télécharger.', 'modal.copy': 'Copier le récap', 'modal.download': 'Télécharger (.txt)', 'modal.close': 'Fermer',
-                'recap.tbd': 'À définir',
             },
             en: {
                 'top.tagline': 'Anza • Digital development — Mons, Belgium', 'top.fast': 'Fast turnaround', 'top.mvp': 'MVP in 7 days', 'brand.tag': 'Build • AI • Growth',
@@ -670,212 +650,8 @@
                 'cta.talk': '🚀 Let\'s discuss your project', 'cta.viewProjects': 'See projects', 'cta.quote': 'Request a quote', 'cta.quoteArrow': 'Request a quote →',
                 'hero.fast': 'Fast delivery', 'hero.results': 'Results-driven', 'hero.ai': 'AI & automation',
                 'about.title': 'About me', 'about.examples': 'See concrete examples →',
-                'projects.title': 'Projects', 'projects.subtitle': 'Some of our projects with desktop and mobile mockups.<br/>Each project includes key points and added value.',
+                'projects.title': 'Projects', 'projects.subtitle': 'Discover a selection of projects presented on desktop and mobile.<br/>Each creation highlights its strengths, its clean design and the concrete value it brings to our clients.',
                 'offer.title': 'My offer', 'offer.subtitle': 'Solutions for startups, SMEs and freelancers, powered by AI.',
                 'quote.title': 'Request a quote', 'quote.subtitle': 'Explain your need in 1 minute. I\'ll reply quickly with a plan.',
-                'form.firstName': 'First name', 'form.lastName': 'Last name', 'form.email': 'Email', 'form.phone': 'Phone', 'form.type': 'Project type', 'form.budget': 'Approximate budget', 'form.description': 'Project description', 'form.submit': '📩 Send my request', 'form.privacy': '100% local and private — no data is shared automatically. You will receive a summary to copy.',
-                'footer.sections': 'Sections', 'footer.contact': 'Contact', 'footer.email': 'Email:', 'footer.zone': 'Area: Mons, Brussels, remote', 'footer.rights': 'Anza. All rights reserved.',
-                'modal.title': 'Request received!', 'modal.subtitle': 'Here is the summary. You can copy or download it.', 'modal.copy': 'Copy summary', 'modal.download': 'Download (.txt)', 'modal.close': 'Close',
-                'recap.tbd': 'To be defined',
-            },
-            nl: {
-                'top.tagline': 'Anza • Digitale ontwikkeling — Bergen, België', 'top.fast': 'Snelle levering', 'top.mvp': 'MVP in 7 dagen', 'brand.tag': 'Bouwen • AI • Groei',
-                'nav.about': 'Over', 'nav.projects': 'Projecten', 'nav.offer': 'Aanbod', 'nav.quote': 'Offerte',
-                'cta.talk': '🚀 Laten we praten', 'cta.viewProjects': 'Projecten bekijken', 'cta.quote': 'Offerte aanvragen', 'cta.quoteArrow': 'Offerte aanvragen →',
-                'hero.fast': 'Snelle levering', 'hero.results': 'Resultaatgericht', 'hero.ai': 'AI & automatisering',
-                'about.title': 'Over', 'about.examples': 'Bekijk concrete voorbeelden →',
-                'projects.title': 'Projecten', 'projects.subtitle': 'Enkele realisaties met desktop- en mobiele mockups.<br/>Elk project toont de kernpunten en meerwaarde.',
-                'offer.title': 'Mijn aanbod', 'offer.subtitle': 'Oplossingen voor startups, KMO\'s en zelfstandigen, met de kracht van AI.',
-                'quote.title': 'Offerteaanvraag', 'quote.subtitle': 'Leg uw behoefte in 1 minuut uit. Ik antwoord snel met een plan.',
-                'form.firstName': 'Voornaam', 'form.lastName': 'Achternaam', 'form.email': 'E-mail', 'form.phone': 'Telefoon', 'form.type': 'Projecttype', 'form.budget': 'Geschat budget', 'form.description': 'Projectbeschrijving', 'form.submit': '📩 Mijn aanvraag verzenden', 'form.privacy': '100% lokaal en privé — er wordt geen data automatisch gedeeld. U krijgt een samenvatting om te kopiëren.',
-                'footer.sections': 'Secties', 'footer.contact': 'Contact', 'footer.email': 'E-mail:', 'footer.zone': 'Regio: Bergen, Brussel, remote', 'footer.rights': 'Anza. Alle rechten voorbehouden.',
-                'modal.title': 'Aanvraag ontvangen!', 'modal.subtitle': 'Hier is het overzicht. U kunt het kopiëren of downloaden.', 'modal.copy': 'Overzicht kopiëren', 'modal.download': 'Downloaden (.txt)', 'modal.close': 'Sluiten',
-                'recap.tbd': 'Nog te bepalen',
-            }
-        };
-
-        function setLang(lang) {
-            const dict = translations[lang] || translations.fr;
-            document.querySelectorAll('[data-i18n]').forEach(el => {
-                const key = el.getAttribute('data-i18n');
-                if (key && dict[key]) {
-                    if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
-                        el.placeholder = dict[key];
-                    } else if (el.hasAttribute('data-i18n-html')) {
-                        el.innerHTML = dict[key];
-                    } else {
-                        el.textContent = dict[key];
-                    }
-                }
-            });
-
-            // Gère les titres et paragraphes spécifiques qui n'ont pas de data-i18n
-            const heroTitle = document.querySelector('#page-home h1');
-            const heroSubtitle = document.querySelector('#page-home .text-xl');
-            const aboutDesc = document.querySelector('#page-about p.mt-5');
-
-            if (heroTitle) heroTitle.textContent = dict['hero.title'] || heroTitle.textContent;
-            if (heroSubtitle) heroSubtitle.textContent = dict['hero.subtitle'] || heroSubtitle.textContent;
-            if (aboutDesc) aboutDesc.textContent = dict['about.desc'] || aboutDesc.textContent;
-
-            localStorage.setItem('lang', lang);
-            document.querySelectorAll('[data-lang]').forEach(b => b.classList.remove('bg-slate-900', 'text-white'));
-            const activeBtn = document.querySelector(`[data-lang="${lang}"]`);
-            if (activeBtn) {
-                activeBtn.classList.add('bg-slate-900', 'text-white');
-            }
-        }
-
-        // --- LOGIQUE DU FORMULAIRE ET DES ÉLÉMENTS ANNEXES ---
-
-        // Year
-        document.getElementById('year').textContent = new Date().getFullYear();
-
-        // Email button opens mail in new tab
-        document.getElementById('emailBtn').addEventListener('click', () => {
-            window.open('mailto:hello@anza.dev?subject=Projet%20digital%20-%20Anza', '_blank');
-        });
-
-        // Make data-bg-url images visible
-        document.querySelectorAll('[data-bg-url]').forEach(el => {
-            const url = el.getAttribute('data-bg-url');
-            if (url) {
-                el.style.backgroundImage = `url('${url}')`;
-                el.classList.add('bg-dyn');
-            }
-        });
-
-        // Form handling
-        const form = document.getElementById('quoteForm');
-        const resetBtn = document.getElementById('resetBtn');
-        const modal = document.getElementById('successModal');
-        const recap = document.getElementById('recap');
-        const copyBtn = document.getElementById('copyBtn');
-        const downloadBtn = document.getElementById('downloadBtn');
-        const closeModal = document.getElementById('closeModal');
-
-        // Load from localStorage on page load
-        const saved = JSON.parse(localStorage.getItem('anza_devis'));
-        if (saved) {
-            Object.keys(saved).forEach(key => {
-                const el = document.getElementById(key);
-                if (el) el.value = saved[key];
-            });
-        }
-
-        form.addEventListener('submit', (e) => {
-            e.preventDefault();
-
-            const lang = localStorage.getItem('lang') || 'fr';
-            const dict = translations[lang];
-
-            const data = {
-                prenom: document.getElementById('prenom').value.trim(),
-                nom: document.getElementById('nom').value.trim(),
-                email: document.getElementById('email').value.trim(),
-                tel: document.getElementById('tel').value.trim(),
-                type: document.getElementById('type').value,
-                budget: document.getElementById('budget').value,
-                desc: document.getElementById('desc').value.trim(),
-                timestamp: new Date().toLocaleString()
-            };
-
-            const errors = [];
-            if (!data.prenom) errors.push(dict['errors.missingFirstName'] || 'Prénom manquant');
-            if (!data.nom) errors.push(dict['errors.missingLastName'] || 'Nom manquant');
-            if (!data.email || !/^\S+@\S+\.\S+$/.test(data.email)) errors.push(dict['errors.invalidEmail'] || 'Email invalide');
-            if (!data.tel) errors.push(dict['errors.missingPhone'] || 'Téléphone manquant');
-            if (!data.type) errors.push(dict['errors.missingType'] || 'Type de projet manquant');
-            if (!data.desc) errors.push(dict['errors.missingDesc'] || 'Description manquante');
-
-            if (errors.length) {
-                alert(`${dict['errors.checkFields'] || 'Merci de vérifier les champs suivants:'}\n- ${errors.join('\n- ')}`);
-                return;
-            }
-
-            localStorage.setItem('anza_devis', JSON.stringify(data));
-
-            const recapText = `Demande de devis — Anza
-Date: ${data.timestamp}
-
-Identité
-- Prénom: ${data.prenom}
-- Nom: ${data.nom}
-- Email: ${data.email}
-- Téléphone: ${data.tel}
-
-Projet
-- Type: ${data.type}
-- Budget: ${data.budget || dict['recap.tbd'] || 'À définir'}
-- Description:
-${data.desc}
-
-Suite
-→ Je vous recontacte sous 24h avec un plan d'action et une première estimation.`;
-
-            recap.textContent = recapText;
-
-            const subject = `Demande de devis — ${data.prenom} ${data.nom}`;
-            const mailto = `mailto:gm.harchies@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(recapText)}`;
-            window.open(mailto, '_blank');
-
-            modal.classList.remove('hidden');
-            modal.classList.add('flex');
-        });
-
-        resetBtn.addEventListener('click', () => {
-            form.reset();
-            localStorage.removeItem('anza_devis');
-        });
-
-        closeModal.addEventListener('click', () => {
-            modal.classList.add('hidden');
-            modal.classList.remove('flex');
-        });
-        modal.addEventListener('click', (e) => {
-            if (e.target === modal) {
-                modal.classList.add('hidden');
-                modal.classList.remove('flex');
-            }
-        });
-
-        copyBtn.addEventListener('click', async () => {
-            try {
-                await navigator.clipboard.writeText(recap.textContent);
-                const lang = localStorage.getItem('lang') || 'fr';
-                const copiedText = translations[lang]['modal.copied'] || 'Copié ✅';
-                copyBtn.textContent = copiedText;
-                setTimeout(() => {
-                    copyBtn.textContent = translations[lang]['modal.copy'] || 'Copier le récap';
-                }, 1600);
-            } catch {
-                alert('Copie impossible sur ce navigateur.');
-            }
-        });
-
-        downloadBtn.addEventListener('click', () => {
-            const blob = new Blob([recap.textContent], { type: 'text/plain;charset=utf-8' });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = 'devis-anza.txt';
-            document.body.appendChild(a);
-            a.click();
-            a.remove();
-            URL.revokeObjectURL(url);
-        });
-
-        // Language buttons
-        document.querySelectorAll('[data-lang]').forEach(btn => {
-            btn.addEventListener('click', () => setLang(btn.getAttribute('data-lang')));
-        });
-
-        // Initialize everything on page load
-        document.addEventListener('DOMContentLoaded', () => {
-            const savedLang = localStorage.getItem('lang') || 'fr';
-            setLang(savedLang);
-            showPage('home'); // Display the home page on load
-        });
-    </script>
-</body>
-</html>
+                'form.firstName': 'First name', 'form.lastName': 'Last name', 'form.email': 'Email', 'form.phone': 'Phone', 'form.type': 'Project type', 'form.budget': 'Approximate budget', 'form.description': 'Project description', 'form.submit': '📩 Send my request', 'form.privacy': 'Your request will be processed by a secure form submission service.',
+                'footer.sections': 'Sections', 'footer.contact': 'Contact', '
