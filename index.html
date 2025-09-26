@@ -641,10 +641,115 @@
   </div>
 
   <script>
+    // --- GESTION DES PAGES ET DE LA NAVIGATION ---
+
+    function showPage(pageId) {
+        // Cache toutes les pages
+        document.querySelectorAll('.page').forEach(page => {
+            page.classList.add('hidden');
+        });
+
+        // Affiche la page demandée
+        const activePage = document.getElementById(`page-${pageId}`);
+        if (activePage) {
+            activePage.classList.remove('hidden');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+        
+        // Gère l'état actif des boutons de navigation
+        document.querySelectorAll('nav .nav-btn').forEach(btn => {
+            const btnPageId = btn.getAttribute('onclick').match(/showPage\('(.+)'\)/)[1];
+            if (btnPageId === pageId) {
+                btn.classList.add('font-bold', 'text-night');
+                btn.classList.remove('text-slate-700');
+            } else {
+                btn.classList.remove('font-bold', 'text-night');
+                btn.classList.add('text-slate-700');
+            }
+        });
+    }
+
+    // --- GESTION DE LA TRADUCTION (i18n) ---
+
+    const translations = {
+      fr: {
+        'top.tagline': 'Anza • Développement digital — Mons, Belgique', 'top.fast': 'Délais rapides', 'top.mvp': 'MVP en 7 jours', 'brand.tag': 'Build • AI • Growth',
+        'nav.about': 'À propos', 'nav.projects': 'Projets', 'nav.offer': 'Mon offre', 'nav.quote': 'Devis',
+        'cta.talk': '🚀 Discutons de votre projet', 'cta.viewProjects': 'Voir nos projets', 'cta.quote': 'Demander un devis', 'cta.quoteArrow': 'Demander un devis →',
+        'hero.fast': 'Livraison rapide', 'hero.results': 'Orienté résultats', 'hero.ai': 'IA & automatisation',
+        'about.title': 'À propos', 'about.examples': 'Voir des exemples concrets →',
+        'projects.title': 'Projets', 'projects.subtitle': 'Quelques réalisations avec maquettes ordinateur et smartphone.<br/>Chaque projet inclut les points clés et la valeur apportée.',
+        'offer.title': 'Mon offre', 'offer.subtitle': 'Des solutions adaptées aux startups, PME et indépendants, avec la puissance de l\'IA.',
+        'quote.title': 'Demande de devis', 'quote.subtitle': 'Expliquez votre besoin en 1 minute. Je reviens vers vous rapidement avec un plan d\'action.',
+        'form.firstName': 'Prénom', 'form.lastName': 'Nom', 'form.email': 'Email', 'form.phone': 'Téléphone', 'form.type': 'Type de projet', 'form.budget': 'Budget approximatif', 'form.description': 'Description du projet', 'form.submit': '📩 Envoyer ma demande', 'form.privacy': 'Envoi 100% local et privé — aucune donnée n\'est partagée automatiquement. Vous recevrez un récapitulatif à copier.',
+        'footer.sections': 'Sections', 'footer.contact': 'Contact', 'footer.email': 'Email:', 'footer.zone': 'Zone: Mons, Bruxelles, remote', 'footer.rights': 'Anza. Tous droits réservés.',
+        'modal.title': 'Demande bien reçue !', 'modal.subtitle': 'Voici le récapitulatif. Vous pouvez le copier ou le télécharger.', 'modal.copy': 'Copier le récap', 'modal.download': 'Télécharger (.txt)', 'modal.close': 'Fermer',
+        'recap.tbd': 'À définir',
+      },
+      en: {
+        'top.tagline': 'Anza • Digital development — Mons, Belgium', 'top.fast': 'Fast turnaround', 'top.mvp': 'MVP in 7 days', 'brand.tag': 'Build • AI • Growth',
+        'nav.about': 'About', 'nav.projects': 'Projects', 'nav.offer': 'My offer', 'nav.quote': 'Quote',
+        'cta.talk': '🚀 Let\'s discuss your project', 'cta.viewProjects': 'See projects', 'cta.quote': 'Request a quote', 'cta.quoteArrow': 'Request a quote →',
+        'hero.fast': 'Fast delivery', 'hero.results': 'Results-driven', 'hero.ai': 'AI & automation',
+        'about.title': 'About me', 'about.examples': 'See concrete examples →',
+        'projects.title': 'Projects', 'projects.subtitle': 'Some of our projects with desktop and mobile mockups.<br/>Each project includes key points and added value.',
+        'offer.title': 'My offer', 'offer.subtitle': 'Solutions for startups, SMEs and freelancers, powered by AI.',
+        'quote.title': 'Request a quote', 'quote.subtitle': 'Explain your need in 1 minute. I\'ll reply quickly with a plan.',
+        'form.firstName': 'First name', 'form.lastName': 'Last name', 'form.email': 'Email', 'form.phone': 'Phone', 'form.type': 'Project type', 'form.budget': 'Approximate budget', 'form.description': 'Project description', 'form.submit': '📩 Send my request', 'form.privacy': '100% local and private — no data is shared automatically. You will receive a summary to copy.',
+        'footer.sections': 'Sections', 'footer.contact': 'Contact', 'footer.email': 'Email:', 'footer.zone': 'Area: Mons, Brussels, remote', 'footer.rights': 'Anza. All rights reserved.',
+        'modal.title': 'Request received!', 'modal.subtitle': 'Here is the summary. You can copy or download it.', 'modal.copy': 'Copy summary', 'modal.download': 'Download (.txt)', 'modal.close': 'Close',
+        'recap.tbd': 'To be defined',
+      },
+      nl: {
+        'top.tagline': 'Anza • Digitale ontwikkeling — Bergen, België', 'top.fast': 'Snelle levering', 'top.mvp': 'MVP in 7 dagen', 'brand.tag': 'Bouwen • AI • Groei',
+        'nav.about': 'Over', 'nav.projects': 'Projecten', 'nav.offer': 'Aanbod', 'nav.quote': 'Offerte',
+        'cta.talk': '🚀 Laten we praten', 'cta.viewProjects': 'Projecten bekijken', 'cta.quote': 'Offerte aanvragen', 'cta.quoteArrow': 'Offerte aanvragen →',
+        'hero.fast': 'Snelle levering', 'hero.results': 'Resultaatgericht', 'hero.ai': 'AI & automatisering',
+        'about.title': 'Over', 'about.examples': 'Bekijk concrete voorbeelden →',
+        'projects.title': 'Projecten', 'projects.subtitle': 'Enkele realisaties met desktop- en mobiele mockups.<br/>Elk project toont de kernpunten en meerwaarde.',
+        'offer.title': 'Mijn aanbod', 'offer.subtitle': 'Oplossingen voor startups, KMO\'s en zelfstandigen, met de kracht van AI.',
+        'quote.title': 'Offerteaanvraag', 'quote.subtitle': 'Leg uw behoefte in 1 minuut uit. Ik antwoord snel met een plan.',
+        'form.firstName': 'Voornaam', 'form.lastName': 'Achternaam', 'form.email': 'E-mail', 'form.phone': 'Telefoon', 'form.type': 'Projecttype', 'form.budget': 'Geschat budget', 'form.description': 'Projectbeschrijving', 'form.submit': '📩 Mijn aanvraag verzenden', 'form.privacy': '100% lokaal en privé — er wordt geen data automatisch gedeeld. U krijgt een samenvatting om te kopiëren.',
+        'footer.sections': 'Secties', 'footer.contact': 'Contact', 'footer.email': 'E-mail:', 'footer.zone': 'Regio: Bergen, Brussel, remote', 'footer.rights': 'Anza. Alle rechten voorbehouden.',
+        'modal.title': 'Aanvraag ontvangen!', 'modal.subtitle': 'Hier is het overzicht. U kunt het kopiëren of downloaden.', 'modal.copy': 'Overzicht kopiëren', 'modal.download': 'Downloaden (.txt)', 'modal.close': 'Sluiten',
+        'recap.tbd': 'Nog te bepalen',
+      }
+    };
+
+    function setLang(lang) {
+        const dict = translations[lang] || translations.fr;
+        document.querySelectorAll('[data-i18n]').forEach(el => {
+            const key = el.getAttribute('data-i18n');
+            if (key && dict[key]) {
+                if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+                    el.placeholder = dict[key];
+                } else if (el.hasAttribute('data-i18n-html')) {
+                    el.innerHTML = dict[key];
+                } else {
+                    el.textContent = dict[key];
+                }
+            }
+        });
+
+        // Gère les titres et paragraphes spécifiques qui n'ont pas de data-i18n
+        document.querySelector('#page-home h1').textContent = dict['hero.title'] || document.querySelector('#page-home h1').textContent;
+        document.querySelector('#page-home .text-xl').textContent = dict['hero.subtitle'] || document.querySelector('#page-home .text-xl').textContent;
+        document.querySelector('#page-about p.mt-5').textContent = dict['about.desc'] || document.querySelector('#page-about p.mt-5').textContent;
+
+        localStorage.setItem('lang', lang);
+        document.querySelectorAll('[data-lang]').forEach(b => b.classList.remove('bg-slate-900', 'text-white'));
+        const activeBtn = document.querySelector(`[data-lang="${lang}"]`);
+        if (activeBtn) {
+            activeBtn.classList.add('bg-slate-900', 'text-white');
+        }
+    }
+
+    // --- LOGIQUE DU FORMULAIRE ET DES ÉLÉMENTS ANNEXES ---
+
     // Year
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    // Email button opens mail in new tab (allowed)
+    // Email button opens mail in new tab
     document.getElementById('emailBtn').addEventListener('click', () => {
       window.open('mailto:hello@anza.dev?subject=Projet%20digital%20-%20Anza', '_blank');
     });
@@ -658,7 +763,7 @@
       }
     });
 
-    // Form handling (no navigation)
+    // Form handling
     const form = document.getElementById('quoteForm');
     const resetBtn = document.getElementById('resetBtn');
     const modal = document.getElementById('successModal');
@@ -667,16 +772,20 @@
     const downloadBtn = document.getElementById('downloadBtn');
     const closeModal = document.getElementById('closeModal');
 
-    // Prefill from localStorage
-    const saved = JSON.parse(localStorage.getItem('anza_devis') || 'null');
+    // Load from localStorage on page load
+    const saved = JSON.parse(localStorage.getItem('anza_devis'));
     if (saved) {
-      ['prenom','nom','email','tel','type','budget','desc'].forEach(k => {
-        if (saved[k]) document.getElementById(k).value = saved[k];
+      Object.keys(saved).forEach(key => {
+        const el = document.getElementById(key);
+        if (el) el.value = saved[key];
       });
     }
 
     form.addEventListener('submit', (e) => {
       e.preventDefault();
+
+      const lang = localStorage.getItem('lang') || 'fr';
+      const dict = translations[lang];
 
       const data = {
         prenom: document.getElementById('prenom').value.trim(),
@@ -690,22 +799,21 @@
       };
 
       const errors = [];
-      if (!data.prenom) errors.push('Prénom manquant');
-      if (!data.nom) errors.push('Nom manquant');
-      if (!data.email || !/^\S+@\S+\.\S+$/.test(data.email)) errors.push('Email invalide');
-      if (!data.tel) errors.push('Téléphone manquant');
-      if (!data.type) errors.push('Type de projet manquant');
-      if (!data.desc) errors.push('Description manquante');
+      if (!data.prenom) errors.push(dict['errors.missingFirstName'] || 'Prénom manquant');
+      if (!data.nom) errors.push(dict['errors.missingLastName'] || 'Nom manquant');
+      if (!data.email || !/^\S+@\S+\.\S+$/.test(data.email)) errors.push(dict['errors.invalidEmail'] || 'Email invalide');
+      if (!data.tel) errors.push(dict['errors.missingPhone'] || 'Téléphone manquant');
+      if (!data.type) errors.push(dict['errors.missingType'] || 'Type de projet manquant');
+      if (!data.desc) errors.push(dict['errors.missingDesc'] || 'Description manquante');
 
       if (errors.length) {
-        alert('Merci de vérifier les champs suivants:\n- ' + errors.join('\n- '));
+        alert(`${dict['errors.checkFields'] || 'Merci de vérifier les champs suivants:'}\n- ${errors.join('\n- ')}`);
         return;
       }
 
       localStorage.setItem('anza_devis', JSON.stringify(data));
 
-      const recapText =
-`Demande de devis — Anza
+      const recapText = `Demande de devis — Anza
 Date: ${data.timestamp}
 
 Identité
@@ -716,7 +824,7 @@ Identité
 
 Projet
 - Type: ${data.type}
-- Budget: ${data.budget || 'À définir'}
+- Budget: ${data.budget || dict['recap.tbd'] || 'À définir'}
 - Description:
 ${data.desc}
 
@@ -725,12 +833,10 @@ Suite
 
       recap.textContent = recapText;
 
-      // Open email client with prefilled message (no auto-send)
       const subject = `Demande de devis — ${data.prenom} ${data.nom}`;
       const mailto = `mailto:gm.harchies@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(recapText)}`;
       window.open(mailto, '_blank');
 
-      // Show modal
       modal.classList.remove('hidden');
       modal.classList.add('flex');
     });
@@ -754,8 +860,12 @@ Suite
     copyBtn.addEventListener('click', async () => {
       try {
         await navigator.clipboard.writeText(recap.textContent);
-        copyBtn.textContent = 'Copié ✅';
-        setTimeout(() => (copyBtn.textContent = 'Copier le récap'), 1600);
+        const lang = localStorage.getItem('lang') || 'fr';
+        const copiedText = translations[lang]['modal.copied'] || 'Copié ✅';
+        copyBtn.textContent = copiedText;
+        setTimeout(() => {
+          copyBtn.textContent = translations[lang]['modal.copy'] || 'Copier le récap';
+        }, 1600);
       } catch {
         alert('Copie impossible sur ce navigateur.');
       }
@@ -772,198 +882,18 @@ Suite
       a.remove();
       URL.revokeObjectURL(url);
     });
-    // Simple i18n dictionary and switcher
-    const i18n = {
-      fr: {
-        // Top bar & brand
-        'top.tagline': 'Anza • Développement digital — Mons, Belgique',
-        'top.fast': 'Délais rapides',
-        'top.mvp': 'MVP en 7 jours',
-        'brand.tag': 'Build • AI • Growth',
-
-        // Navigation & CTA
-        'nav.about': 'À propos', 'nav.projects': 'Projets', 'nav.offer': 'Mon offre', 'nav.quote': 'Devis',
-        'cta.talk': '🚀 Discutons de votre projet', 'cta.quote': 'Demander un devis', 'cta.viewProjects': 'Voir nos projets', 'cta.viewSite': 'Voir le site ↗️', 'cta.quoteArrow': 'Demander un devis →',
-
-        // Hero
-        'hero.title': 'Lancez votre plateforme digitale en 7 jours avec Anza',
-        'hero.subtitle': 'Et parce que la première impression compte, nous vous offrons la création de votre section Hero – design impactant + accroche marketing.',
-        'hero.fast': 'Livraison rapide', 'hero.results': 'Orienté résultats', 'hero.ai': 'IA & automatisation',
-
-        // About
-        'about.title': 'À propos', 'about.examples': 'Voir des exemples concrets →',
-        'about.desc': "Je suis Gaëtan, fondateur d'Anza, passionné d'IA et expert en création rapide de MVPs. J'ai déjà livré des plateformes médicales, immobilières et de transport, avec des lancements réussis et des utilisateurs actifs dès les premières semaines. J'accompagne également les indépendants et petites entreprises dans leur communication digitale (community management, mini-sites vitrines), et je crée des agents IA pour automatiser vos tâches répétitives et gagner du temps.",
-
-        // Projects
-        'projects.title': 'Projets',
-        'projects.subtitle': 'Quelques réalisations avec maquettes ordinateur et smartphone.<br/>Chaque projet inclut les points clés et la valeur apportée.',
-
-        // Offer section
-        'offer.title': 'Mon offre', 'offer.subtitle': 'Des solutions adaptées aux startups, PME et indépendants, avec la puissance de l'IA.',
-
-        // Quote section
-        'quote.title': 'Demande de devis', 'quote.subtitle': 'Expliquez votre besoin en 1 minute. Je reviens vers vous rapidement avec un plan d'action.',
-
-        // Form
-        'form.firstName': 'Prénom', 'form.lastName': 'Nom', 'form.email': 'Email', 'form.phone': 'Téléphone', 'form.type': 'Type de projet', 'form.budget': 'Budget approximatif', 'form.description': 'Description du projet', 'form.submit': '📩 Envoyer ma demande', 'form.reset': 'Réinitialiser', 'form.privacy': 'Envoi 100% local et privé — aucune donnée n'est partagée automatiquement. Vous recevrez un récapitulatif à copier.',
-
-        // Modal
-        'modal.title': 'Demande bien reçue !', 'modal.subtitle': 'Voici le récapitulatif. Vous pouvez le copier ou le télécharger.', 'modal.copy': 'Copier le récap', 'modal.copied': 'Copié ✅', 'modal.download': 'Télécharger (.txt)', 'modal.close': 'Fermer',
-
-        // Footer
-        'footer.sections': 'Sections', 'footer.contact': 'Contact', 'footer.email': 'Email:', 'footer.zone': 'Zone: Mons, Bruxelles, remote', 'footer.rights': 'Anza. Tous droits réservés.',
-
-        // Errors & Recap
-        'errors.checkFields': 'Merci de vérifier les champs suivants:', 'errors.missingFirstName': 'Prénom manquant', 'errors.missingLastName': 'Nom manquant', 'errors.invalidEmail': 'Email invalide', 'errors.missingPhone': 'Téléphone manquant', 'errors.missingType': 'Type de projet manquant', 'errors.missingDesc': 'Description manquante',
-        'recap.title': 'Demande de devis — Anza', 'recap.date': 'Date', 'recap.identity': 'Identité', 'recap.firstName': 'Prénom', 'recap.lastName': 'Nom', 'recap.email': 'Email', 'recap.phone': 'Téléphone', 'recap.project': 'Projet', 'recap.type': 'Type', 'recap.budget': 'Budget', 'recap.tbd': 'À définir', 'recap.description': 'Description', 'recap.next': '→ Je vous recontacte sous 24h avec un plan d'action et une première estimation.'
-      },
-      en: {
-        'top.tagline': 'Anza • Digital development — Mons, Belgium', 'top.fast': 'Fast turnaround', 'top.mvp': 'MVP in 7 days',
-        'brand.tag': 'Build • AI • Growth',
-        'nav.about': 'About', 'nav.projects': 'Projects', 'nav.offer': 'Offer', 'nav.quote': 'Quote',
-        'cta.talk': '🚀 Let's discuss your project', 'cta.quote': 'Request a quote', 'cta.viewProjects': 'See projects', 'cta.viewSite': 'View site ↗️', 'cta.quoteArrow': 'Request a quote →',
-        'hero.title': 'Launch your digital platform in 7 days with Anza',
-        'hero.subtitle': 'Because first impressions matter, we offer the creation of your Hero section — impactful design + marketing hook.',
-        'hero.fast': 'Fast delivery', 'hero.results': 'Results-driven', 'hero.ai': 'AI & automation',
-        'about.title': 'About', 'about.examples': 'See concrete examples →',
-        'about.desc': "I'm Gaëtan, founder of Anza, passionate about AI and an expert in fast MVP creation. I've delivered medical, real estate and transport platforms with successful launches and active users within weeks. I also help freelancers and small businesses with digital communication (community management, mini showcase sites), and I build AI agents to automate repetitive tasks and save time.",
-        'projects.title': 'Projects', 'projects.subtitle': 'A few builds with desktop and mobile mockups.<br/>Each project includes key points and delivered value.',
-        'offer.title': 'My offer', 'offer.subtitle': 'Solutions for startups, SMEs and freelancers, powered by AI.',
-        'quote.title': 'Request a quote', 'quote.subtitle': 'Explain your need in 1 minute. I'll reply quickly with a plan.',
-        'form.firstName': 'First name', 'form.lastName': 'Last name', 'form.email': 'Email', 'form.phone': 'Phone', 'form.type': 'Project type', 'form.budget': 'Approximate budget', 'form.description': 'Project description', 'form.submit': '📩 Send my request', 'form.reset': 'Reset', 'form.privacy': '100% local and private — no data is shared automatically. You will receive a summary to copy.',
-        'modal.title': 'Request received!', 'modal.subtitle': 'Here is the summary. You can copy or download it.', 'modal.copy': 'Copy summary', 'modal.copied': 'Copied ✅', 'modal.download': 'Download (.txt)', 'modal.close': 'Close',
-        'footer.sections': 'Sections', 'footer.contact': 'Contact', 'footer.email': 'Email:', 'footer.zone': 'Area: Mons, Brussels, remote', 'footer.rights': 'Anza. All rights reserved.',
-        'errors.checkFields': 'Please check the following fields:', 'errors.missingFirstName': 'Missing first name', 'errors.missingLastName': 'Missing last name', 'errors.invalidEmail': 'Invalid email', 'errors.missingPhone': 'Missing phone', 'errors.missingType': 'Missing project type', 'errors.missingDesc': 'Missing description',
-        'recap.title': 'Quote request — Anza', 'recap.date': 'Date', 'recap.identity': 'Identity', 'recap.firstName': 'First name', 'recap.lastName': 'Last name', 'recap.email': 'Email', 'recap.phone': 'Phone', 'recap.project': 'Project', 'recap.type': 'Type', 'recap.budget': 'Budget', 'recap.tbd': 'To be defined', 'recap.description': 'Description', 'recap.next': '→ I'll get back to you within 24h with a plan and an estimate.'
-      },
-      nl: {
-        'top.tagline': 'Anza • Digitale ontwikkeling — Mons, België', 'top.fast': 'Snelle levering', 'top.mvp': 'MVP in 7 dagen',
-        'brand.tag': 'Bouwen • AI • Groei',
-        'nav.about': 'Over', 'nav.projects': 'Projecten', 'nav.offer': 'Aanbod', 'nav.quote': 'Offerte',
-        'cta.talk': '🚀 Laten we praten', 'cta.quote': 'Offerte aanvragen', 'cta.viewProjects': 'Projecten bekijken', 'cta.viewSite': 'Site bekijken ↗️', 'cta.quoteArrow': 'Offerte aanvragen →',
-        'hero.title': 'Start uw digitale platform in 7 dagen met Anza',
-        'hero.subtitle': 'Omdat de eerste indruk telt, bieden we de creatie van uw Hero-sectie aan — impactvol ontwerp + boodschap.',
-        'hero.fast': 'Snelle levering', 'hero.results': 'Resultaatgericht', 'hero.ai': 'AI & automatisering',
-        'about.title': 'Over', 'about.examples': 'Bekijk concrete voorbeelden →',
-        'about.desc': "Ik ben Gaëtan, oprichter van Anza, gepassioneerd door AI en expert in snelle MVP-creatie. Ik leverde medische, vastgoed- en transportplatformen met succesvolle lanceringen en actieve gebruikers binnen enkele weken. Ik help ook zelfstandigen en kleine ondernemingen met digitale communicatie (community management, minisites), en bouw AI-agenten om repetitieve taken te automatiseren.",
-        'projects.title': 'Projecten', 'projects.subtitle': 'Enkele realisaties met desktop- en mobiele mockups.<br/>Elk project toont de kernpunten en meerwaarde.',
-        'offer.title': 'Mijn aanbod', 'offer.subtitle': 'Oplossingen voor startups, KMO's en zelfstandigen, met de kracht van AI.',
-        'quote.title': 'Offerteaanvraag', 'quote.subtitle': 'Leg uw behoefte in 1 minuut uit. Ik antwoord snel met een plan.',
-        'form.firstName': 'Voornaam', 'form.lastName': 'Achternaam', 'form.email': 'E-mail', 'form.phone': 'Telefoon', 'form.type': 'Projecttype', 'form.budget': 'Geschat budget', 'form.description': 'Projectbeschrijving', 'form.submit': '📩 Mijn aanvraag verzenden', 'form.reset': 'Opnieuw instellen', 'form.privacy': '100% lokaal en privé — er wordt geen data automatisch gedeeld. U krijgt een samenvatting om te kopiëren.',
-        'modal.title': 'Aanvraag ontvangen!', 'modal.subtitle': 'Hier is het overzicht. U kunt het kopiëren of downloaden.', 'modal.copy': 'Overzicht kopiëren', 'modal.copied': 'Gekopieerd ✅', 'modal.download': 'Downloaden (.txt)', 'modal.close': 'Sluiten',
-        'footer.sections': 'Secties', 'footer.contact': 'Contact', 'footer.email': 'E-mail:', 'footer.zone': 'Regio: Bergen, Brussel, remote', 'footer.rights': 'Anza. Alle rechten voorbehouden.',
-        'errors.checkFields': 'Gelieve de volgende velden te controleren:', 'errors.missingFirstName': 'Voornaam ontbreekt', 'errors.missingLastName': 'Achternaam ontbreekt', 'errors.invalidEmail': 'Ongeldig e-mailadres', 'errors.missingPhone': 'Telefoon ontbreekt', 'errors.missingType': 'Projecttype ontbreekt', 'errors.missingDesc': 'Beschrijving ontbreekt',
-        'recap.title': 'Offerteaanvraag — Anza', 'recap.date': 'Datum', 'recap.identity': 'Identiteit', 'recap.firstName': 'Voornaam', 'recap.lastName': 'Achternaam', 'recap.email': 'E-mail', 'recap.phone': 'Telefoon', 'recap.project': 'Project', 'recap.type': 'Type', 'recap.budget': 'Budget', 'recap.tbd': 'Nog te bepalen', 'recap.description': 'Beschrijving', 'recap.next': '→ Ik neem binnen 24u contact op met een plan en een eerste inschatting.'
-      }
-    };
-
-    window.setLang = function(lang){
-      const dict = i18n[lang] || i18n.fr;
-      // Update simple text nodes
-      document.querySelectorAll('[data-i18n]').forEach(el => {
-        const key = el.getAttribute('data-i18n');
-        if (!key) return;
-        const value = dict[key];
-        if (value == null) return;
-        const tag = el.tagName;
-        // Placeholders for inputs and textareas
-        if (tag === 'INPUT' || tag === 'TEXTAREA') {
-          el.placeholder = value;
-        } else if (el.hasAttribute('data-i18n-html')) {
-          // Allow HTML content (e.g., with <br/>) when explicitly marked
-          el.innerHTML = value;
-        } else {
-          el.textContent = value;
-        }
-      });
-
-      // Update elements that don't use data-i18n attributes yet
-      // Hero headline & subtitle
-      const heroTitle = document.querySelector('#page-home h1');
-      if (heroTitle) heroTitle.textContent = dict['hero.title'];
-      const heroSub = document.querySelector('#page-home p');
-      if (heroSub) heroSub.textContent = dict['hero.subtitle'];
-
-      // About description paragraph (first p under #page-about)
-      const aboutDesc = document.querySelector('#page-about p');
-      if (aboutDesc) aboutDesc.textContent = dict['about.desc'];
-
-      // Projects title/subtitle (allow HTML)
-      const projTitle = document.querySelector('#page-projects [data-i18n="projects.title"]');
-      const projSub = document.querySelector('#page-projects [data-i18n="projects.subtitle"]');
-      if (projSub) projSub.innerHTML = dict['projects.subtitle'];
-      if (projTitle) projTitle.textContent = dict['projects.title'];
-
-      // Top bar items
-      const topTag = document.querySelector('[data-i18n="top.tagline"]');
-      if (topTag) topTag.textContent = dict['top.tagline'];
-
-      // CTA buttons that may exist without data-i18n
-      document.querySelectorAll('[data-i18n="cta.viewProjects"]').forEach(el=> el.textContent = dict['cta.viewProjects']);
-      document.querySelectorAll('[data-i18n="cta.talk"]').forEach(el=> el.textContent = dict['cta.talk']);
-
-      // Buttons inside cards
-      document.querySelectorAll('button[onclick*="quote"][data-i18n="cta.quote"]').forEach(el => el.textContent = dict['cta.quote']);
-
-      // Footer rights
-      const rights = document.querySelector('[data-i18n="footer.rights"]');
-      if (rights) rights.textContent = dict['footer.rights'];
-
-      // Modal buttons & labels
-      const copyBtnEl = document.getElementById('copyBtn');
-      if (copyBtnEl) copyBtnEl.textContent = dict['modal.copy'];
-      const downloadBtnEl = document.getElementById('downloadBtn');
-      if (downloadBtnEl) downloadBtnEl.textContent = dict['modal.download'];
-      const closeModalEl = document.getElementById('closeModal');
-      if (closeModalEl) closeModalEl.textContent = dict['modal.close'];
-
-      // Save and add active style
-      localStorage.setItem('lang', lang);
-      document.querySelectorAll('[data-lang]').forEach(b => b.classList.remove('bg-slate-900','text-white'));
-      const activeBtn = document.querySelector(`[data-lang="${lang}"]`);
-      if (activeBtn) activeBtn.classList.add('bg-slate-900','text-white');
-    }
 
     // Language buttons
     document.querySelectorAll('[data-lang]').forEach(btn => {
       btn.addEventListener('click', () => setLang(btn.getAttribute('data-lang')));
     });
 
-    // Init language
-    setLang(localStorage.getItem('lang') || 'fr');
-
-    // Page navigation system
-    let currentPage = 'home';
-
-    window.showPage = function(pageId) {
-      // Hide all pages
-      document.querySelectorAll('.page').forEach(page => {
-        page.classList.add('hidden');
-      });
-      
-      // Show selected page
-      const targetPage = document.getElementById(`page-${pageId}`);
-      if (targetPage) {
-        targetPage.classList.remove('hidden');
-        currentPage = pageId;
-        
-        // Update nav button states
-        document.querySelectorAll('.nav-btn').forEach(btn => {
-          btn.classList.remove('text-night', 'font-bold');
-          btn.classList.add('text-slate-700');
-        });
-        
-        // Highlight active nav button
-        const activeBtn = document.querySelector(`[onclick="showPage('${pageId}')"]`);
-        if (activeBtn && activeBtn.classList.contains('nav-btn')) {
-          activeBtn.classList.remove('text-slate-700');
-          activeBtn.classList.add('text-night', 'font-bold');
-        }
-      }
-    }
-
-    // Initialize first page
-    showPage('home');
-  </script>
+    // Initialize everything on page load
+    document.addEventListener('DOMContentLoaded', () => {
+      const savedLang = localStorage.getItem('lang') || 'fr';
+      setLang(savedLang);
+      showPage('home'); // Display the home page on load
+    });
+</script>
 <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9850f6094727b721',t:'MTc1ODg3MDgzMS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
