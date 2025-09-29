@@ -92,14 +92,14 @@
             <div class="relative max-w-7xl mx-auto px-4 pt-16 md:pt-24 pb-14 md:pb-24">
                 <div class="grid md:grid-cols-2 gap-10 items-center">
                     <div class="text-white">
-                        <h1 class="text-3xl md:text-5xl font-extrabold leading-tight tracking-tight">
+                        <h1 class="text-3xl md:text-5xl font-extrabold leading-tight tracking-tight" data-i18n="hero.title">
                             Lancez votre plateforme digitale en 7 jours avec Anza
                         </h1>
-                        <p class="mt-5 text-white/85 text-lg md:text-xl max-w-2xl">
+                        <p class="mt-5 text-white/85 text-lg md:text-xl max-w-2xl" data-i18n="hero.subtitle">
                             Et parce que la première impression compte, nous vous offrons la création de votre section Hero – design impactant + accroche marketing.
                         </p>
                         <div class="mt-8 flex flex-wrap items-center gap-3">
-                            <button onclick="showPage('quote')" class="inline-flex items-center gap-2 bg-emerald-500 hover:bg-emerald-600 text-white px-5 py-3 rounded-xl font-semibold shadow-glass">
+                            <button onclick="showPage('quote')" class="inline-flex items-center gap-2 bg-emerald-500 hover:bg-emerald-600 text-white px-5 py-3 rounded-xl font-semibold shadow-glass" data-i18n="cta.talk">
                                 🚀 Discutons de votre projet
                             </button>
                             <button onclick="showPage('projects')" class="inline-flex items-center gap-2 bg-white/20 hover:bg-white/30 text-white px-5 py-3 rounded-xl font-semibold" data-i18n="cta.viewProjects">
@@ -117,16 +117,16 @@
                         <div class="bg-white rounded-3xl p-6 shadow-glass border border-slate-100">
                             <div class="grid grid-cols-12 gap-4 items-end">
                                 <div class="col-span-12">
-    <div class="rounded-2xl overflow-hidden shadow-soft bg-white p-[0.5rem]"> 
-        <div class="relative overflow-hidden rounded-xl" style="padding-top: 56.25%;">
-            <video autoplay loop muted playsinline class="absolute inset-0 w-full h-full object-cover">
-                <source src="https://res.cloudinary.com/drn6w4nab/video/upload/v1759130185/video_hero_mokyro.mp4" type="video/mp4">
-                <img src="https://i.ibb.co/Lzq9303v/Dashboard-section-hero.jpg" alt="Dashboard" class="w-full h-full object-cover">
-            </video>
-            <div class="absolute inset-0 bg-black/10"></div>
-        </div>
-    </div>
-</div>
+                                    <div class="rounded-2xl overflow-hidden shadow-soft bg-white p-[0.5rem]">
+                                        <div class="relative overflow-hidden rounded-xl" style="padding-top: 56.25%;">
+                                            <video autoplay loop muted playsinline class="absolute inset-0 w-full h-full object-cover">
+                                                <source src="https://res.cloudinary.com/drn6w4nab/video/upload/v1759130185/video_hero_mokyro.mp4" type="video/mp4">
+                                                <img src="https://i.ibb.co/Lzq9303v/Dashboard-section-hero.jpg" alt="Dashboard" class="w-full h-full object-cover">
+                                            </video>
+                                            <div class="absolute inset-0 bg-black/10"></div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -145,7 +145,7 @@
                 <div class="grid md:grid-cols-2 gap-12 items-center">
                     <div class="relative order-2 md:order-1">
                         <h2 class="text-2xl md:text-3xl font-extrabold text-night" data-i18n="about.title">À propos</h2>
-                        <p class="mt-5 text-lg text-slate-700 leading-relaxed">
+                        <p class="mt-5 text-lg text-slate-700 leading-relaxed" data-i18n="about.desc">
                             Je suis Gaëtan, fondateur d'Anza, passionné d'IA et expert en création rapide de MVPs. J'ai déjà livré des plateformes médicales, immobilières et de transport, avec des lancements réussis et des utilisateurs actifs dès les premières semaines. J'accompagne également les indépendants et petites entreprises dans leur communication digitale (community management, mini-sites vitrines), et je crée des agents IA pour automatiser vos tâches répétitives et gagner du temps.
                         </p>
                         <div class="mt-6 grid sm:grid-cols-3 gap-4">
@@ -195,7 +195,7 @@
                 <div class="flex items-end justify-between gap-6">
                     <div>
                         <h2 class="text-2xl md:text-3xl font-extrabold text-white" data-i18n="projects.title">Projets</h2>
-                        <p class="mt-3 text-white/95 max-w-2xl">Découvrez une sélection de projets présentés sur ordinateur et smartphone.<br/>Chaque création met en avant ses points forts, son design soigné et la valeur concrète qu’elle apporte à nos clients.</p>
+                        <p class="mt-3 text-white/95 max-w-2xl" data-i18n="projects.subtitle" data-i18n-html>Découvrez une sélection de projets présentés sur ordinateur et smartphone.<br/>Chaque création met en avant ses points forts, son design soigné et la valeur concrète qu’elle apporte à nos clients.</p>
                     </div>
                 </div>
                 <div class="mt-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-7">
@@ -634,8 +634,9 @@
                 'top.tagline': 'Anza • Développement digital — Mons, Belgique', 'top.fast': 'Délais rapides', 'top.mvp': 'MVP en 7 jours', 'brand.tag': 'Build • AI • Growth',
                 'nav.about': 'À propos', 'nav.projects': 'Projets', 'nav.offer': 'Mon offre', 'nav.quote': 'Devis',
                 'cta.talk': '🚀 Discutons de votre projet', 'cta.viewProjects': 'Voir nos projets', 'cta.quote': 'Demander un devis', 'cta.quoteArrow': 'Demander un devis →',
+                'hero.title': 'Lancez votre plateforme digitale en 7 jours avec Anza', 'hero.subtitle': 'Et parce que la première impression compte, nous vous offrons la création de votre section Hero – design impactant + accroche marketing.',
                 'hero.fast': 'Livraison rapide', 'hero.results': 'Orienté résultats', 'hero.ai': 'IA & automatisation',
-                'about.title': 'À propos', 'about.examples': 'Voir des exemples concrets →',
+                'about.title': 'À propos', 'about.desc': 'Je suis Gaëtan, fondateur d\'Anza, passionné d\'IA et expert en création rapide de MVPs. J\'ai déjà livré des plateformes médicales, immobilières et de transport, avec des lancements réussis et des utilisateurs actifs dès les premières semaines. J\'accompagne également les indépendants et petites entreprises dans leur communication digitale (community management, mini-sites vitrines), et je crée des agents IA pour automatiser vos tâches répétitives et gagner du temps.', 'about.examples': 'Voir des exemples concrets →',
                 'projects.title': 'Projets', 'projects.subtitle': 'Découvrez une sélection de projets présentés sur ordinateur et smartphone.<br/>Chaque création met en avant ses points forts, son design soigné et la valeur concrète qu’elle apporte à nos clients.',
                 'offer.title': 'Mon offre', 'offer.subtitle': 'Des solutions adaptées aux startups, PME et indépendants, avec la puissance de l\'IA.',
                 'quote.title': 'Demande de devis', 'quote.subtitle': 'Expliquez votre besoin en 1 minute. Je reviens vers vous rapidement avec un plan d\'action.',
@@ -646,8 +647,9 @@
                 'top.tagline': 'Anza • Digital development — Mons, Belgium', 'top.fast': 'Fast turnaround', 'top.mvp': 'MVP in 7 days', 'brand.tag': 'Build • AI • Growth',
                 'nav.about': 'About', 'nav.projects': 'Projects', 'nav.offer': 'My offer', 'nav.quote': 'Quote',
                 'cta.talk': '🚀 Let\'s discuss your project', 'cta.viewProjects': 'See projects', 'cta.quote': 'Request a quote', 'cta.quoteArrow': 'Request a quote →',
+                'hero.title': 'Launch your digital platform in 7 days with Anza', 'hero.subtitle': 'And because first impressions matter, we offer you the creation of your Hero section – impactful design + a marketing hook.',
                 'hero.fast': 'Fast delivery', 'hero.results': 'Results-driven', 'hero.ai': 'AI & automation',
-                'about.title': 'About me', 'about.examples': 'See concrete examples →',
+                'about.title': 'About me', 'about.desc': 'I\'m Gaëtan, founder of Anza, an AI enthusiast and expert in rapid MVP creation. I have successfully delivered medical, real estate, and transportation platforms, with successful launches and active users from the first weeks. I also support freelancers and small businesses in their digital communication (community management, mini-showcase sites), and I create AI agents to automate your repetitive tasks and save you time.', 'about.examples': 'See concrete examples →',
                 'projects.title': 'Projects', 'projects.subtitle': 'Discover a selection of projects presented on desktop and mobile.<br/>Each creation highlights its strengths, its clean design and the concrete value it brings to our clients.',
                 'offer.title': 'My offer', 'offer.subtitle': 'Solutions for startups, SMEs and freelancers, powered by AI.',
                 'quote.title': 'Request a quote', 'quote.subtitle': 'Explain your need in 1 minute. I\'ll reply quickly with a plan.',
@@ -658,8 +660,9 @@
                 'top.tagline': 'Anza • Digitale ontwikkeling — Bergen, België', 'top.fast': 'Snelle levering', 'top.mvp': 'MVP in 7 dagen', 'brand.tag': 'Bouwen • AI • Groei',
                 'nav.about': 'Over', 'nav.projects': 'Projecten', 'nav.offer': 'Aanbod', 'nav.quote': 'Offerte',
                 'cta.talk': '🚀 Laten we praten', 'cta.viewProjects': 'Projecten bekijken', 'cta.quote': 'Offerte aanvragen', 'cta.quoteArrow': 'Offerte aanvragen →',
+                'hero.title': 'Lanceer uw digitaal platform in 7 dagen met Anza', 'hero.subtitle': 'En omdat de eerste indruk telt, bieden we u gratis het ontwerp van uw Hero-sectie aan – impactvol design + een marketinghook.',
                 'hero.fast': 'Snelle levering', 'hero.results': 'Resultaatgericht', 'hero.ai': 'AI & automatisering',
-                'about.title': 'Over', 'about.examples': 'Bekijk concrete voorbeelden →',
+                'about.title': 'Over', 'about.desc': 'Ik ben Gaëtan, oprichter van Anza, een AI-liefhebber en expert in snelle MVP-creatie. Ik heb al medische, vastgoed- en transportplatforms geleverd, met succesvolle lanceringen en actieve gebruikers vanaf de eerste weken. Ik ondersteun ook freelancers en kleine bedrijven in hun digitale communicatie (community management, mini-showcase sites) en ik creëer AI-agenten om uw repetitieve taken te automatiseren en u tijd te besparen.', 'about.examples': 'Bekijk concrete voorbeelden →',
                 'projects.title': 'Projecten', 'projects.subtitle': 'Ontdek een selectie van projecten gepresenteerd op desktop en mobiel.<br/>Elke creatie belicht haar sterke punten, het strakke ontwerp en de concrete waarde die het onze klanten biedt.',
                 'offer.title': 'Mijn aanbod', 'offer.subtitle': 'Oplossingen voor startups, KMO\'s en zelfstandigen, met de kracht van AI.',
                 'quote.title': 'Offerteaanvraag', 'quote.subtitle': 'Leg uw behoefte in 1 minuut uit. Ik antwoord snel met een plan.',
@@ -683,21 +686,28 @@
                 }
             });
 
-            const heroTitle = document.querySelector('#page-home h1');
-            const heroSubtitle = document.querySelector('#page-home .text-xl');
-            const aboutDesc = document.querySelector('#page-about p.mt-5');
-
-            if (heroTitle) heroTitle.textContent = dict['hero.title'] || heroTitle.textContent;
-            if (heroSubtitle) heroSubtitle.textContent = dict['hero.subtitle'] || heroSubtitle.textContent;
-            if (aboutDesc) aboutDesc.textContent = dict['about.desc'] || aboutDesc.textContent;
-
+            // Gérer le changement d'URL dans la barre d'adresse pour la navigation
+            history.pushState(null, '', `#${lang}`);
+            
             localStorage.setItem('lang', lang);
-            document.querySelectorAll('[data-lang]').forEach(b => b.classList.remove('bg-slate-900', 'text-white'));
+            document.querySelectorAll('[data-lang]').forEach(b => {
+                b.classList.remove('bg-slate-900', 'text-white');
+                b.classList.add('text-slate-700', 'hover:bg-slate-100');
+            });
             const activeBtn = document.querySelector(`[data-lang="${lang}"]`);
             if (activeBtn) {
                 activeBtn.classList.add('bg-slate-900', 'text-white');
+                activeBtn.classList.remove('text-slate-700', 'hover:bg-slate-100');
             }
         }
+
+        // --- GESTION DES BOUTONS DE LANGUE ---
+        document.querySelectorAll('[data-lang]').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const lang = e.target.getAttribute('data-lang');
+                setLang(lang);
+            });
+        });
 
         // --- LOGIQUE DU FORMULAIRE ET DES ÉLÉMENTS ANNEXES ---
 
@@ -722,10 +732,12 @@
         const form = document.getElementById('quoteForm');
         const resetBtn = document.getElementById('resetBtn');
 
-        resetBtn.addEventListener('click', () => {
-            form.reset();
-            localStorage.removeItem('anza_devis');
-        });
+        // Initialiser la logique du formulaire une fois que le DOM est chargé
+        if (resetBtn) {
+            resetBtn.addEventListener('click', () => {
+                document.querySelector('form').reset();
+            });
+        }
         
         // Initialiser tout au chargement de la page
         document.addEventListener('DOMContentLoaded', () => {
@@ -733,6 +745,13 @@
             setLang(savedLang);
             showPage('home'); // Afficher la page d'accueil au chargement
         });
+
+        // Afficher la bonne page lors de l'utilisation des boutons du navigateur (précédent/suivant)
+        window.addEventListener('popstate', (event) => {
+            const lang = window.location.hash.substring(1) || 'fr';
+            setLang(lang);
+        });
+
     </script>
 </body>
 </html>
