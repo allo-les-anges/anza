@@ -1,577 +1,377 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" class="scroll-smooth">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Anza — Développement digital à Mons | MVP en 7 jours</title>
-    <meta name="description" content="Anza conçoit des plateformes digitales rapides et efficaces. MVP en 7 jours, mini-sites, community management et agents IA. Basé à Mons (Belgique)." />
-    <meta name="theme-color" content="#0b1220" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        // Tailwind config: brand palette
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: { sans: ['Inter', 'ui-sans-serif', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial'] },
-                    colors: {
-                        night: '#0b1220',
-                        nightSoft: '#0f1a2f',
-                        accent: { green: '#22c55e', greenDark: '#16a34a' },
-                    },
-                    boxShadow: {
-                        glass: '0 10px 35px rgba(0,0,0,.2)',
-                        soft: '0 8px 24px rgba(11,18,32,.15)',
-                    },
-                    backgroundImage: {
-                        dots: "radial-gradient(circle at 1px 1px, rgba(255,255,255,.12) 1px, transparent 0)",
-                    }
-                }
-            }
-        }
-    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anza — Développement digital et IA</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <style>
-        html { scroll-behavior: auto; }
-        .bg-dyn { background-size: cover; background-position: center; }
-        .page { min-height: calc(100vh - 120px); }
-        body { box-sizing: border-box; }
+        .page {
+            display: none;
+        }
+        .page.active {
+            display: block;
+        }
     </style>
 </head>
-<body class="bg-white text-night antialiased">
-    <div class="bg-night text-white text-sm">
-        <div class="max-w-7xl mx-auto px-4 py-2 flex items-center justify-between">
-            <p class="opacity-90" data-i18n="top.tagline">Anza • Développement digital — Mons, Belgique</p>
-            <div class="hidden sm:flex items-center gap-3">
-                <span class="inline-flex items-center gap-2 opacity-75"><span class="w-2 h-2 bg-emerald-400 rounded-full animate-pulse"></span><span data-i18n="top.fast">Délais rapides</span></span>
-                <span class="hidden md:inline opacity-75" data-i18n="top.mvp">MVP en 7 jours</span>
-            </div>
-        </div>
-    </div>
-
-    <header class="sticky top-0 z-50 backdrop-blur supports-[backdrop-filter]:bg-white/70 bg-white/90 border-b border-slate-200">
-        <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
-            <button onclick="showPage('home')" class="flex items-center gap-3 group">
-                <span class="w-9 h-9 rounded-xl grid place-items-center shadow-soft overflow-hidden">
-                    <img src="https://i.ibb.co/1JfDhq21/Logo-Anza-transparent.png" alt="Logo Anza" class="w-full h-full object-contain" onerror="this.src=''; this.alt='Image failed to load'; this.style.display='none';">
+<body class="bg-slate-50 text-slate-900">
+    <header class="bg-white sticky top-0 z-50 shadow-sm border-b border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
+            <div class="flex items-center gap-2">
+                <span class="w-8 h-8 rounded-lg grid place-items-center overflow-hidden">
+                    <img src="https://placehold.co/32x32" alt="Logo Anza" class="w-full h-full object-contain">
                 </span>
-                <div class="leading-tight">
-                    <span class="font-extrabold tracking-tight text-night text-lg">Anza</span>
-                    <div class="text-xs text-slate-500 -mt-0.5" data-i18n="brand.tag">Build • AI • Growth</div>
-                </div>
-            </button>
-            <nav class="hidden md:flex items-center gap-7">
-                <button onclick="showPage('about')" class="nav-btn text-slate-700 hover:text-night font-medium" data-i18n="nav.about">À propos</button>
-                <button onclick="showPage('projects')" class="nav-btn text-slate-700 hover:text-night font-medium" data-i18n="nav.projects">Projets</button>
-                <button onclick="showPage('offer')" class="nav-btn text-slate-700 hover:text-night font-medium" data-i18n="nav.offer">Mon offre</button>
-                <button onclick="showPage('quote')" class="nav-btn text-slate-700 hover:text-night font-medium" data-i18n="nav.quote">Devis</button>
+                <span class="font-extrabold text-night">Anza</span>
+            </div>
+            <nav class="hidden md:flex items-center gap-6">
+                <button onclick="showPage('home')" class="nav-btn text-slate-700 hover:text-night font-semibold transition-colors duration-200" data-i18n="nav.home">Accueil</button>
+                <button onclick="showPage('about')" class="nav-btn text-slate-700 hover:text-night font-semibold transition-colors duration-200" data-i18n="nav.about">À propos</button>
+                <button onclick="showPage('projects')" class="nav-btn text-slate-700 hover:text-night font-semibold transition-colors duration-200" data-i18n="nav.projects">Projets</button>
+                <button onclick="showPage('offer')" class="nav-btn text-slate-700 hover:text-night font-semibold transition-colors duration-200" data-i18n="nav.offer">Mon offre</button>
             </nav>
             <div class="flex items-center gap-2">
-                <div class="hidden md:flex items-center gap-2 mr-2 bg-white/80 border border-slate-200 rounded-xl px-2 py-1">
-                    <button class="px-2 py-1 rounded-lg text-slate-700 hover:bg-slate-100 font-medium" data-lang="fr">FR</button>
-                    <button class="px-2 py-1 rounded-lg text-slate-700 hover:bg-slate-100 font-medium" data-lang="en">EN</button>
-                    <button class="px-2 py-1 rounded-lg text-slate-700 hover:bg-slate-100 font-medium" data-lang="nl">NL</button>
-                </div>
-                <button onclick="showPage('quote')" class="inline-flex items-center gap-2 bg-night text-white px-4 py-2.5 rounded-xl font-semibold shadow-soft hover:shadow-lg hover:-translate-y-0.5 transition" data-i18n="cta.talk">
+                <button onclick="showPage('quote')" class="hidden md:inline-flex items-center bg-emerald-500 hover:bg-emerald-600 text-white font-semibold py-2 px-4 rounded-xl shadow-md transition-colors duration-200">
                     🚀 Discutons de votre projet
+                </button>
+                <button onclick="toggleMobileMenu()" class="md:hidden p-2 rounded-xl text-slate-700 hover:bg-slate-100">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+                    </svg>
                 </button>
             </div>
         </div>
+        <div id="mobile-menu" class="hidden md:hidden bg-white px-4 py-2 border-t border-slate-200">
+            <nav class="flex flex-col gap-2">
+                <button onclick="showPage('home')" class="nav-btn w-full text-left text-slate-700 hover:text-night font-semibold py-2">Accueil</button>
+                <button onclick="showPage('about')" class="nav-btn w-full text-left text-slate-700 hover:text-night font-semibold py-2">À propos</button>
+                <button onclick="showPage('projects')" class="nav-btn w-full text-left text-slate-700 hover:text-night font-semibold py-2">Projets</button>
+                <button onclick="showPage('offer')" class="nav-btn w-full text-left text-slate-700 hover:text-night font-semibold py-2">Mon offre</button>
+                <button onclick="showPage('quote')" class="w-full text-left bg-emerald-500 text-white font-semibold py-2 px-4 rounded-xl mt-2">
+                    Discutons de votre projet
+                </button>
+            </nav>
+        </div>
     </header>
 
-    <div id="page-home" class="page">
-        <section class="relative overflow-hidden">
-            <div class="absolute inset-0">
-                <div class="absolute inset-0 bg-night/60"></div>
-                <div class="absolute inset-0 opacity-90 bg-cover bg-center" data-bg-url="https://i.ibb.co/gLzr1wMz/Hero-Landing-page.png"></div>
-                <div class="absolute inset-0 bg-gradient-to-b from-night/30 via-night/20 to-white/0"></div>
-                <div class="absolute -top-40 -right-40 w-[600px] h-[600px] rounded-full bg-emerald-400/10 blur-3xl"></div>
-            </div>
-
-            <div class="relative max-w-7xl mx-auto px-4 pt-16 md:pt-24 pb-14 md:pb-24">
-                <div class="grid md:grid-cols-2 gap-10 items-center">
-                    <div class="text-white">
-                        <h1 class="text-3xl md:text-5xl font-extrabold leading-tight tracking-tight">
-                            Lancez votre plateforme digitale en 7 jours avec Anza
+    <div class="fixed bottom-4 left-4 z-50 hidden sm:block">
+        <div class="flex rounded-full bg-white border border-slate-200 p-1 shadow-md">
+            <button class="w-8 h-8 rounded-full text-sm font-semibold transition-colors duration-200" data-lang="fr" onclick="setLang('fr')">FR</button>
+            <button class="w-8 h-8 rounded-full text-sm font-semibold transition-colors duration-200" data-lang="en" onclick="setLang('en')">EN</button>
+            <button class="w-8 h-8 rounded-full text-sm font-semibold transition-colors duration-200" data-lang="nl" onclick="setLang('nl')">NL</button>
+        </div>
+    </div>
+    
+    <main>
+        <div id="page-home" class="page active">
+            <section class="relative overflow-hidden pt-12 md:pt-24 pb-12 md:pb-24">
+                <div class="absolute inset-0 pointer-events-none bg-[radial-gradient(ellipse_at_top_right,rgba(34,197,94,.08),transparent_40%)]"></div>
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                    <div class="text-center">
+                        <span class="inline-flex items-center rounded-full bg-emerald-100 text-emerald-600 px-3 py-1 text-sm font-semibold uppercase tracking-wide">Build • AI • Growth</span>
+                        <h1 class="mt-6 text-4xl sm:text-5xl lg:text-6xl font-extrabold text-night leading-tight" data-i18n="hero.title">
+                            Votre startup ou PME, plus loin, plus vite.
                         </h1>
-                        <p class="mt-5 text-white/85 text-lg md:text-xl max-w-2xl">
-                            Et parce que la première impression compte, nous vous offrons la création de votre section Hero – design impactant + accroche marketing.
+                        <p class="mt-4 text-xl text-slate-700 max-w-2xl mx-auto" data-i18n="hero.subtitle">
+                            Anza est votre partenaire pour le développement de logiciels sur mesure et l'intégration d'assistants IA.
                         </p>
-                        <div class="mt-8 flex flex-wrap items-center gap-3">
-                            <button onclick="showPage('quote')" class="inline-flex items-center gap-2 bg-emerald-500 hover:bg-emerald-600 text-white px-5 py-3 rounded-xl font-semibold shadow-glass">
+                        <div class="mt-8 flex flex-wrap justify-center gap-4">
+                            <button onclick="showPage('quote')" class="inline-flex items-center gap-2 bg-emerald-500 hover:bg-emerald-600 text-white px-6 py-3 rounded-xl font-semibold shadow-soft transition-colors duration-200">
                                 🚀 Discutons de votre projet
                             </button>
-                            <button onclick="showPage('projects')" class="inline-flex items-center gap-2 bg-white/20 hover:bg-white/30 text-white px-5 py-3 rounded-xl font-semibold" data-i18n="cta.viewProjects">
+                            <button onclick="showPage('projects')" class="inline-flex items-center gap-2 bg-white border border-slate-200 hover:border-slate-300 text-night px-6 py-3 rounded-xl font-semibold shadow-soft transition-colors duration-200">
                                 Voir nos projets
                             </button>
                         </div>
-                        <div class="mt-24 md:mt-32 flex items-center gap-6 text-white/70">
-                            <div class="flex items-center gap-2"><span class="w-2 h-2 bg-emerald-400 rounded-full"></span><span data-i18n="hero.fast">Livraison rapide</span></div>
-                            <div class="flex items-center gap-2"><span class="w-2 h-2 bg-emerald-400 rounded-full"></span><span data-i18n="hero.results">Orienté résultats</span></div>
-                            <div class="flex items-center gap-2"><span class="w-2 h-2 bg-emerald-400 rounded-full"></span><span data-i18n="hero.ai">IA & automatisation</span></div>
+                        <div class="mt-12 flex justify-center gap-8">
+                            <div class="flex items-center gap-2">
+                                <svg class="w-6 h-6 text-emerald-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
+                                <span class="font-semibold" data-i18n="hero.fast">Livraison rapide</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <svg class="w-6 h-6 text-emerald-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 111.955 0 0112 2.944c-3.197 0-6.117 1.258-8.318 3.282M12 10.155a3 3 0 100 5.69M19.618 10.155a3 3 0 100 5.69" /></svg>
+                                <span class="font-semibold" data-i18n="hero.results">Orienté résultats</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <svg class="w-6 h-6 text-emerald-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v18h14V3H5zm9 0v18M5 9h14" /></svg>
+                                <span class="font-semibold" data-i18n="hero.ai">IA & automatisation</span>
+                            </div>
                         </div>
                     </div>
-                    <div class="relative">
-                        <div class="absolute -inset-6 -z-10 bg-white/5 rounded-3xl blur-2xl"></div>
-                        <div class="bg-white rounded-3xl p-6 shadow-glass border border-slate-100">
-                            <div class="grid grid-cols-12 gap-4 items-end">
-                                <div class="col-span-12">
-    <div class="rounded-2xl overflow-hidden shadow-soft bg-white p-[0.5rem]"> 
-        <div class="relative overflow-hidden rounded-xl" style="padding-top: 56.25%;">
-            <video autoplay loop muted playsinline class="absolute inset-0 w-full h-full object-cover">
-                <source src="https://res.cloudinary.com/drn6w4nab/video/upload/v1759130185/video_hero_mokyro.mp4" type="video/mp4">
-                <img src="https://i.ibb.co/Lzq9303v/Dashboard-section-hero.jpg" alt="Dashboard" class="w-full h-full object-cover">
-            </video>
-            <div class="absolute inset-0 bg-black/10"></div>
+                </div>
+            </section>
         </div>
-    </div>
-</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </div>
 
-    <div id="page-about" class="page hidden">
-        <section class="relative">
-            <div class="absolute inset-0 pointer-events-none">
-                <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(16,185,129,.06),transparent_45%)]"></div>
-                <div class="absolute inset-0 bg-gradient-to-b from-white/70 via-white/65 to-white/60"></div>
-            </div>
-            <div class="max-w-7xl mx-auto px-4 py-16 md:py-24">
-                <div class="grid md:grid-cols-2 gap-12 items-center">
-                    <div class="relative order-2 md:order-1">
-                        <h2 class="text-2xl md:text-3xl font-extrabold text-night" data-i18n="about.title">À propos</h2>
-                        <p class="mt-5 text-lg text-slate-700 leading-relaxed">
-                            Je suis Gaëtan, fondateur d'Anza, passionné d'IA et expert en création rapide de MVPs. J'ai déjà livré des plateformes médicales, immobilières et de transport, avec des lancements réussis et des utilisateurs actifs dès les premières semaines. J'accompagne également les indépendants et petites entreprises dans leur communication digitale (community management, mini-sites vitrines), et je crée des agents IA pour automatiser vos tâches répétitives et gagner du temps.
-                        </p>
-                        <div class="mt-6 grid sm:grid-cols-3 gap-4">
-                            <div class="bg-white rounded-xl border border-slate-200 p-4 shadow-soft">
-                                <div class="text-2xl font-extrabold text-night">7 j</div>
-                                <div class="text-sm text-slate-600">MVP express</div>
-                            </div>
-                            <div class="bg-white rounded-xl border border-slate-200 p-4 shadow-soft">
-                                <div class="text-2xl font-extrabold text-night">20+ projets</div>
-                                <div class="text-sm text-slate-600">Lancements réussis</div>
-                            </div>
-                            <div class="bg-white rounded-xl border border-slate-200 p-4 shadow-soft">
-                                <div class="text-2xl font-extrabold text-night">IA</div>
-                                <div class="text-sm text-slate-600">Automatisation</div>
-                            </div>
-                        </div>
-                        <div class="mt-8">
-                            <button onclick="showPage('projects')" class="inline-flex items-center gap-2 text-night font-semibold hover:underline" data-i18n="about.examples">
-                                Voir des exemples concrets →
-                            </button>
-                        </div>
-                    </div>
-                    <div class="order-1 md:order-2">
-                        <div class="relative">
-                            <div class="absolute -inset-6 bg-emerald-400/10 blur-3xl rounded-3xl"></div>
-                            <div class="relative rounded-3xl overflow-hidden border border-slate-200 shadow-soft">
-                                <div class="aspect-[4/3] bg-cover bg-center" data-bg-url="https://i.ibb.co/6ch5h5ty/Section-Propos.png"></div>
-                                <div class="absolute bottom-4 left-4 right-4 bg-white/80 backdrop-blur border border-slate-200 rounded-xl p-4">
-                                    <div class="font-semibold text-night">Gaëtan — Fondateur</div>
-                                    <div class="text-slate-600 text-sm">Anza • Développement digital · Mons</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </div>
-
-    <div id="page-projects" class="page hidden">
-        <section class="relative">
-            <div class="absolute inset-0 pointer-events-none z-10">
-                <div class="absolute inset-0 opacity-90 bg-cover bg-center" data-bg-url="https://i.ibb.co/chDsJkTC/Section-Projets.png"></div>
-                <div class="absolute inset-0 bg-black/40"></div>
-            </div>
-            <div class="relative z-20 max-w-7xl mx-auto px-4 py-16 md:py-24">
-                <div class="flex items-end justify-between gap-6">
-                    <div>
-                        <h2 class="text-2xl md:text-3xl font-extrabold text-white" data-i18n="projects.title">Projets</h2>
-                        <p class="mt-3 text-white/95 max-w-2xl">Découvrez une sélection de projets présentés sur ordinateur et smartphone.<br/>Chaque création met en avant ses points forts, son design soigné et la valeur concrète qu’elle apporte à nos clients.</p>
-                    </div>
-                </div>
-                <div class="mt-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-7">
-                    <article class="bg-white rounded-2xl border border-slate-200 shadow-soft overflow-hidden">
-                        <div class="p-5 border-b border-slate-100">
-                            <h3 class="font-extrabold text-night">MedicalNetwork</h3>
-                            <p class="mt-1 text-sm text-slate-600">Mise en relation de technologues en imagerie médicale</p>
-                        </div>
-                        <div class="p-5">
-                            <div class="grid grid-cols-1 items-end">
-                                <div>
-                                    <div class="rounded-xl overflow-hidden shadow-soft">
-                                        <div class="h-40 md:h-48 relative overflow-hidden">
-                                            <div class="absolute inset-0 bg-cover bg-center" style="background-image:url('https://i.ibb.co/wF69jt88/Dashboard-MNW.jpg');"></div>
-                                            <div class="absolute inset-0 bg-black/10"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <ul class="mt-4 space-y-2 text-sm text-slate-700">
-                                <li>• Profils vérifiés et recherche filtrée</li>
-                                <li>• Messagerie sécurisée et notifications</li>
-                                <li>• Onboarding rapide pour équipes</li>
-                            </ul>
-                            <div class="mt-4 flex flex-wrap gap-3">
-                                <a href="https://medicalnetwork.fr/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-night text-white px-4 py-2.5 rounded-xl font-semibold hover:-translate-y-0.5 transition">Voir le site ↗️</a>
-                                <button onclick="showPage('quote')" class="inline-flex items-center gap-2 bg-white border border-slate-300 hover:border-slate-400 text-night px-4 py-2.5 rounded-xl font-semibold" data-i18n="cta.quote">Demander un devis</button>
-                            </div>
-                        </div>
-                    </article>
-
-                    <article class="bg-white rounded-2xl border border-slate-200 shadow-soft overflow-hidden">
-                        <div class="p-5 border-b border-slate-100">
-                            <h3 class="font-extrabold text-night">Medilink.bid</h3>
-                            <p class="mt-1 text-sm text-slate-600">Plateforme d'enchères de matériel médical pour professionnels</p>
-                        </div>
-                        <div class="p-5">
-                            <div class="grid grid-cols-1 items-end">
-                                <div>
-                                    <div class="rounded-xl overflow-hidden shadow-soft">
-                                        <div class="h-40 md:h-48 relative overflow-hidden">
-                                            <div class="absolute inset-0 bg-cover bg-center" style="background-image:url('https://i.ibb.co/JwHMGFNd/Medilink-bid.png');"></div>
-                                            <div class="absolute inset-0 bg-black/10"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <ul class="mt-4 space-y-2 text-sm text-slate-700">
-                                <li>• Upload photos multi-images sécurisé</li>
-                                <li>• Gestion des offres & enchères en temps réel</li>
-                                <li>• Notifications et tableau de bord vendeur</li>
-                            </ul>
-                            <div class="mt-4 flex flex-wrap gap-3">
-                                <a href="https://medilinkx.bid/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-night text-white px-4 py-2.5 rounded-xl font-semibold hover:-translate-y-0.5 transition">Voir le site ↗️</a>
-                                <button onclick="showPage('quote')" class="inline-flex items-center gap-2 bg-white border border-slate-300 hover:border-slate-400 text-night px-4 py-2.5 rounded-xl font-semibold" data-i18n="cta.quote">Demander un devis</button>
-                            </div>
-                        </div>
-                    </article>
-
-                    <article class="bg-white rounded-2xl border border-slate-200 shadow-soft overflow-hidden">
-                        <div class="p-5 border-b border-slate-100">
-                            <h3 class="font-extrabold text-night">Buses-Solutions.com</h3>
-                            <p class="mt-1 text-sm text-slate-600">Plateforme d'entraide pour autocaristes</p>
-                        </div>
-                        <div class="p-5">
-                            <div class="grid grid-cols-1 items-end">
-                                <div>
-                                    <div class="rounded-xl overflow-hidden shadow-soft">
-                                        <div class="h-40 md:h-48 relative overflow-hidden">
-                                            <div class="absolute inset-0 bg-cover bg-center" style="background-image:url('https://i.ibb.co/xqShd306/Buses-solutions.png');"></div>
-                                            <div class="absolute inset-0 bg-black/10"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <ul class="mt-4 space-y-2 text-sm text-slate-700">
-                                <li>• Publication d'annonces & entraide</li>
-                                <li>• Cartographie et filtrage par zone</li>
-                                <li>• Système de messagerie simple</li>
-                            </ul>
-                            <div class="mt-4 flex flex-wrap gap-3">
-                                <a href="https://buses-solutions.com/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-night text-white px-4 py-2.5 rounded-xl font-semibold hover:-translate-y-0.5 transition">Voir le site ↗️</a>
-                                <button onclick="showPage('quote')" class="inline-flex items-center gap-2 bg-white border border-slate-300 hover:border-slate-400 text-night px-4 py-2.5 rounded-xl font-semibold" data-i18n="cta.quote">Demander un devis</button>
-                            </div>
-                        </div>
-                    </article>
-
-                    <article class="bg-white rounded-2xl border border-slate-200 shadow-soft overflow-hidden">
-                        <div class="p-5 border-b border-slate-100">
-                            <h3 class="font-extrabold text-night">Amaru-Resots;com</h3>
-                            <p class="mt-1 text-sm text-slate-600">Promotion immobilière Espagne</p>
-                        </div>
-                        <div class="p-5">
-                            <div class="grid grid-cols-1 items-end">
-                                <div>
-                                    <div class="rounded-xl overflow-hidden shadow-soft">
-                                        <div class="h-40 md:h-48 relative overflow-hidden">
-                                            <div class="absolute inset-0 bg-cover bg-center" style="background-image:url('https://i.ibb.co/HD8nq33M/Amaru-Resorts.png');"></div>
-                                            <div class="absolute inset-0 bg-black/10"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <ul class="mt-4 space-y-2 text-sm text-slate-700">
-                                <li>• Présentation des biens et formulaires de contact</li>
-                                <li>• Multilingue et génération de leads</li>
-                                <li>• Performances optimisées</li>
-                            </ul>
-                            <div class="mt-4 flex flex-wrap gap-3">
-                                <a href="https://amaru-resorts.com/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-night text-white px-4 py-2.5 rounded-xl font-semibold hover:-translate-y-0.5 transition">Voir le site ↗️</a>
-                                <button onclick="showPage('quote')" class="inline-flex items-center gap-2 bg-white border border-slate-300 hover:border-slate-400 text-night px-4 py-2.5 rounded-xl font-semibold" data-i18n="cta.quote">Demander un devis</button>
-                            </div>
-                        </div>
-                    </article>
-
-                    <article class="bg-white rounded-2xl border border-slate-200 shadow-soft overflow-hidden">
-                        <div class="p-5 border-b border-slate-100">
-                            <h3 class="font-extrabold text-night">Constatbat</h3>
-                            <p class="mt-1 text-sm text-slate-600">Services immobiliers</p>
-                        </div>
-                        <div class="p-5">
-                            <div class="grid grid-cols-1 items-end">
-                                <div>
-                                    <div class="rounded-xl overflow-hidden shadow-soft">
-                                        <div class="h-40 md:h-48 relative overflow-hidden">
-                                            <div class="absolute inset-0 bg-cover bg-center" style="background-image:url('https://i.ibb.co/7N6zLqPx/Constatbat.png');"></div>
-                                            <div class="absolute inset-0 bg-black/10"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <ul class="mt-4 space-y-2 text-sm text-slate-700">
-                                <li>• Catalogue de services et devis rapides</li>
-                                <li>• Système de prise de rendez-vous</li>
-                                <li>• Suivi client simplifié</li>
-                            </ul>
-                            <div class="mt-4 flex flex-wrap gap-3">
-                                <a href="https://constatbat.vercel.app/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-night text-white px-4 py-2.5 rounded-xl font-semibold hover:-translate-y-0.5 transition">Voir le site ↗️</a>
-                                <button onclick="showPage('quote')" class="inline-flex items-center gap-2 bg-white border border-slate-300 hover:border-slate-400 text-night px-4 py-2.5 rounded-xl font-semibold" data-i18n="cta.quote">Demander un devis</button>
-                            </div>
-                        </div>
-                    </article>
-
-                    <article class="bg-white rounded-2xl border border-slate-200 shadow-soft overflow-hidden">
-                        <div class="p-5 border-b border-slate-100">
-                            <h3 class="font-extrabold text-night">Viiveo</h3>
-                            <p class="mt-1 text-sm text-slate-600">Services à la personne</p>
-                        </div>
-                        <div class="p-5">
-                            <div class="grid grid-cols-1 items-end">
-                                <div>
-                                    <div class="rounded-xl overflow-hidden shadow-soft">
-                                        <div class="h-40 md:h-48 relative overflow-hidden">
-                                            <div class="absolute inset-0 bg-cover bg-center" style="background-image:url('https://i.ibb.co/hJ15PSb3/Viiveo.png');"></div>
-                                            <div class="absolute inset-0 bg-black/10"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <ul class="mt-4 space-y-2 text-sm text-slate-700">
-                                <li>• Demande de services en ligne</li>
-                                <li>• Espace client simple et clair</li>
-                                <li>• Notifications email automatisées</li>
-                            </ul>
-                            <div class="mt-4 flex flex-wrap gap-3">
-                                <a href="https://viiveo.carrd.co/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-night text-white px-4 py-2.5 rounded-xl font-semibold hover:-translate-y-0.5 transition">Voir le site ↗️</a>
-                                <button onclick="showPage('quote')" class="inline-flex items-center gap-2 bg-white border border-slate-300 hover:border-slate-400 text-night px-4 py-2.5 rounded-xl font-semibold" data-i18n="cta.quote">Demander un devis</button>
-                            </div>
-                        </div>
-                    </article>
-                </div>
-            </div>
-        </section>
-    </div>
-
-    <div id="page-offer" class="page hidden">
-        <section class="relative">
-            <div class="absolute inset-0 -z-10">
-                <div class="absolute inset-0 opacity-90 bg-cover bg-center" data-bg-url="https://i.ibb.co/Y4RxKd50/Section-Offre.png"></div>
-                <div class="absolute inset-0 bg-black/60"></div>
-            </div>
-            <div class="max-w-7xl mx-auto px-4 py-16 md:py-24">
-                <div>
-                    <h2 class="text-2xl md:text-3xl font-extrabold text-white" data-i18n="offer.title">Mon offre</h2>
-                    <p class="mt-3 text-white/95" data-i18n="offer.subtitle">Des solutions adaptées aux startups, PME et indépendants, avec la puissance de l'IA.</p>
-                </div>
-
-                <div class="mt-10 grid lg:grid-cols-3 gap-7">
-                    <div class="bg-white rounded-2xl border border-slate-200 shadow-soft overflow-hidden">
-                        <div class="p-6 border-b border-slate-100">
-                            <h3 class="text-xl font-extrabold text-night">Solutions Pro (startups & PME)</h3>
-                        </div>
-                        <div class="p-6 space-y-5">
-                            <div class="rounded-xl border border-emerald-200 bg-emerald-50 p-5">
-                                <div class="flex items-baseline justify-between">
-                                    <div class="font-semibold text-night">MVP Express</div>
-                                    <div class="text-night font-extrabold">à partir de 3 000 €</div>
-                                </div>
-                                <p class="mt-2 text-slate-700">Plateforme clé en main en 7 jours</p>
-                            </div>
-                            <div class="rounded-xl border border-slate-200 p-5">
-                                <div class="flex items-baseline justify-between">
-                                    <div class="font-semibold text-night">Maintenance & IA</div>
-                                    <div class="text-night font-extrabold">à partir de 300 €/mois</div>
-                                </div>
-                                <p class="mt-2 text-slate-700">Évolutions, sécurité, automatisations IA</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="bg-white rounded-2xl border border-slate-200 shadow-soft overflow-hidden">
-                        <div class="p-6 border-b border-slate-100">
-                            <h3 class="text-xl font-extrabold text-night">Solutions Accessibles (indépendants & petites structures)</h3>
-                        </div>
-                        <div class="p-6 space-y-5">
-                            <div class="rounded-xl border border-slate-200 p-5">
-                                <div class="flex items-baseline justify-between">
-                                    <div class="font-semibold text-night">Community Management</div>
-                                    <div class="text-night font-extrabold">à partir de 350 €/mois</div>
-                                </div>
-                                <p class="mt-2 text-slate-700">Réseaux sociaux, contenu, stratégie de visibilité</p>
-                            </div>
-                            <div class="rounded-xl border border-emerald-200 bg-emerald-50 p-5">
-                                <div class="flex items-baseline justify-between">
-                                    <div class="font-semibold text-night">Mini-sites vitrines</div>
-                                    <div class="text-night font-extrabold">à partir de 750 €</div>
-                                </div>
-                                <p class="mt-2 text-slate-700">Présence en ligne simple et efficace en 48h</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="bg-white rounded-2xl border border-slate-200 shadow-soft overflow-hidden">
-                        <div class="p-6 border-b border-slate-100">
-                            <h3 class="text-xl font-extrabold text-night">Agents IA & automatisation</h3>
-                        </div>
-                        <div class="p-6 space-y-4">
-                            <p class="text-slate-700">
-                                Création d'assistants intelligents pour automatiser vos tâches répétitives.
+        <div id="page-about" class="page">
+            <section class="py-16 md:py-24">
+                <div class="max-w-7xl mx-auto px-4">
+                    <div class="lg:flex lg:items-center lg:gap-12">
+                        <div class="lg:w-1/2">
+                            <h2 class="text-3xl font-extrabold text-night" data-i18n="about.title">À propos de moi</h2>
+                            <p class="mt-5 text-lg text-slate-700">
+                                Je suis Maxime Anza, fondateur d'Anza. Je me spécialise dans le développement de produits digitaux pour les startups et les PME, en me concentrant sur la création de solutions qui apportent une réelle valeur commerciale. Mon approche est axée sur la vitesse et l'efficacité, avec une forte expertise en **IA** et en **automatisation**. Que vous ayez besoin d'un **produit minimum viable (MVP)** pour tester une idée, d'un **site vitrine** ou d'un **agent IA** pour automatiser des tâches, je vous aide à transformer votre vision en une solution concrète et rapide à mettre sur le marché.
                             </p>
-                            <div class="rounded-xl border border-slate-200 p-5 bg-slate-50">
-                                <div class="font-semibold text-night">Exemple concret</div>
-                                <p class="mt-2 text-slate-700 text-sm">
-                                    Un agent IA qui lit automatiquement vos e-mails clients, classe les demandes par priorité et répond aux questions fréquentes — plusieurs heures gagnées chaque semaine.
-                                </p>
-                            </div>
-                            <div class="flex items-center justify-between">
-                                <div class="text-night font-extrabold">à partir de 500 €</div>
-                                <button onclick="showPage('quote')" class="inline-flex items-center gap-2 text-emerald-600 font-semibold hover:text-emerald-700" data-i18n="cta.quoteArrow">
-                                    Demander un devis →
+                            <div class="mt-6 flex flex-wrap gap-4">
+                                <button onclick="showPage('projects')" class="inline-flex items-center gap-2 text-emerald-600 font-semibold hover:text-emerald-700">
+                                    Voir des exemples concrets →
+                                </button>
+                                <button onclick="showPage('quote')" class="inline-flex items-center gap-2 bg-emerald-500 hover:bg-emerald-600 text-white px-6 py-3 rounded-xl font-semibold shadow-soft">
+                                    Demander un devis
                                 </button>
                             </div>
                         </div>
+                        <div class="lg:w-1/2 mt-12 lg:mt-0">
+                            <div class="relative w-full h-80 sm:h-96 rounded-3xl overflow-hidden shadow-2xl">
+                                <img src="https://images.unsplash.com/photo-1628155018699-b1d7d022b7d4?q=80&w=1974&auto=format&fit=crop" alt="Image de bureau de Maxime Anza" class="w-full h-full object-cover">
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </section>
-    </div>
+            </section>
+        </div>
 
-    <div id="page-quote" class="page hidden">
-        <section class="relative">
-            <div class="absolute inset-0 pointer-events-none bg-[radial-gradient(ellipse_at_bottom_left,rgba(34,197,94,.08),transparent_40%)]"></div>
-            <div class="max-w-7xl mx-auto px-4 py-16 md:py-24">
-                <div>
-                    <h2 class="text-2xl md:text-3xl font-extrabold text-night" data-i18n="quote.title">Demande de devis</h2>
-                    <p class="mt-3 text-slate-700" data-i18n="quote.subtitle">Expliquez votre besoin en 1 minute. Je reviens vers vous rapidement avec un plan d'action.</p>
-                </div>
-
-                <div class="mt-8 grid lg:grid-cols-3 gap-8">
-                    <form action="https://api.web3forms.com/submit" method="POST" class="lg:col-span-2 bg-white rounded-2xl border border-slate-200 shadow-soft p-6 space-y-5">
-                        <input type="hidden" name="access_key" value="a0163328-1225-458e-a9f9-8b6749b40773">
-                        
-                        <div class="grid md:grid-cols-2 gap-5">
-                            <div>
-                                <label for="prenom" class="block text-sm font-medium text-slate-700" data-i18n="form.firstName">Prénom</label>
-                                <input id="prenom" name="Prénom" type="text" required class="mt-1 w-full rounded-xl border-slate-300 focus:border-emerald-500 focus:ring-emerald-500" placeholder="Votre prénom" />
-                            </div>
-                            <div>
-                                <label for="nom" class="block text-sm font-medium text-slate-700" data-i18n="form.lastName">Nom</label>
-                                <input id="nom" name="Nom" type="text" required class="mt-1 w-full rounded-xl border-slate-300 focus:border-emerald-500 focus:ring-emerald-500" placeholder="Votre nom" />
-                            </div>
-                        </div>
-
-                        <div class="grid md:grid-cols-2 gap-5">
-                            <div>
-                                <label for="email" class="block text-sm font-medium text-slate-700" data-i18n="form.email">Email</label>
-                                <input id="email" name="Email" type="email" required class="mt-1 w-full rounded-xl border-slate-300 focus:border-emerald-500 focus:ring-emerald-500" placeholder="vous@exemple.com" />
-                            </div>
-                            <div>
-                                <label for="tel" class="block text-sm font-medium text-slate-700" data-i18n="form.phone">Téléphone</label>
-                                <input id="tel" name="Téléphone" type="tel" required class="mt-1 w-full rounded-xl border-slate-300 focus:border-emerald-500 focus:ring-emerald-500" placeholder="+32 ..." />
-                            </div>
-                        </div>
-
-                        <div class="grid md:grid-cols-2 gap-5">
-                            <div>
-                                <label for="type" class="block text-sm font-medium text-slate-700" data-i18n="form.type">Type de projet</label>
-                                <select id="type" name="Type de projet" required class="mt-1 w-full rounded-xl border-slate-300 focus:border-emerald-500 focus:ring-emerald-500">
-                                    <option value="">Sélectionnez…</option>
-                                    <option>MVP</option>
-                                    <option>Mini-site</option>
-                                    <option>Community Management</option>
-                                    <option>Agent IA</option>
-                                </select>
-                            </div>
-                            <div>
-                                <label for="budget" class="block text-sm font-medium text-slate-700" data-i18n="form.budget">Budget approximatif</label>
-                                <select id="budget" name="Budget approximatif" class="mt-1 w-full rounded-xl border-slate-300 focus:border-emerald-500 focus:ring-emerald-500">
-                                    <option value="">À définir</option>
-                                    <option>Moins de 1 000 €</option>
-                                    <option>1 000 – 3 000 €</option>
-                                    <option>3 000 – 5 000 €</option>
-                                    <option>5 000 – 10 000 €</option>
-                                    <option>10 000 – 20 000 €</option>
-                                    <option>20 000 € et +</option>
-                                </select>
-                            </div>
-                        </div>
-
-                        <div>
-                            <label for="desc" class="block text-sm font-medium text-slate-700" data-i18n="form.description">Description du projet</label>
-                            <textarea id="desc" name="Description du projet" required rows="5" class="mt-1 w-full rounded-xl border-slate-300 focus:border-emerald-500 focus:ring-emerald-500" placeholder="Objectifs, fonctionnalités clés, délais, etc."></textarea>
-                        </div>
-
-                        <div class="flex flex-wrap items-center gap-3 pt-2">
-                            <button type="submit" class="inline-flex items-center gap-2 bg-emerald-500 hover:bg-emerald-600 text-white px-5 py-3 rounded-xl font-semibold shadow-soft" data-i18n="form.submit">
-                                📩 Envoyer ma demande
-                            </button>
-                            <button type="button" id="resetBtn" class="inline-flex items-center gap-2 bg-white border border-slate-300 hover:border-slate-400 text-night px-4 py-3 rounded-xl font-semibold">
-                                Réinitialiser
-                            </button>
-                        </div>
-
-                        <p class="text-xs text-slate-500">
-                            Votre demande sera traitée par un service d'envoi de formulaire sécurisé.
-                        </p>
-                    </form>
-
-                    <aside class="space-y-5">
-                        <div class="bg-night rounded-2xl text-white p-6 shadow-soft">
-                            <div class="text-sm uppercase tracking-widest text-emerald-300/90 font-semibold">Pourquoi Anza</div>
-                            <h3 class="mt-2 text-xl font-extrabold">Rapide, clair, orienté résultats</h3>
-                            <ul class="mt-4 space-y-3 text-white/90">
-                                <li class="flex gap-3"><span>✅</span><span>Accompagnement de l'idée au lancement</span></li>
-                                <li class="flex gap-3"><span>✅</span><span>Développement MVP en 7 jours</span></li>
-                                <li class="flex gap-3"><span>✅</span><span>Intégration IA pragmatique</span></li>
-                            </ul>
-                            <div class="mt-5 text-xs text-white/70">
-                                Besoin d'échanger de vive voix ? Utilisez le formulaire et proposez vos disponibilités.
-                            </div>
-                        </div>
-
-                        <div class="rounded-2xl border border-slate-200 p-6 bg-white shadow-soft">
-                            <div class="flex items-center gap-3">
-                                <div class="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-700 grid place-items-center font-extrabold">7j</div>
+        <div id="page-projects" class="page">
+            <section class="py-16 md:py-24">
+                <div class="max-w-7xl mx-auto px-4">
+                    <h2 class="text-3xl font-extrabold text-night" data-i18n="projects.title">Projets</h2>
+                    <p class="mt-4 text-lg text-slate-700 max-w-3xl" data-i18n-html="projects.subtitle">
+                        Découvrez une sélection de projets présentés sur ordinateur et smartphone.<br>Chaque création met en avant ses points forts, son design soigné et la valeur concrète qu’elle apporte à nos clients.
+                    </p>
+                    <div class="mt-12 grid lg:grid-cols-2 gap-8">
+                        <div class="rounded-2xl border border-slate-200 bg-white p-6 shadow-soft">
+                            <div class="flex items-center gap-4">
+                                <div class="w-12 h-12 rounded-full bg-slate-100 grid place-items-center">
+                                    <svg class="w-6 h-6 text-slate-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5zM5 12h14M5 12a2 2 0 00-2 2v6a2 2 0 002 2h14a2 2 0 002-2v-6a2 2 0 00-2-2M12 14v7" /></svg>
+                                </div>
                                 <div>
-                                    <div class="font-semibold text-night">MVP Express</div>
-                                    <div class="text-sm text-slate-600">Cadrage clair + livraison rapide</div>
+                                    <div class="font-semibold text-night">Plateforme de gestion pour PME</div>
+                                    <div class="text-sm text-slate-600">Client : Agence immobilière</div>
                                 </div>
                             </div>
-                            <div class="mt-4 p-3 rounded-xl border border-slate-200 bg-slate-50">
-                                <div class="text-xs text-slate-600">Inclu: atelier de 60 min, plan fonctionnel, maquette Hero offerte.</div>
+                            <div class="mt-4 text-slate-700">
+                                <p>Développement d'une application web sur mesure pour simplifier la gestion quotidienne : suivi des dossiers clients, gestion des biens, et automatisation des rappels.</p>
                             </div>
                         </div>
-                    </aside>
-                </div>
-            </div>
-        </section>
-    </div>
 
+                        <div class="rounded-2xl border border-slate-200 bg-white p-6 shadow-soft">
+                            <div class="flex items-center gap-4">
+                                <div class="w-12 h-12 rounded-full bg-slate-100 grid place-items-center">
+                                    <svg class="w-6 h-6 text-slate-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
+                                </div>
+                                <div>
+                                    <div class="font-semibold text-night">Mini-site vitrine</div>
+                                    <div class="text-sm text-slate-600">Client : Coach sportif</div>
+                                </div>
+                            </div>
+                            <div class="mt-4 text-slate-700">
+                                <p>Site web simple et percutant, livré en moins de 48h, pour permettre au client de présenter ses services et de capturer des prospects via un formulaire de contact optimisé.</p>
+                            </div>
+                        </div>
+
+                        <div class="rounded-2xl border border-slate-200 bg-white p-6 shadow-soft">
+                            <div class="flex items-center gap-4">
+                                <div class="w-12 h-12 rounded-full bg-slate-100 grid place-items-center">
+                                    <svg class="w-6 h-6 text-slate-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 01-2 2H7a2 2 0 01-2-2m14 0V9a2 2 0 00-2-2h-3l-2-2H7a2 2 0 00-2 2v2a2 2 0 012 2h10a2 2 0 002-2z" /></svg>
+                                </div>
+                                <div>
+                                    <div class="font-semibold text-night">Agent IA pour les FAQ</div>
+                                    <div class="text-sm text-slate-600">Client : Boutique en ligne</div>
+                                </div>
+                            </div>
+                            <div class="mt-4 text-slate-700">
+                                <p>Un assistant intelligent qui répond automatiquement aux questions des clients sur le site web, basé sur la documentation produit. Résultat : une réduction de 70% des demandes de support client.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+        
+        <div id="page-offer" class="page">
+            <section class="py-16 md:py-24">
+                <div class="max-w-7xl mx-auto px-4">
+                    <h2 class="text-3xl font-extrabold text-night" data-i18n="offer.title">Mon offre</h2>
+                    <p class="mt-4 text-lg text-slate-700 max-w-3xl" data-i18n="offer.subtitle">
+                        Des solutions adaptées aux startups, PME et indépendants, avec la puissance de l'IA.
+                    </p>
+                    <div class="mt-12 grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        <div class="bg-white rounded-2xl border border-slate-200 shadow-soft overflow-hidden">
+                            <div class="p-6 border-b border-slate-100">
+                                <h3 class="text-xl font-extrabold text-night">Solution Startups & PME</h3>
+                            </div>
+                            <div class="p-6 space-y-5">
+                                <div class="rounded-xl border border-slate-200 p-5">
+                                    <div class="flex items-baseline justify-between">
+                                        <div class="font-semibold text-night">MVP / Produit</div>
+                                        <div class="text-night font-extrabold">à partir de 5000 €</div>
+                                    </div>
+                                    <p class="mt-2 text-slate-700">Plateforme clé en main en 7 jours</p>
+                                </div>
+                                <div class="rounded-xl border border-slate-200 p-5">
+                                    <div class="flex items-baseline justify-between">
+                                        <div class="font-semibold text-night">Maintenance & IA</div>
+                                        <div class="text-night font-extrabold">à partir de 300 €/mois</div>
+                                    </div>
+                                    <p class="mt-2 text-slate-700">Évolutions, sécurité, automatisations IA</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bg-white rounded-2xl border border-slate-200 shadow-soft overflow-hidden">
+                            <div class="p-6 border-b border-slate-100">
+                                <h3 class="text-xl font-extrabold text-night">Solutions Accessibles (indépendants & petites structures)</h3>
+                            </div>
+                            <div class="p-6 space-y-5">
+                                <div class="rounded-xl border border-slate-200 p-5">
+                                    <div class="flex items-baseline justify-between">
+                                        <div class="font-semibold text-night">Community Management</div>
+                                        <div class="text-night font-extrabold">à partir de 350 €/mois</div>
+                                    </div>
+                                    <p class="mt-2 text-slate-700">Réseaux sociaux, contenu, stratégie de visibilité</p>
+                                </div>
+                                <div class="rounded-xl border border-emerald-200 bg-emerald-50 p-5">
+                                    <div class="flex items-baseline justify-between">
+                                        <div class="font-semibold text-night">Mini-sites vitrines</div>
+                                        <div class="text-night font-extrabold">à partir de 750 €</div>
+                                    </div>
+                                    <p class="mt-2 text-slate-700">Présence en ligne simple et efficace en 48h</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bg-white rounded-2xl border border-slate-200 shadow-soft overflow-hidden">
+                            <div class="p-6 border-b border-slate-100">
+                                <h3 class="text-xl font-extrabold text-night">Agents IA & automatisation</h3>
+                            </div>
+                            <div class="p-6 space-y-4">
+                                <p class="text-slate-700">
+                                    Création d'assistants intelligents pour automatiser vos tâches répétitives.
+                                </p>
+                                <div class="rounded-xl border border-slate-200 p-5 bg-slate-50">
+                                    <div class="font-semibold text-night">Exemple concret</div>
+                                    <p class="mt-2 text-slate-700 text-sm">
+                                        Un agent IA qui lit automatiquement vos e-mails clients, classe les demandes par priorité et répond aux questions fréquentes — plusieurs heures gagnées chaque semaine.
+                                    </p>
+                                </div>
+                                <div class="flex items-center justify-between">
+                                    <div class="text-night font-extrabold">à partir de 500 €</div>
+                                    <button onclick="showPage('quote')" class="inline-flex items-center gap-2 text-emerald-600 font-semibold hover:text-emerald-700" data-i18n="cta.quoteArrow">
+                                        Demander un devis →
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <div id="page-quote" class="page">
+            <section class="relative">
+                <div class="absolute inset-0 pointer-events-none bg-[radial-gradient(ellipse_at_bottom_left,rgba(34,197,94,.08),transparent_40%)]"></div>
+                <div class="max-w-7xl mx-auto px-4 py-16 md:py-24">
+                    <div>
+                        <h2 class="text-2xl md:text-3xl font-extrabold text-night" data-i18n="quote.title">Demande de devis</h2>
+                        <p class="mt-3 text-slate-700" data-i18n="quote.subtitle">Expliquez votre besoin en 1 minute. Je reviens vers vous rapidement avec un plan d'action.</p>
+                    </div>
+                    <div class="mt-8 grid lg:grid-cols-3 gap-8">
+                        <form id="quoteForm" action="https://api.web3forms.com/submit" method="POST" class="lg:col-span-2 bg-white rounded-2xl border border-slate-200 shadow-soft p-6 space-y-5">
+                            <input type="hidden" name="access_key" value="a0163328-1225-458e-a9f9-8b6749b40773">
+                            <div class="grid md:grid-cols-2 gap-5">
+                                <div>
+                                    <label for="prenom" class="block text-sm font-medium text-slate-700" data-i18n="form.firstName">Prénom</label>
+                                    <input id="prenom" name="Prénom" type="text" required class="mt-1 w-full rounded-xl border-slate-300 focus:border-emerald-500 focus:ring-emerald-500" placeholder="Votre prénom" />
+                                </div>
+                                <div>
+                                    <label for="nom" class="block text-sm font-medium text-slate-700" data-i18n="form.lastName">Nom</label>
+                                    <input id="nom" name="Nom" type="text" required class="mt-1 w-full rounded-xl border-slate-300 focus:border-emerald-500 focus:ring-emerald-500" placeholder="Votre nom" />
+                                </div>
+                            </div>
+                            <div class="grid md:grid-cols-2 gap-5">
+                                <div>
+                                    <label for="email" class="block text-sm font-medium text-slate-700" data-i18n="form.email">Email</label>
+                                    <input id="email" name="Email" type="email" required class="mt-1 w-full rounded-xl border-slate-300 focus:border-emerald-500 focus:ring-emerald-500" placeholder="vous@exemple.com" />
+                                </div>
+                                <div>
+                                    <label for="tel" class="block text-sm font-medium text-slate-700" data-i18n="form.phone">Téléphone</label>
+                                    <input id="tel" name="Téléphone" type="tel" required class="mt-1 w-full rounded-xl border-slate-300 focus:border-emerald-500 focus:ring-emerald-500" placeholder="+32 ..." />
+                                </div>
+                            </div>
+                            <div class="grid md:grid-cols-2 gap-5">
+                                <div>
+                                    <label for="type" class="block text-sm font-medium text-slate-700" data-i18n="form.type">Type de projet</label>
+                                    <select id="type" name="Type de projet" required class="mt-1 w-full rounded-xl border-slate-300 focus:border-emerald-500 focus:ring-emerald-500">
+                                        <option value="">Sélectionnez…</option>
+                                        <option>MVP</option>
+                                        <option>Mini-site</option>
+                                        <option>Community Management</option>
+                                        <option>Agent IA</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label for="budget" class="block text-sm font-medium text-slate-700" data-i18n="form.budget">Budget approximatif</label>
+                                    <select id="budget" name="Budget approximatif" class="mt-1 w-full rounded-xl border-slate-300 focus:border-emerald-500 focus:ring-emerald-500">
+                                        <option value="">À définir</option>
+                                        <option>Moins de 1 000 €</option>
+                                        <option>1 000 – 3 000 €</option>
+                                        <option>3 000 – 5 000 €</option>
+                                        <option>5 000 – 10 000 €</option>
+                                        <option>10 000 – 20 000 €</option>
+                                        <option>20 000 € et +</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div>
+                                <label for="desc" class="block text-sm font-medium text-slate-700" data-i18n="form.description">Description du projet</label>
+                                <textarea id="desc" name="Description du projet" required rows="5" class="mt-1 w-full rounded-xl border-slate-300 focus:border-emerald-500 focus:ring-emerald-500" placeholder="Objectifs, fonctionnalités clés, délais, etc."></textarea>
+                            </div>
+                            <div class="flex flex-wrap items-center gap-3 pt-2">
+                                <button type="submit" class="inline-flex items-center gap-2 bg-emerald-500 hover:bg-emerald-600 text-white px-5 py-3 rounded-xl font-semibold shadow-soft" data-i18n="form.submit">
+                                    📩 Envoyer ma demande
+                                </button>
+                                <button type="button" id="resetBtn" class="inline-flex items-center gap-2 bg-white border border-slate-300 hover:border-slate-400 text-night px-4 py-3 rounded-xl font-semibold">
+                                    Réinitialiser
+                                </button>
+                            </div>
+                            <p class="text-xs text-slate-500">
+                                Votre demande sera traitée par un service d'envoi de formulaire sécurisé.
+                            </p>
+                        </form>
+                        <aside class="space-y-5">
+                            <div class="bg-night rounded-2xl text-white p-6 shadow-soft">
+                                <div class="text-sm uppercase tracking-widest text-emerald-300/90 font-semibold">Pourquoi Anza</div>
+                                <h3 class="mt-2 text-xl font-extrabold">Rapide, clair, orienté résultats</h3>
+                                <ul class="mt-4 space-y-3 text-white/90">
+                                    <li class="flex gap-3"><span>✅</span><span>Accompagnement de l'idée au lancement</span></li>
+                                    <li class="flex gap-3"><span>✅</span><span>Développement MVP en 7 jours</span></li>
+                                    <li class="flex gap-3"><span>✅</span><span>Intégration IA pragmatique</span></li>
+                                </ul>
+                                <div class="mt-5 text-xs text-white/70">
+                                    Besoin d'échanger de vive voix ? Utilisez le formulaire et proposez vos disponibilités.
+                                </div>
+                            </div>
+                            <div class="rounded-2xl border border-slate-200 p-6 bg-white shadow-soft">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-700 grid place-items-center font-extrabold">7j</div>
+                                    <div>
+                                        <div class="font-semibold text-night">MVP Express</div>
+                                        <div class="text-sm text-slate-600">Cadrage clair + livraison rapide</div>
+                                    </div>
+                                </div>
+                                <div class="mt-4 p-3 rounded-xl border border-slate-200 bg-slate-50">
+                                    <div class="text-xs text-slate-600">Inclu: atelier de 60 min, plan fonctionnel, maquette Hero offerte.</div>
+                                </div>
+                            </div>
+                        </aside>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+    
     <footer class="border-t border-slate-200">
         <div class="max-w-7xl mx-auto px-4 py-10 grid md:grid-cols-3 gap-6">
             <div>
                 <div class="flex items-center gap-2">
                     <span class="w-8 h-8 rounded-lg grid place-items-center overflow-hidden">
-                        <img src="https://i.ibb.co/1JfDhq21/Logo-Anza-transparent.png" alt="Logo Anza" class="w-full h-full object-contain" onerror="this.src=''; this.alt='Image failed to load'; this.style.display='none';">
+                        <img src="https://placehold.co/32x32" alt="Logo Anza" class="w-full h-full object-contain">
                     </span>
                     <span class="font-extrabold text-night">Anza</span>
                 </div>
@@ -602,137 +402,188 @@
     </footer>
 
     <script>
-        // --- GESTION DES PAGES ET DE LA NAVIGATION ---
-
-        function showPage(pageId) {
-            document.querySelectorAll('.page').forEach(page => {
-                page.classList.add('hidden');
-            });
-
-            const activePage = document.getElementById(`page-${pageId}`);
-            if (activePage) {
-                activePage.classList.remove('hidden');
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            }
-
-            document.querySelectorAll('nav .nav-btn').forEach(btn => {
-                const btnPageId = btn.getAttribute('onclick').match(/showPage\('(.+)'\)/)[1];
-                if (btnPageId === pageId) {
-                    btn.classList.add('font-bold', 'text-night');
-                    btn.classList.remove('text-slate-700');
-                } else {
-                    btn.classList.remove('font-bold', 'text-night');
-                    btn.classList.add('text-slate-700');
-                }
-            });
-        }
-
-        // --- GESTION DE LA TRADUCTION (i18n) ---
-
-        const translations = {
-            fr: {
-                'top.tagline': 'Anza • Développement digital — Mons, Belgique', 'top.fast': 'Délais rapides', 'top.mvp': 'MVP en 7 jours', 'brand.tag': 'Build • AI • Growth',
-                'nav.about': 'À propos', 'nav.projects': 'Projets', 'nav.offer': 'Mon offre', 'nav.quote': 'Devis',
-                'cta.talk': '🚀 Discutons de votre projet', 'cta.viewProjects': 'Voir nos projets', 'cta.quote': 'Demander un devis', 'cta.quoteArrow': 'Demander un devis →',
-                'hero.fast': 'Livraison rapide', 'hero.results': 'Orienté résultats', 'hero.ai': 'IA & automatisation',
-                'about.title': 'À propos', 'about.examples': 'Voir des exemples concrets →',
-                'projects.title': 'Projets', 'projects.subtitle': 'Découvrez une sélection de projets présentés sur ordinateur et smartphone.<br/>Chaque création met en avant ses points forts, son design soigné et la valeur concrète qu’elle apporte à nos clients.',
-                'offer.title': 'Mon offre', 'offer.subtitle': 'Des solutions adaptées aux startups, PME et indépendants, avec la puissance de l\'IA.',
-                'quote.title': 'Demande de devis', 'quote.subtitle': 'Expliquez votre besoin en 1 minute. Je reviens vers vous rapidement avec un plan d\'action.',
-                'form.firstName': 'Prénom', 'form.lastName': 'Nom', 'form.email': 'Email', 'form.phone': 'Téléphone', 'form.type': 'Type de projet', 'form.budget': 'Budget approximatif', 'form.description': 'Description du projet', 'form.submit': '📩 Envoyer ma demande', 'form.privacy': 'Votre demande sera traitée par un service d\'envoi de formulaire sécurisé.',
-                'footer.sections': 'Sections', 'footer.contact': 'Contact', 'footer.email': 'Email:', 'footer.zone': 'Zone: Mons, Bruxelles, remote', 'footer.rights': 'Anza. Tous droits réservés.',
-            },
-            en: {
-                'top.tagline': 'Anza • Digital development — Mons, Belgium', 'top.fast': 'Fast turnaround', 'top.mvp': 'MVP in 7 days', 'brand.tag': 'Build • AI • Growth',
-                'nav.about': 'About', 'nav.projects': 'Projects', 'nav.offer': 'My offer', 'nav.quote': 'Quote',
-                'cta.talk': '🚀 Let\'s discuss your project', 'cta.viewProjects': 'See projects', 'cta.quote': 'Request a quote', 'cta.quoteArrow': 'Request a quote →',
-                'hero.fast': 'Fast delivery', 'hero.results': 'Results-driven', 'hero.ai': 'AI & automation',
-                'about.title': 'About me', 'about.examples': 'See concrete examples →',
-                'projects.title': 'Projects', 'projects.subtitle': 'Discover a selection of projects presented on desktop and mobile.<br/>Each creation highlights its strengths, its clean design and the concrete value it brings to our clients.',
-                'offer.title': 'My offer', 'offer.subtitle': 'Solutions for startups, SMEs and freelancers, powered by AI.',
-                'quote.title': 'Request a quote', 'quote.subtitle': 'Explain your need in 1 minute. I\'ll reply quickly with a plan.',
-                'form.firstName': 'First name', 'form.lastName': 'Last name', 'form.email': 'Email', 'form.phone': 'Phone', 'form.type': 'Project type', 'form.budget': 'Approximate budget', 'form.description': 'Project description', 'form.submit': '📩 Send my request', 'form.privacy': 'Your request will be processed by a secure form submission service.',
-                'footer.sections': 'Sections', 'footer.contact': 'Contact', 'footer.email': 'Email:', 'footer.zone': 'Area: Mons, Brussels, remote', 'footer.rights': 'Anza. All rights reserved.',
-            },
-            nl: {
-                'top.tagline': 'Anza • Digitale ontwikkeling — Bergen, België', 'top.fast': 'Snelle levering', 'top.mvp': 'MVP in 7 dagen', 'brand.tag': 'Bouwen • AI • Groei',
-                'nav.about': 'Over', 'nav.projects': 'Projecten', 'nav.offer': 'Aanbod', 'nav.quote': 'Offerte',
-                'cta.talk': '🚀 Laten we praten', 'cta.viewProjects': 'Projecten bekijken', 'cta.quote': 'Offerte aanvragen', 'cta.quoteArrow': 'Offerte aanvragen →',
-                'hero.fast': 'Snelle levering', 'hero.results': 'Resultaatgericht', 'hero.ai': 'AI & automatisering',
-                'about.title': 'Over', 'about.examples': 'Bekijk concrete voorbeelden →',
-                'projects.title': 'Projecten', 'projects.subtitle': 'Ontdek een selectie van projecten gepresenteerd op desktop en mobiel.<br/>Elke creatie belicht haar sterke punten, het strakke ontwerp en de concrete waarde die het onze klanten biedt.',
-                'offer.title': 'Mijn aanbod', 'offer.subtitle': 'Oplossingen voor startups, KMO\'s en zelfstandigen, met de kracht van AI.',
-                'quote.title': 'Offerteaanvraag', 'quote.subtitle': 'Leg uw behoefte in 1 minuut uit. Ik antwoord snel met een plan.',
-                'form.firstName': 'Voornaam', 'form.lastName': 'Achternaam', 'form.email': 'E-mail', 'form.phone': 'Telefoon', 'form.type': 'Projecttype', 'form.budget': 'Geschat budget', 'form.description': 'Projectbeschrijving', 'form.submit': '📩 Mijn aanvraag verzenden', 'form.privacy': 'Uw aanvraag wordt verwerkt door een beveiligde formulierdienst.',
-                'footer.sections': 'Secties', 'footer.contact': 'Contact', 'footer.email': 'E-mail:', 'footer.zone': 'Regio: Bergen, Brussel, remote', 'footer.rights': 'Anza. Alle rechten voorbehouden.',
-            }
-        };
-
-        function setLang(lang) {
-            const dict = translations[lang] || translations.fr;
-            document.querySelectorAll('[data-i18n]').forEach(el => {
-                const key = el.getAttribute('data-i18n');
-                if (key && dict[key]) {
-                    if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
-                        el.placeholder = dict[key];
-                    } else if (el.hasAttribute('data-i18n-html')) {
-                        el.innerHTML = dict[key];
-                    } else {
-                        el.textContent = dict[key];
-                    }
-                }
-            });
-
-            const heroTitle = document.querySelector('#page-home h1');
-            const heroSubtitle = document.querySelector('#page-home .text-xl');
-            const aboutDesc = document.querySelector('#page-about p.mt-5');
-
-            if (heroTitle) heroTitle.textContent = dict['hero.title'] || heroTitle.textContent;
-            if (heroSubtitle) heroSubtitle.textContent = dict['hero.subtitle'] || heroSubtitle.textContent;
-            if (aboutDesc) aboutDesc.textContent = dict['about.desc'] || aboutDesc.textContent;
-
-            localStorage.setItem('lang', lang);
-            document.querySelectorAll('[data-lang]').forEach(b => b.classList.remove('bg-slate-900', 'text-white'));
-            const activeBtn = document.querySelector(`[data-lang="${lang}"]`);
-            if (activeBtn) {
-                activeBtn.classList.add('bg-slate-900', 'text-white');
-            }
-        }
-
-        // --- LOGIQUE DU FORMULAIRE ET DES ÉLÉMENTS ANNEXES ---
-
-        // Year
-        document.getElementById('year').textContent = new Date().getFullYear();
-
-        // Email button opens mail in new tab
-        document.getElementById('emailBtn').addEventListener('click', () => {
-            window.open('mailto:hello@anza.dev?subject=Projet%20digital%20-%20Anza', '_blank');
-        });
-
-        // Make data-bg-url images visible
-        document.querySelectorAll('[data-bg-url]').forEach(el => {
-            const url = el.getAttribute('data-bg-url');
-            if (url) {
-                el.style.backgroundImage = `url('${url}')`;
-                el.classList.add('bg-dyn');
-            }
-        });
-
-        // Form handling (nettoyage pour Web3Forms)
-        const form = document.getElementById('quoteForm');
-        const resetBtn = document.getElementById('resetBtn');
-
-        resetBtn.addEventListener('click', () => {
-            form.reset();
-            localStorage.removeItem('anza_devis');
-        });
-        
-        // Initialiser tout au chargement de la page
         document.addEventListener('DOMContentLoaded', () => {
+            const translations = {
+                fr: {
+                    'nav.home': 'Accueil',
+                    'nav.about': 'À propos',
+                    'nav.projects': 'Projets',
+                    'nav.offer': 'Mon offre',
+                    'cta.talk': '🚀 Discutons de votre projet',
+                    'cta.quoteArrow': 'Demander un devis →',
+                    'hero.title': 'Votre startup ou PME, plus loin, plus vite.',
+                    'hero.subtitle': 'Anza est votre partenaire pour le développement de logiciels sur mesure et l\'intégration d\'assistants IA.',
+                    'hero.fast': 'Livraison rapide',
+                    'hero.results': 'Orienté résultats',
+                    'hero.ai': 'IA & automatisation',
+                    'about.title': 'À propos de moi',
+                    'projects.title': 'Projets',
+                    'projects.subtitle': 'Découvrez une sélection de projets présentés sur ordinateur et smartphone.<br>Chaque création met en avant ses points forts, son design soigné et la valeur concrète qu’elle apporte à nos clients.',
+                    'offer.title': 'Mon offre',
+                    'offer.subtitle': 'Des solutions adaptées aux startups, PME et indépendants, avec la puissance de l\'IA.',
+                    'quote.title': 'Demande de devis',
+                    'quote.subtitle': 'Expliquez votre besoin en 1 minute. Je reviens vers vous rapidement avec un plan d\'action.',
+                    'form.firstName': 'Prénom',
+                    'form.lastName': 'Nom',
+                    'form.email': 'Email',
+                    'form.phone': 'Téléphone',
+                    'form.type': 'Type de projet',
+                    'form.budget': 'Budget approximatif',
+                    'form.description': 'Description du projet',
+                    'form.submit': '📩 Envoyer ma demande',
+                    'footer.sections': 'Sections',
+                    'footer.contact': 'Contact',
+                    'footer.email': 'Email:',
+                    'footer.zone': 'Zone: Mons, Bruxelles, remote',
+                    'footer.rights': 'Anza. Tous droits réservés.',
+                },
+                en: {
+                    'nav.home': 'Home',
+                    'nav.about': 'About',
+                    'nav.projects': 'Projects',
+                    'nav.offer': 'My Offer',
+                    'cta.talk': '🚀 Let\'s talk about your project',
+                    'cta.quoteArrow': 'Request a quote →',
+                    'hero.title': 'Your startup or SME, further, faster.',
+                    'hero.subtitle': 'Anza is your partner for custom software development and AI assistant integration.',
+                    'hero.fast': 'Fast delivery',
+                    'hero.results': 'Results-driven',
+                    'hero.ai': 'AI & automation',
+                    'about.title': 'About me',
+                    'projects.title': 'Projects',
+                    'projects.subtitle': 'Discover a selection of projects presented on desktop and mobile.<br>Each creation highlights its strengths, its clean design and the concrete value it brings to our clients.',
+                    'offer.title': 'My offer',
+                    'offer.subtitle': 'Solutions for startups, SMEs and freelancers, powered by AI.',
+                    'quote.title': 'Request a quote',
+                    'quote.subtitle': 'Explain your need in 1 minute. I\'ll reply quickly with a plan.',
+                    'form.firstName': 'First name',
+                    'form.lastName': 'Last name',
+                    'form.email': 'Email',
+                    'form.phone': 'Phone',
+                    'form.type': 'Project type',
+                    'form.budget': 'Approximate budget',
+                    'form.description': 'Project description',
+                    'form.submit': '📩 Send my request',
+                    'footer.sections': 'Sections',
+                    'footer.contact': 'Contact',
+                    'footer.email': 'Email:',
+                    'footer.zone': 'Area: Mons, Brussels, remote',
+                    'footer.rights': 'Anza. All rights reserved.',
+                },
+                nl: {
+                    'nav.home': 'Home',
+                    'nav.about': 'Over',
+                    'nav.projects': 'Projecten',
+                    'nav.offer': 'Mijn aanbod',
+                    'cta.talk': '🚀 Laten we praten over uw project',
+                    'cta.quoteArrow': 'Offerte aanvragen →',
+                    'hero.title': 'Uw startup of KMO, verder, sneller.',
+                    'hero.subtitle': 'Anza is uw partner voor op maat gemaakte softwareontwikkeling en de integratie van AI-assistenten.',
+                    'hero.fast': 'Snelle levering',
+                    'hero.results': 'Resultaatgericht',
+                    'hero.ai': 'AI & automatisering',
+                    'about.title': 'Over mij',
+                    'projects.title': 'Projecten',
+                    'projects.subtitle': 'Ontdek een selectie van projecten gepresenteerd op desktop en mobiel.<br>Elke creatie benadrukt de sterke punten, het strakke ontwerp en de concrete waarde die het onze klanten biedt.',
+                    'offer.title': 'Mijn aanbod',
+                    'offer.subtitle': 'Oplossingen voor startups, KMO\'s en zelfstandigen, met de kracht van AI.',
+                    'quote.title': 'Offerteaanvraag',
+                    'quote.subtitle': 'Leg uw behoefte in 1 minuut uit. Ik antwoord snel met een plan.',
+                    'form.firstName': 'Voornaam',
+                    'form.lastName': 'Achternaam',
+                    'form.email': 'E-mail',
+                    'form.phone': 'Telefoon',
+                    'form.type': 'Projecttype',
+                    'form.budget': 'Geschat budget',
+                    'form.description': 'Projectbeschrijving',
+                    'form.submit': '📩 Mijn aanvraag verzenden',
+                    'footer.sections': 'Secties',
+                    'footer.contact': 'Contact',
+                    'footer.email': 'E-mail:',
+                    'footer.zone': 'Regio: Bergen, Brussel, remote',
+                    'footer.rights': 'Anza. Alle rechten voorbehouden.',
+                }
+            };
+
+            // GESTION DES PAGES ET DE LA NAVIGATION
+            window.showPage = (pageId) => {
+                document.querySelectorAll('.page').forEach(page => {
+                    page.classList.remove('active');
+                });
+                const activePage = document.getElementById(`page-${pageId}`);
+                if (activePage) {
+                    activePage.classList.add('active');
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                }
+                document.querySelectorAll('nav .nav-btn').forEach(btn => {
+                    const btnPageId = btn.getAttribute('onclick').match(/showPage\('(.+)'\)/)?.[1];
+                    if (btnPageId === pageId) {
+                        btn.classList.add('font-bold', 'text-night');
+                        btn.classList.remove('text-slate-700');
+                    } else {
+                        btn.classList.remove('font-bold', 'text-night');
+                        btn.classList.add('text-slate-700');
+                    }
+                });
+            };
+
+            // GESTION DE LA TRADUCTION (i18n)
+            window.setLang = (lang) => {
+                const dict = translations[lang] || translations.fr;
+                document.querySelectorAll('[data-i18n]').forEach(el => {
+                    const key = el.getAttribute('data-i18n');
+                    if (key && dict[key]) {
+                        if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+                            el.placeholder = dict[key];
+                        } else {
+                            el.textContent = dict[key];
+                        }
+                    }
+                });
+                document.querySelectorAll('[data-i18n-html]').forEach(el => {
+                    const key = el.getAttribute('data-i18n-html');
+                    if (key && dict[key]) {
+                        el.innerHTML = dict[key];
+                    }
+                });
+                localStorage.setItem('lang', lang);
+                document.querySelectorAll('[data-lang]').forEach(b => b.classList.remove('bg-slate-900', 'text-white'));
+                const activeBtn = document.querySelector(`[data-lang="${lang}"]`);
+                if (activeBtn) {
+                    activeBtn.classList.add('bg-slate-900', 'text-white');
+                }
+            };
+
+            // GESTION DU FORMULAIRE ET DES ÉLÉMENTS ANNEXES
+            const emailBtn = document.getElementById('emailBtn');
+            const quoteForm = document.getElementById('quoteForm');
+            const resetBtn = document.getElementById('resetBtn');
+
+            emailBtn.addEventListener('click', () => {
+                window.open('mailto:hello@anza.dev?subject=Projet%20digital%20-%20Anza', '_blank');
+            });
+            
+            if (quoteForm && resetBtn) {
+                resetBtn.addEventListener('click', () => {
+                    quoteForm.reset();
+                });
+            }
+
+            // GESTION DES ÉLÉMENTS DYNAMIQUES
+            document.getElementById('year').textContent = new Date().getFullYear();
+
+            // GESTION DU MENU MOBILE
+            window.toggleMobileMenu = () => {
+                const mobileMenu = document.getElementById('mobile-menu');
+                mobileMenu.classList.toggle('hidden');
+            };
+
+            // Initialisation au chargement
             const savedLang = localStorage.getItem('lang') || 'fr';
             setLang(savedLang);
-            showPage('home'); // Afficher la page d'accueil au chargement
+            showPage('home');
         });
     </script>
+
 </body>
 </html>
