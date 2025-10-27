@@ -42,6 +42,7 @@
         .mobile-menu {
             transform: translateX(100%);
             transition: transform 0.3s ease-in-out;
+            background: white;
         }
         .mobile-menu.open {
             transform: translateX(0);
@@ -57,10 +58,18 @@
             opacity: 0;
             visibility: hidden;
             transition: all 0.3s ease-in-out;
+            background: rgba(0, 0, 0, 0.5);
         }
         .menu-overlay.active {
             opacity: 1;
             visibility: visible;
+        }
+        
+        /* Style pour le conteneur vidéo unifié */
+        .unified-video-container {
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            background: white;
+            box-shadow: 0 8px 24px rgba(11,18,32,.15);
         }
     </style>
 </head>
@@ -127,7 +136,7 @@
         <!-- Menu mobile -->
         <div id="mobileMenu" class="mobile-menu md:hidden fixed inset-y-0 right-0 w-64 bg-white border-l border-slate-200 shadow-lg z-50 p-6">
             <div class="flex justify-between items-center mb-8">
-                <span class="font-bold text-lg">Menu</span>
+                <span class="font-bold text-lg text-night">Menu</span>
                 <button id="mobileMenuClose" class="p-2 rounded-lg bg-slate-100 hover:bg-slate-200">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-slate-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
@@ -135,21 +144,21 @@
                 </button>
             </div>
             <nav class="space-y-4">
-                <button onclick="showPage('home'); closeMobileMenu();" class="block w-full text-left py-2 px-4 rounded-lg bg-slate-100 text-night font-medium">Accueil</button>
-                <button onclick="showPage('about'); closeMobileMenu();" class="block w-full text-left py-2 px-4 rounded-lg hover:bg-slate-100 text-slate-700 font-medium" data-i18n="nav.about">À propos</button>
-                <button onclick="showPage('projects'); closeMobileMenu();" class="block w-full text-left py-2 px-4 rounded-lg hover:bg-slate-100 text-slate-700 font-medium" data-i18n="nav.projects">Projets</button>
-                <button onclick="showPage('offer'); closeMobileMenu();" class="block w-full text-left py-2 px-4 rounded-lg hover:bg-slate-100 text-slate-700 font-medium" data-i18n="nav.offer">Mon offre</button>
-                <button onclick="showPage('quote'); closeMobileMenu();" class="block w-full text-left py-2 px-4 rounded-lg hover:bg-slate-100 text-slate-700 font-medium" data-i18n="nav.quote">Devis</button>
+                <button onclick="showPage('home'); closeMobileMenu();" class="block w-full text-left py-3 px-4 rounded-lg bg-slate-100 text-night font-semibold border border-slate-200">Accueil</button>
+                <button onclick="showPage('about'); closeMobileMenu();" class="block w-full text-left py-3 px-4 rounded-lg bg-white text-slate-700 font-medium border border-slate-200 hover:bg-slate-50 hover:border-slate-300 transition" data-i18n="nav.about">À propos</button>
+                <button onclick="showPage('projects'); closeMobileMenu();" class="block w-full text-left py-3 px-4 rounded-lg bg-white text-slate-700 font-medium border border-slate-200 hover:bg-slate-50 hover:border-slate-300 transition" data-i18n="nav.projects">Projets</button>
+                <button onclick="showPage('offer'); closeMobileMenu();" class="block w-full text-left py-3 px-4 rounded-lg bg-white text-slate-700 font-medium border border-slate-200 hover:bg-slate-50 hover:border-slate-300 transition" data-i18n="nav.offer">Mon offre</button>
+                <button onclick="showPage('quote'); closeMobileMenu();" class="block w-full text-left py-3 px-4 rounded-lg bg-white text-slate-700 font-medium border border-slate-200 hover:bg-slate-50 hover:border-slate-300 transition" data-i18n="nav.quote">Devis</button>
             </nav>
             <div class="mt-8 pt-6 border-t border-slate-200">
-                <button onclick="showPage('quote'); closeMobileMenu();" class="w-full inline-flex items-center justify-center gap-2 bg-night text-white px-4 py-3 rounded-xl font-semibold shadow-soft" data-i18n="cta.talk">
+                <button onclick="showPage('quote'); closeMobileMenu();" class="w-full inline-flex items-center justify-center gap-2 bg-night text-white px-4 py-3 rounded-xl font-semibold shadow-soft hover:bg-night/90 transition" data-i18n="cta.talk">
                     🚀 Discutons de votre projet
                 </button>
             </div>
         </div>
         
         <!-- Overlay pour menu mobile -->
-        <div id="menuOverlay" class="menu-overlay fixed inset-0 bg-black/20 z-40 md:hidden"></div>
+        <div id="menuOverlay" class="menu-overlay fixed inset-0 z-40 md:hidden"></div>
     </header>
 
     <!-- Page d'accueil -->
@@ -186,19 +195,16 @@
                         </div>
                     </div>
                     <div class="relative">
-                        <div class="absolute -inset-6 -z-10 bg-white/5 rounded-3xl blur-2xl"></div>
-                        <div class="bg-white rounded-3xl p-4 md:p-6 shadow-glass border border-slate-100">
+                        <!-- Cadre vidéo unifié avec bord fin -->
+                        <div class="bg-white rounded-3xl p-3 shadow-glass border border-slate-100 unified-video-container">
                             <div class="grid grid-cols-12 gap-4 items-end">
                                 <div class="col-span-12">
-                                    <!-- Cadre vidéo avec bord plus fin -->
-                                    <div class="rounded-2xl overflow-hidden shadow-soft bg-white p-2 video-container">
-                                        <div class="relative overflow-hidden rounded-xl" style="padding-top: 56.25%;">
-                                            <video autoplay loop muted playsinline class="absolute inset-0 w-full h-full object-cover">
-                                                <source src="https://res.cloudinary.com/drn6w4nab/video/upload/v1759130185/video_hero_mokyro.mp4" type="video/mp4">
-                                                <img src="https://i.ibb.co/Lzq9303v/Dashboard-section-hero.jpg" alt="Dashboard" class="w-full h-full object-cover">
-                                            </video>
-                                            <div class="absolute inset-0 bg-black/10"></div>
-                                        </div>
+                                    <div class="relative overflow-hidden rounded-xl" style="padding-top: 56.25%;">
+                                        <video autoplay loop muted playsinline class="absolute inset-0 w-full h-full object-cover">
+                                            <source src="https://res.cloudinary.com/drn6w4nab/video/upload/v1759130185/video_hero_mokyro.mp4" type="video/mp4">
+                                            <img src="https://i.ibb.co/Lzq9303v/Dashboard-section-hero.jpg" alt="Dashboard" class="w-full h-full object-cover">
+                                        </video>
+                                        <div class="absolute inset-0 bg-black/10"></div>
                                     </div>
                                 </div>
                             </div>
