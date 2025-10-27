@@ -37,12 +37,38 @@
         .bg-dyn { background-size: cover; background-position: center; }
         .page { min-height: calc(100vh - 120px); }
         body { box-sizing: border-box; }
+        
+        /* Styles pour le menu mobile */
+        .mobile-menu {
+            transform: translateX(100%);
+            transition: transform 0.3s ease-in-out;
+        }
+        .mobile-menu.open {
+            transform: translateX(0);
+        }
+        
+        /* Style pour le cadre vidéo avec des bords plus fins */
+        .video-container {
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+        
+        /* Overlay pour menu mobile */
+        .menu-overlay {
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease-in-out;
+        }
+        .menu-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
     </style>
 </head>
 <body class="bg-white text-night antialiased">
+    <!-- Bannière supérieure -->
     <div class="bg-night text-white text-sm">
         <div class="max-w-7xl mx-auto px-4 py-2 flex items-center justify-between">
-            <p class="opacity-90" data-i18n="top.tagline">Anza • Développement digital — Mons, Belgique</p>
+            <p class="opacity-90 text-xs sm:text-sm" data-i18n="top.tagline">Anza • Développement digital — Mons, Belgique</p>
             <div class="hidden sm:flex items-center gap-3">
                 <span class="inline-flex items-center gap-2 opacity-75"><span class="w-2 h-2 bg-emerald-400 rounded-full animate-pulse"></span><span data-i18n="top.fast">Délais rapides</span></span>
                 <span class="hidden md:inline opacity-75" data-i18n="top.mvp">MVP en 7 jours</span>
@@ -50,6 +76,7 @@
         </div>
     </div>
 
+    <!-- En-tête avec navigation -->
     <header class="sticky top-0 z-50 backdrop-blur supports-[backdrop-filter]:bg-white/70 bg-white/90 border-b border-slate-200">
         <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
             <button onclick="showPage('home')" class="flex items-center gap-3 group">
@@ -61,25 +88,71 @@
                     <div class="text-xs text-slate-500 -mt-0.5" data-i18n="brand.tag">Build • AI • Growth</div>
                 </div>
             </button>
+            
+            <!-- Navigation desktop -->
             <nav class="hidden md:flex items-center gap-7">
                 <button onclick="showPage('about')" class="nav-btn text-slate-700 hover:text-night font-medium" data-i18n="nav.about">À propos</button>
                 <button onclick="showPage('projects')" class="nav-btn text-slate-700 hover:text-night font-medium" data-i18n="nav.projects">Projets</button>
                 <button onclick="showPage('offer')" class="nav-btn text-slate-700 hover:text-night font-medium" data-i18n="nav.offer">Mon offre</button>
                 <button onclick="showPage('quote')" class="nav-btn text-slate-700 hover:text-night font-medium" data-i18n="nav.quote">Devis</button>
             </nav>
-            <div class="flex items-center gap-2">
-                <div class="hidden md:flex items-center gap-2 mr-2 bg-white/80 border border-slate-200 rounded-xl px-2 py-1">
+            
+            <!-- Sélecteur de langue desktop -->
+            <div class="hidden md:flex items-center gap-2">
+                <div class="flex items-center gap-2 mr-2 bg-white/80 border border-slate-200 rounded-xl px-2 py-1">
                     <button class="px-2 py-1 rounded-lg text-slate-700 hover:bg-slate-100 font-medium" data-lang="fr">FR</button>
                     <button class="px-2 py-1 rounded-lg text-slate-700 hover:bg-slate-100 font-medium" data-lang="en">EN</button>
                     <button class="px-2 py-1 rounded-lg text-slate-700 hover:bg-slate-100 font-medium" data-lang="nl">NL</button>
                 </div>
                 <button onclick="showPage('quote')" class="inline-flex items-center gap-2 bg-night text-white px-4 py-2.5 rounded-xl font-semibold shadow-soft hover:shadow-lg hover:-translate-y-0.5 transition" data-i18n="cta.talk">
+                    🚀 Discutons
+                </button>
+            </div>
+            
+            <!-- Bouton menu mobile -->
+            <div class="md:hidden flex items-center gap-2">
+                <div class="flex items-center gap-1 mr-2 bg-white/80 border border-slate-200 rounded-xl px-2 py-1">
+                    <button class="px-1 py-1 rounded-lg text-slate-700 hover:bg-slate-100 font-medium text-xs" data-lang="fr">FR</button>
+                    <button class="px-1 py-1 rounded-lg text-slate-700 hover:bg-slate-100 font-medium text-xs" data-lang="en">EN</button>
+                    <button class="px-1 py-1 rounded-lg text-slate-700 hover:bg-slate-100 font-medium text-xs" data-lang="nl">NL</button>
+                </div>
+                <button id="mobileMenuToggle" class="p-2 rounded-lg bg-slate-100 hover:bg-slate-200">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-slate-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Menu mobile -->
+        <div id="mobileMenu" class="mobile-menu md:hidden fixed inset-y-0 right-0 w-64 bg-white border-l border-slate-200 shadow-lg z-50 p-6">
+            <div class="flex justify-between items-center mb-8">
+                <span class="font-bold text-lg">Menu</span>
+                <button id="mobileMenuClose" class="p-2 rounded-lg bg-slate-100 hover:bg-slate-200">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-slate-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+            <nav class="space-y-4">
+                <button onclick="showPage('home'); closeMobileMenu();" class="block w-full text-left py-2 px-4 rounded-lg bg-slate-100 text-night font-medium">Accueil</button>
+                <button onclick="showPage('about'); closeMobileMenu();" class="block w-full text-left py-2 px-4 rounded-lg hover:bg-slate-100 text-slate-700 font-medium" data-i18n="nav.about">À propos</button>
+                <button onclick="showPage('projects'); closeMobileMenu();" class="block w-full text-left py-2 px-4 rounded-lg hover:bg-slate-100 text-slate-700 font-medium" data-i18n="nav.projects">Projets</button>
+                <button onclick="showPage('offer'); closeMobileMenu();" class="block w-full text-left py-2 px-4 rounded-lg hover:bg-slate-100 text-slate-700 font-medium" data-i18n="nav.offer">Mon offre</button>
+                <button onclick="showPage('quote'); closeMobileMenu();" class="block w-full text-left py-2 px-4 rounded-lg hover:bg-slate-100 text-slate-700 font-medium" data-i18n="nav.quote">Devis</button>
+            </nav>
+            <div class="mt-8 pt-6 border-t border-slate-200">
+                <button onclick="showPage('quote'); closeMobileMenu();" class="w-full inline-flex items-center justify-center gap-2 bg-night text-white px-4 py-3 rounded-xl font-semibold shadow-soft" data-i18n="cta.talk">
                     🚀 Discutons de votre projet
                 </button>
             </div>
         </div>
+        
+        <!-- Overlay pour menu mobile -->
+        <div id="menuOverlay" class="menu-overlay fixed inset-0 bg-black/20 z-40 md:hidden"></div>
     </header>
 
+    <!-- Page d'accueil -->
     <div id="page-home" class="page">
         <section class="relative overflow-hidden">
             <div class="absolute inset-0">
@@ -106,7 +179,7 @@
                                 Voir nos projets
                             </button>
                         </div>
-                        <div class="mt-24 md:mt-32 flex items-center gap-6 text-white/70">
+                        <div class="mt-16 md:mt-32 flex flex-wrap items-center gap-4 md:gap-6 text-white/70">
                             <div class="flex items-center gap-2"><span class="w-2 h-2 bg-emerald-400 rounded-full"></span><span data-i18n="hero.fast">Livraison rapide</span></div>
                             <div class="flex items-center gap-2"><span class="w-2 h-2 bg-emerald-400 rounded-full"></span><span data-i18n="hero.results">Orienté résultats</span></div>
                             <div class="flex items-center gap-2"><span class="w-2 h-2 bg-emerald-400 rounded-full"></span><span data-i18n="hero.ai">IA & automatisation</span></div>
@@ -114,10 +187,11 @@
                     </div>
                     <div class="relative">
                         <div class="absolute -inset-6 -z-10 bg-white/5 rounded-3xl blur-2xl"></div>
-                        <div class="bg-white rounded-3xl p-6 shadow-glass border border-slate-100">
+                        <div class="bg-white rounded-3xl p-4 md:p-6 shadow-glass border border-slate-100">
                             <div class="grid grid-cols-12 gap-4 items-end">
                                 <div class="col-span-12">
-                                    <div class="rounded-2xl overflow-hidden shadow-soft bg-white p-[0.5rem]">
+                                    <!-- Cadre vidéo avec bord plus fin -->
+                                    <div class="rounded-2xl overflow-hidden shadow-soft bg-white p-2 video-container">
                                         <div class="relative overflow-hidden rounded-xl" style="padding-top: 56.25%;">
                                             <video autoplay loop muted playsinline class="absolute inset-0 w-full h-full object-cover">
                                                 <source src="https://res.cloudinary.com/drn6w4nab/video/upload/v1759130185/video_hero_mokyro.mp4" type="video/mp4">
@@ -135,6 +209,7 @@
         </section>
     </div>
 
+    <!-- Page À propos -->
     <div id="page-about" class="page hidden">
         <section class="relative">
             <div class="absolute inset-0 pointer-events-none">
@@ -185,6 +260,7 @@
         </section>
     </div>
 
+    <!-- Page Projets -->
     <div id="page-projects" class="page hidden">
         <section class="relative">
             <div class="absolute inset-0 pointer-events-none z-10">
@@ -195,7 +271,7 @@
                 <div class="flex items-end justify-between gap-6">
                     <div>
                         <h2 class="text-2xl md:text-3xl font-extrabold text-white" data-i18n="projects.title">Projets</h2>
-                        <p class="mt-3 text-white/95 max-w-2xl" data-i18n="projects.subtitle" data-i18n-html>Découvrez une sélection de projets présentés sur ordinateur et smartphone.<br/>Chaque création met en avant ses points forts, son design soigné et la valeur concrète qu’elle apporte à nos clients.</p>
+                        <p class="mt-3 text-white/95 max-w-2xl" data-i18n="projects.subtitle" data-i18n-html>Découvrez une sélection de projets présentés sur ordinateur et smartphone.<br/>Chaque création met en avant ses points forts, son design soigné et la valeur concrète qu'elle apporte à nos clients.</p>
                     </div>
                 </div>
                 <div class="mt-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-7">
@@ -371,6 +447,7 @@
         </section>
     </div>
 
+    <!-- Page Offre -->
     <div id="page-offer" class="page hidden">
         <section class="relative">
             <div class="absolute inset-0 -z-10">
@@ -455,6 +532,7 @@
         </section>
     </div>
 
+    <!-- Page Devis -->
     <div id="page-quote" class="page hidden">
         <section class="relative">
             <div class="absolute inset-0 pointer-events-none bg-[radial-gradient(ellipse_at_bottom_left,rgba(34,197,94,.08),transparent_40%)]"></div>
@@ -627,6 +705,31 @@
             });
         }
 
+        // --- GESTION DU MENU MOBILE ---
+        
+        function openMobileMenu() {
+            document.getElementById('mobileMenu').classList.add('open');
+            document.getElementById('menuOverlay').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeMobileMenu() {
+            document.getElementById('mobileMenu').classList.remove('open');
+            document.getElementById('menuOverlay').classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+        
+        document.getElementById('mobileMenuToggle').addEventListener('click', openMobileMenu);
+        document.getElementById('mobileMenuClose').addEventListener('click', closeMobileMenu);
+        document.getElementById('menuOverlay').addEventListener('click', closeMobileMenu);
+        
+        // Fermer le menu mobile avec la touche Échap
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeMobileMenu();
+            }
+        });
+
         // --- GESTION DE LA TRADUCTION (i18n) ---
 
         const translations = {
@@ -637,7 +740,7 @@
                 'hero.title': 'Lancez votre plateforme digitale en 7 jours avec Anza', 'hero.subtitle': 'Et parce que la première impression compte, nous vous offrons la création de votre section Hero – design impactant + accroche marketing.',
                 'hero.fast': 'Livraison rapide', 'hero.results': 'Orienté résultats', 'hero.ai': 'IA & automatisation',
                 'about.title': 'À propos', 'about.desc': 'Je suis Gaëtan, fondateur d\'Anza, passionné d\'IA et expert en création rapide de MVPs. J\'ai déjà livré des plateformes médicales, immobilières et de transport, avec des lancements réussis et des utilisateurs actifs dès les premières semaines. J\'accompagne également les indépendants et petites entreprises dans leur communication digitale (community management, mini-sites vitrines), et je crée des agents IA pour automatiser vos tâches répétitives et gagner du temps.', 'about.examples': 'Voir des exemples concrets →',
-                'projects.title': 'Projets', 'projects.subtitle': 'Découvrez une sélection de projets présentés sur ordinateur et smartphone.<br/>Chaque création met en avant ses points forts, son design soigné et la valeur concrète qu’elle apporte à nos clients.',
+                'projects.title': 'Projets', 'projects.subtitle': 'Découvrez une sélection de projets présentés sur ordinateur et smartphone.<br/>Chaque création met en avant ses points forts, son design soigné et la valeur concrète qu\'elle apporte à nos clients.',
                 'offer.title': 'Mon offre', 'offer.subtitle': 'Des solutions adaptées aux startups, PME et indépendants, avec la puissance de l\'IA.',
                 'quote.title': 'Demande de devis', 'quote.subtitle': 'Expliquez votre besoin en 1 minute. Je reviens vers vous rapidement avec un plan d\'action.',
                 'form.firstName': 'Prénom', 'form.lastName': 'Nom', 'form.email': 'Email', 'form.phone': 'Téléphone', 'form.type': 'Type de projet', 'form.budget': 'Budget approximatif', 'form.description': 'Description du projet', 'form.submit': '📩 Envoyer ma demande', 'form.privacy': 'Votre demande sera traitée par un service d\'envoi de formulaire sécurisé.',
@@ -706,6 +809,7 @@
             btn.addEventListener('click', (e) => {
                 const lang = e.target.getAttribute('data-lang');
                 setLang(lang);
+                closeMobileMenu(); // Fermer le menu mobile après sélection de la langue
             });
         });
 
