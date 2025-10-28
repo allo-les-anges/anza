@@ -6,6 +6,48 @@
     <title>Anza — Développement digital à Mons | MVP en 7 jours</title>
     <meta name="description" content="Anza conçoit des plateformes digitales rapides et efficaces. MVP en 7 jours, mini-sites, community management et agents IA. Basé à Mons (Belgique)." />
     <meta name="theme-color" content="#0b1220" />
+    
+    <!-- SEO optimisations -->
+    <meta name="robots" content="index, follow">
+    <meta name="keywords" content="développement digital, MVP, Mons, Belgique, plateforme digitale, community management, agents IA, automatisation">
+    <link rel="canonical" href="https://anza.dev" />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://anza.dev/" />
+    <meta property="og:title" content="Anza — Développement digital à Mons | MVP en 7 jours" />
+    <meta property="og:description" content="Anza conçoit des plateformes digitales rapides et efficaces. MVP en 7 jours, mini-sites, community management et agents IA." />
+    <meta property="og:image" content="https://res.cloudinary.com/drn6w4nab/image/upload/v1761639142/Hero_Landing_page_light_tviun0.png" />
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://anza.dev/" />
+    <meta property="twitter:title" content="Anza — Développement digital à Mons | MVP en 7 jours" />
+    <meta property="twitter:description" content="Anza conçoit des plateformes digitales rapides et efficaces. MVP en 7 jours, mini-sites, community management et agents IA." />
+    <meta property="twitter:image" content="https://res.cloudinary.com/drn6w4nab/image/upload/v1761639142/Hero_Landing_page_light_tviun0.png" />
+    
+    <!-- Schema.org markup -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Anza",
+      "url": "https://anza.dev",
+      "logo": "https://i.ibb.co/1JfDhq21/Logo-Anza-transparent.png",
+      "description": "Développement digital & IA — Mons, Belgique",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Mons",
+        "addressCountry": "BE"
+      },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "email": "hello@anza.dev",
+        "contactType": "customer service"
+      }
+    }
+    </script>
+    
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
@@ -76,6 +118,25 @@
         .aspect-16-9 {
             aspect-ratio: 16/9;
         }
+        
+        /* Amélioration de l'accessibilité */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+        
+        /* Focus visible pour l'accessibilité */
+        button:focus-visible, a:focus-visible {
+            outline: 2px solid #22c55e;
+            outline-offset: 2px;
+        }
     </style>
 </head>
 <body class="bg-white text-night antialiased">
@@ -93,7 +154,7 @@
     <!-- En-tête avec navigation -->
     <header class="sticky top-0 z-50 backdrop-blur supports-[backdrop-filter]:bg-white/70 bg-white/90 border-b border-slate-200">
         <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
-            <button onclick="showPage('home')" class="flex items-center gap-3 group">
+            <button onclick="showPage('home')" class="flex items-center gap-3 group" aria-label="Retour à l'accueil">
                 <span class="w-9 h-9 rounded-xl grid place-items-center shadow-soft overflow-hidden">
                     <img src="https://i.ibb.co/1JfDhq21/Logo-Anza-transparent.png" alt="Logo Anza" class="w-full h-full object-contain" onerror="this.src=''; this.alt='Image failed to load'; this.style.display='none';">
                 </span>
@@ -104,7 +165,7 @@
             </button>
             
             <!-- Navigation desktop -->
-            <nav class="hidden md:flex items-center gap-7">
+            <nav class="hidden md:flex items-center gap-7" aria-label="Navigation principale">
                 <button onclick="showPage('about')" class="nav-btn text-slate-700 hover:text-night font-medium" data-i18n="nav.about">À propos</button>
                 <button onclick="showPage('projects')" class="nav-btn text-slate-700 hover:text-night font-medium" data-i18n="nav.projects">Projets</button>
                 <button onclick="showPage('offer')" class="nav-btn text-slate-700 hover:text-night font-medium" data-i18n="nav.offer">Mon offre</button>
@@ -113,10 +174,10 @@
             
             <!-- Sélecteur de langue desktop -->
             <div class="hidden md:flex items-center gap-2">
-                <div class="flex items-center gap-2 mr-2 bg-white/80 border border-slate-200 rounded-xl px-2 py-1">
-                    <button class="px-2 py-1 rounded-lg text-slate-700 hover:bg-slate-100 font-medium" data-lang="fr">FR</button>
-                    <button class="px-2 py-1 rounded-lg text-slate-700 hover:bg-slate-100 font-medium" data-lang="en">EN</button>
-                    <button class="px-2 py-1 rounded-lg text-slate-700 hover:bg-slate-100 font-medium" data-lang="nl">NL</button>
+                <div class="flex items-center gap-2 mr-2 bg-white/80 border border-slate-200 rounded-xl px-2 py-1" role="group" aria-label="Sélection de la langue">
+                    <button class="px-2 py-1 rounded-lg text-slate-700 hover:bg-slate-100 font-medium" data-lang="fr" aria-label="Français">FR</button>
+                    <button class="px-2 py-1 rounded-lg text-slate-700 hover:bg-slate-100 font-medium" data-lang="en" aria-label="English">EN</button>
+                    <button class="px-2 py-1 rounded-lg text-slate-700 hover:bg-slate-100 font-medium" data-lang="nl" aria-label="Nederlands">NL</button>
                 </div>
                 <button onclick="showPage('quote')" class="inline-flex items-center gap-2 bg-night text-white px-4 py-2.5 rounded-xl font-semibold shadow-soft hover:shadow-lg hover:-translate-y-0.5 transition" data-i18n="cta.talk">
                     🚀 Discutons
@@ -125,12 +186,12 @@
             
             <!-- Bouton menu mobile -->
             <div class="md:hidden flex items-center gap-2">
-                <div class="flex items-center gap-1 mr-2 bg-white/80 border border-slate-200 rounded-xl px-2 py-1">
-                    <button class="px-1 py-1 rounded-lg text-slate-700 hover:bg-slate-100 font-medium text-xs" data-lang="fr">FR</button>
-                    <button class="px-1 py-1 rounded-lg text-slate-700 hover:bg-slate-100 font-medium text-xs" data-lang="en">EN</button>
-                    <button class="px-1 py-1 rounded-lg text-slate-700 hover:bg-slate-100 font-medium text-xs" data-lang="nl">NL</button>
+                <div class="flex items-center gap-1 mr-2 bg-white/80 border border-slate-200 rounded-xl px-2 py-1" role="group" aria-label="Sélection de la langue">
+                    <button class="px-1 py-1 rounded-lg text-slate-700 hover:bg-slate-100 font-medium text-xs" data-lang="fr" aria-label="Français">FR</button>
+                    <button class="px-1 py-1 rounded-lg text-slate-700 hover:bg-slate-100 font-medium text-xs" data-lang="en" aria-label="English">EN</button>
+                    <button class="px-1 py-1 rounded-lg text-slate-700 hover:bg-slate-100 font-medium text-xs" data-lang="nl" aria-label="Nederlands">NL</button>
                 </div>
-                <button id="mobileMenuToggle" class="p-2 rounded-lg bg-slate-100 hover:bg-slate-200">
+                <button id="mobileMenuToggle" class="p-2 rounded-lg bg-slate-100 hover:bg-slate-200" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobileMenu">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-slate-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
                     </svg>
@@ -142,13 +203,13 @@
         <div id="mobileMenu" class="mobile-menu md:hidden fixed inset-y-0 right-0 w-64 bg-white border-l border-slate-200 shadow-lg z-50 p-6">
             <div class="flex justify-between items-center mb-8">
                 <span class="font-bold text-lg text-night">Menu</span>
-                <button id="mobileMenuClose" class="p-2 rounded-lg bg-slate-100 hover:bg-slate-200">
+                <button id="mobileMenuClose" class="p-2 rounded-lg bg-slate-100 hover:bg-slate-200" aria-label="Fermer le menu">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-slate-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                     </svg>
                 </button>
             </div>
-            <nav class="space-y-4">
+            <nav class="space-y-4" aria-label="Navigation mobile">
                 <button onclick="showPage('home'); closeMobileMenu();" class="block w-full text-left py-3 px-4 rounded-lg bg-slate-100 text-night font-semibold border border-slate-200">Accueil</button>
                 <button onclick="showPage('about'); closeMobileMenu();" class="block w-full text-left py-3 px-4 rounded-lg bg-white text-slate-700 font-medium border border-slate-200 hover:bg-slate-50 hover:border-slate-300 transition" data-i18n="nav.about">À propos</button>
                 <button onclick="showPage('projects'); closeMobileMenu();" class="block w-full text-left py-3 px-4 rounded-lg bg-white text-slate-700 font-medium border border-slate-200 hover:bg-slate-50 hover:border-slate-300 transition" data-i18n="nav.projects">Projets</button>
@@ -205,7 +266,7 @@
                             <div class="grid grid-cols-12 gap-4 items-end">
                                 <div class="col-span-12">
                                     <div class="relative overflow-hidden rounded-xl" style="padding-top: 56.25%;">
-                                        <video autoplay loop muted playsinline class="absolute inset-0 w-full h-full object-cover">
+                                        <video autoplay loop muted playsinline class="absolute inset-0 w-full h-full object-cover" aria-label="Démonstration d'une plateforme digitale Anza">
                                             <source src="https://res.cloudinary.com/drn6w4nab/video/upload/v1761583015/Anza_hero_gg0rld.mp4" type="video/mp4">
                                             <img src="https://i.ibb.co/Lzq9303v/Dashboard-section-hero.jpg" alt="Dashboard" class="w-full h-full object-cover">
                                         </video>
@@ -708,6 +769,13 @@
             if (activePage) {
                 activePage.classList.remove('hidden');
                 window.scrollTo({ top: 0, behavior: 'smooth' });
+                
+                // Mise à jour de l'URL pour le SEO
+                const newUrl = `${window.location.origin}${window.location.pathname}#${pageId}`;
+                window.history.pushState({ page: pageId }, '', newUrl);
+                
+                // Mise à jour du titre de la page pour le SEO
+                updatePageTitle(pageId);
             }
 
             document.querySelectorAll('nav .nav-btn').forEach(btn => {
@@ -722,17 +790,33 @@
             });
         }
 
+        // Fonction pour mettre à jour le titre de la page selon la section
+        function updatePageTitle(pageId) {
+            const baseTitle = "Anza — Développement digital à Mons | MVP en 7 jours";
+            const pageTitles = {
+                'home': baseTitle,
+                'about': "À propos | Anza — Développement digital à Mons",
+                'projects': "Projets | Anza — Développement digital à Mons",
+                'offer': "Mon offre | Anza — Développement digital à Mons",
+                'quote': "Devis | Anza — Développement digital à Mons"
+            };
+            
+            document.title = pageTitles[pageId] || baseTitle;
+        }
+
         // --- GESTION DU MENU MOBILE ---
         
         function openMobileMenu() {
             document.getElementById('mobileMenu').classList.add('open');
             document.getElementById('menuOverlay').classList.add('active');
+            document.getElementById('mobileMenuToggle').setAttribute('aria-expanded', 'true');
             document.body.style.overflow = 'hidden';
         }
         
         function closeMobileMenu() {
             document.getElementById('mobileMenu').classList.remove('open');
             document.getElementById('menuOverlay').classList.remove('active');
+            document.getElementById('mobileMenuToggle').setAttribute('aria-expanded', 'false');
             document.body.style.overflow = 'auto';
         }
         
@@ -806,8 +890,12 @@
                 }
             });
 
-            // Gérer le changement d'URL dans la barre d'adresse pour la navigation
-            history.pushState(null, '', `#${lang}`);
+            // Mettre à jour l'attribut lang de la balise html
+            document.documentElement.lang = lang;
+            
+            // Mettre à jour l'URL pour la navigation
+            const currentHash = window.location.hash.split('#')[1] || 'home';
+            history.pushState(null, '', `#${currentHash}-${lang}`);
             
             localStorage.setItem('lang', lang);
             document.querySelectorAll('[data-lang]').forEach(b => {
@@ -850,7 +938,7 @@
         });
 
         // Form handling (nettoyage pour Web3Forms)
-        const form = document.getElementById('quoteForm');
+        const form = document.querySelector('form');
         const resetBtn = document.getElementById('resetBtn');
 
         // Initialiser la logique du formulaire une fois que le DOM est chargé
@@ -862,16 +950,85 @@
         
         // Initialiser tout au chargement de la page
         document.addEventListener('DOMContentLoaded', () => {
-            const savedLang = localStorage.getItem('lang') || 'fr';
+            // Récupérer la langue sauvegardée ou détecter la langue du navigateur
+            let savedLang = localStorage.getItem('lang');
+            if (!savedLang) {
+                // Détection automatique de la langue du navigateur
+                const browserLang = navigator.language || navigator.userLanguage;
+                if (browserLang.startsWith('nl')) {
+                    savedLang = 'nl';
+                } else if (browserLang.startsWith('en')) {
+                    savedLang = 'en';
+                } else {
+                    savedLang = 'fr';
+                }
+            }
             setLang(savedLang);
-            showPage('home'); // Afficher la page d'accueil au chargement
+            
+            // Récupérer la page à afficher depuis l'URL
+            const hash = window.location.hash;
+            if (hash) {
+                const pageId = hash.split('#')[1].split('-')[0];
+                if (pageId && document.getElementById(`page-${pageId}`)) {
+                    showPage(pageId);
+                } else {
+                    showPage('home');
+                }
+            } else {
+                showPage('home'); // Afficher la page d'accueil au chargement
+            }
         });
 
         // Afficher la bonne page lors de l'utilisation des boutons du navigateur (précédent/suivant)
         window.addEventListener('popstate', (event) => {
-            const lang = window.location.hash.substring(1) || 'fr';
-            setLang(lang);
+            const hash = window.location.hash;
+            if (hash) {
+                const pageId = hash.split('#')[1].split('-')[0];
+                if (pageId && document.getElementById(`page-${pageId}`)) {
+                    showPage(pageId);
+                }
+            } else {
+                showPage('home');
+            }
         });
+
+        // Gestion du formulaire pour éviter le rechargement de la page
+        if (form) {
+            form.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                
+                const submitBtn = form.querySelector('button[type="submit"]');
+                const originalText = submitBtn.textContent;
+                
+                try {
+                    submitBtn.textContent = 'Envoi en cours...';
+                    submitBtn.disabled = true;
+                    
+                    const formData = new FormData(form);
+                    const response = await fetch(form.action, {
+                        method: 'POST',
+                        body: formData
+                    });
+                    
+                    if (response.ok) {
+                        submitBtn.textContent = '✅ Envoyé !';
+                        form.reset();
+                        setTimeout(() => {
+                            submitBtn.textContent = originalText;
+                            submitBtn.disabled = false;
+                        }, 3000);
+                    } else {
+                        throw new Error('Erreur lors de l\'envoi');
+                    }
+                } catch (error) {
+                    submitBtn.textContent = '❌ Erreur';
+                    setTimeout(() => {
+                        submitBtn.textContent = originalText;
+                        submitBtn.disabled = false;
+                    }, 3000);
+                }
+            });
+        }
 
     </script>
 </body>
